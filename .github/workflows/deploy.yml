@@ -23,6 +23,9 @@ jobs:
       - name: Build site
         run: hugo --minify
 
+      - name: Disable Jekyll
+        run: touch public/.nojekyll
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
