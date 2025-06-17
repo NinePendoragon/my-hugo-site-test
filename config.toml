@@ -1,0 +1,59 @@
+
+baseURL = "https://ninependoragon.np"
+title = "Nine_Pendoragon"
+themesDir = "themes"
+theme = "hugo-theme-m10c"
+
+
+[pagination]
+  pagerSize = 8
+
+[menu]
+  [[menu.main]]
+    identifier = "home"
+    name = "Home"
+    url = "/"
+    weight = 1
+  [[menu.main]]
+    identifier = "tags"
+    name = "Tags"
+    url = "/tags/"
+    weight = 2
+  [[menu.main]]
+    identifier = "about"
+    name = "About"
+    url = "/about/"
+    weight = 3
+
+[params]
+  author = "Nine_Pendoragon"
+  description = "磨刀不误砍柴工"
+  avatar = "avatar.jpg"
+  menu_item_separator = " - "
+  [[params.social]]
+    icon = "brand-github"
+    name = "Github"
+    url = "https://github.com/NinePendoragon"
+  [[params.social]]
+    icon = "brand-bilibili"
+    name = "bilibili"
+    url = "https://b23.tv/5W03nDb"
+
+
+  #Green theme
+  [params.style]
+    darkestColor = "#45474b"
+    darkColor = "#495e57"
+    lightColor = "#afbac4"
+    lightestColor = "#ffffff"
+    primaryColor = "#ecb027"
+
+  #[params.style]
+  #  darkestColor = "#3674B5"
+  #  darkColor = "#578FCA"
+  #  lightColor = "#F5F0CD"
+  #  lightestColor = "#FADA7A"
+  #  parimaryColor = "#57cc8a"
+
+
+ 
