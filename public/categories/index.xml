@@ -2,10 +2,10 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Nine_Pendoragon</title>
-    <link>https://ninependoragon.np/categories/</link>
+    <link>https://ninependoragon.github.io/my-hugo-site-test/categories/</link>
     <description>Recent content in Categories on Nine_Pendoragon</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <atom:link href="https://ninependoragon.np/categories/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://ninependoragon.github.io/my-hugo-site-test/categories/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

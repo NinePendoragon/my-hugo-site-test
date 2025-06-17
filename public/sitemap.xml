@@ -2,23 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://ninependoragon.np/</loc>
+    <loc>https://ninependoragon.github.io/my-hugo-site-test/</loc>
     <lastmod>1012-01-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://ninependoragon.np/posts/</loc>
+    <loc>https://ninependoragon.github.io/my-hugo-site-test/posts/</loc>
     <lastmod>1012-01-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://ninependoragon.np/tags/</loc>
+    <loc>https://ninependoragon.github.io/my-hugo-site-test/tags/</loc>
     <lastmod>1012-01-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://ninependoragon.np/tags/test/</loc>
+    <loc>https://ninependoragon.github.io/my-hugo-site-test/tags/test/</loc>
     <lastmod>1012-01-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://ninependoragon.np/posts/test-1/</loc>
+    <loc>https://ninependoragon.github.io/my-hugo-site-test/posts/test-1/</loc>
     <lastmod>1012-01-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://ninependoragon.np/about/</loc>
+    <loc>https://ninependoragon.github.io/my-hugo-site-test/about/</loc>
   </url><url>
-    <loc>https://ninependoragon.np/categories/</loc>
+    <loc>https://ninependoragon.github.io/my-hugo-site-test/categories/</loc>
   </url>
 </urlset>
