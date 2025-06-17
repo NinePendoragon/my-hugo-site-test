@@ -1,5 +1,5 @@
 
-baseURL = "https://ninependoragon.np"
+baseURL = "https://ninependoragon.github.io/my-hugo-site-test/"
 title = "Nine_Pendoragon"
 themesDir = "themes"
 theme = "hugo-theme-m10c"
