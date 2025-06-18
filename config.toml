@@ -42,8 +42,8 @@ theme = "hugo-theme-m10c"
 
   #Green theme
   [params.style]
-    darkestColor = "#45474b"
-    darkColor = "#495e57"
+    darkestColor = "#495e57"
+    darkColor = "#45474b"
     lightColor = "#afbac4"
     lightestColor = "#ffffff"
     primaryColor = "#ecb027"
