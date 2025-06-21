@@ -1,26 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Nine_Pendoragon</title>
-    <link>https://www.ninependoragon.xyz/</link>
-    <description>Recent content on Nine_Pendoragon</description>
+    <title>Geant4 on Nine_Pendoragon</title>
+    <link>https://www.ninependoragon.xyz/tags/geant4/</link>
+    <description>Recent content in Geant4 on Nine_Pendoragon</description>
     <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Sat, 21 Jun 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://www.ninependoragon.xyz/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://www.ninependoragon.xyz/tags/geant4/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>通过源码安装Geant4</title>
       <link>https://www.ninependoragon.xyz/posts/geant4_installation/</link>
       <pubDate>Sat, 21 Jun 2025 00:00:00 +0000</pubDate>
       <guid>https://www.ninependoragon.xyz/posts/geant4_installation/</guid>
       <description>&lt;p&gt;今天拿我师兄的Geant4模拟在mac运行又运行不了了，折腾后发现似乎要重装Geant4。虽然Geant4我不会用，但是安装Geant4我还是蛮有经验的！我在ubuntu、arch、mac上都多次安装过Geant4，所以趁这个机会，就把安装Geant4作为我的第一篇帖子吧。&lt;/p&gt;&#xA;&lt;h2 id=&#34;官方教程&#34;&gt;官方教程&lt;/h2&gt;&#xA;&lt;p&gt;我是计算机小白，如果有想将这篇帖子作为教程来安装Geant4的话还是有很大的风险的，所以还是以官方教程为准，这里说点题外话，我在折腾arch的时候，每次遇到问题去问师兄A，他会让我去查arch的wiki，去问师兄B，他会让我去问ai，我现在每次想问他们问题的时候，都会选择直接去问ai还有查wiki了，所以大家也要养成自己查wiki的好习惯！有很多问题其实仔细查阅wiki都能自己解决的。现在的ai很强大了，就算wiki上查不到，去问ai也是可以解决大部分问题的，当然这些都是我根据个人经验来看是这样的。不过上面提到的两个师兄人其实是非常好的，只能说他们让我体会到什么叫作”授人以鱼不如授人以渔“。&lt;/p&gt;&#xA;&lt;p&gt;打开Geant4官网&lt;a href=&#34;https://geant4.web.cern.ch/&#34;&gt;https://geant4.web.cern.ch/&lt;/a&gt;，选择Docs项，&lt;img src=&#34;https://www.ninependoragon.xyz/geant4/geant4.jpg&#34; alt=&#34;Geant4主页&#34; title=&#34;Geant4主页&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;然后选择&lt;a href=&#34;https://geant4-userdoc.web.cern.ch/UsersGuides/InstallationGuide/html/index.html&#34;&gt;Installation Guide&lt;/a&gt;，&lt;img src=&#34;https://www.ninependoragon.xyz/geant4/docs.png&#34; alt=&#34;docs&#34; title=&#34;docs&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;这里就是如何安装Geant4的官方教程。&lt;img src=&#34;https://www.ninependoragon.xyz/geant4/installationGuide.png&#34; alt=&#34;installation&#34; title=&#34;installation&#34;&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;macos&#34;&gt;MacOS&lt;/h2&gt;&#xA;&lt;p&gt;今天很晚了，data也没下载完，后面有空了继续来写，我已经忍不住想发出来了，等不到写完那天了。这两天在出差，过两天回去了在用arch和Ubuntu安装了再来写这两个的安装过程。&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>About</title>
-      <link>https://www.ninependoragon.xyz/about/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://www.ninependoragon.xyz/about/</guid>
-      <description>&lt;p&gt;你好(*´▽｀)ノノ，这里是自称为NinePendoragon的龙的Weblog，头像是&lt;del&gt;本人&lt;/del&gt;本龙，由画师ふこも@fukomo_3 创作，更多细节可以看&lt;a href=&#34;https://b23.tv/RSBOQzp&#34;&gt;这条动态&lt;/a&gt;。NinePendoragon不是九笔龙！Nine灵感是&lt;a href=&#34;https://mzh.moegirl.org.cn/9-nine-&#34;&gt;&amp;ldquo;9-nine-&amp;rdquo;&lt;/a&gt;系列游戏，我是那种玩galgame会睡着的龙，玩的galgame非常少，nine系列是我真正意义上完整游玩的galgame，剧情很精彩，今年好像动画化了，恭喜恭喜。Pendoragon来源是&lt;a href=&#34;https://zh.moegirl.org.cn/Fate%E7%B3%BB%E5%88%97&#34;&gt;fate&lt;/a&gt;系列中&lt;a href=&#34;https://mzh.moegirl.org.cn/%E9%98%BF%E5%B0%94%E6%89%98%E8%8E%89%E9%9B%85%C2%B7%E6%BD%98%E5%BE%B7%E6%8B%89%E8%B4%A1&#34;&gt;阿尔托莉雅·潘德拉贡&lt;/a&gt;，英文名是Altria Pendragon，Pendragon罗马音就是Pendoragon。我看fate系列其实一开始就是冲着阿尔托莉雅·潘德拉贡去的，在接触fate系列之前，一直就觉得这位saber又帅又神秘。&lt;/p&gt;&#xA;&lt;p&gt;好了，个龙介绍就到这里，现在介绍一下这个weblog，事情的起因是在搜索hyprland配置教程的时候搜到了&lt;a href=&#34;https://cascade.moe/&#34;&gt;Cascade&lt;/a&gt;大佬的帖子，然后注意到这个网站我非常喜欢，而且注意到制作同款网站并不困难，所以就动手做了这个网站。老实说，在这之前，我只在学校学过一点点Dreamweaver，部署网址完全不懂，全靠ai帮我完成部署。不过现在的ai是真的帮助很大，23年的时候ai写的代码真的完全运行不了，不过那个时候是用来写Geant4。&lt;/p&gt;&#xA;&lt;p&gt;这个weblog，我打算分享值得分享的任何事情！最近也在思考，要不要把自己折腾linux的过程录成视频。NinePendoragon目前定位是做一名技能培养养成系up主，就像幻想生活i里面的主角一样，想学习各种职业技能。&lt;/p&gt;&#xA;&lt;p&gt;这个网站还会继续完善。&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

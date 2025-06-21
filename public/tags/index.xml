@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Nine_Pendoragon</title>
-    <link>http://localhost:1313/tags/</link>
+    <link>https://www.ninependoragon.xyz/tags/</link>
     <description>Recent content in Tags on Nine_Pendoragon</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 18 Jun 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 21 Jun 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://www.ninependoragon.xyz/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Test</title>
-      <link>http://localhost:1313/tags/test/</link>
-      <pubDate>Wed, 18 Jun 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/test/</guid>
+      <title>Geant4</title>
+      <link>https://www.ninependoragon.xyz/tags/geant4/</link>
+      <pubDate>Sat, 21 Jun 2025 00:00:00 +0000</pubDate>
+      <guid>https://www.ninependoragon.xyz/tags/geant4/</guid>
       <description></description>
     </item>
   </channel>
