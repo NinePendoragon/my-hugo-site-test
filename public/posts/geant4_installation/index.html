@@ -20,7 +20,10 @@
 打开Geant4官网https://geant4.web.cern.ch/，选择Docs项，
 然后选择Installation Guide，
 这里就是如何安装Geant4的官方教程。
-MacOS 今天很晚了，data也没下载完，后面有空了继续来写，我已经忍不住想发出来了，等不到写完那天了。这两天在出差，过两天回去了在用arch和Ubuntu安装了再来写这两个的安装过程。">
+MacOS 踩坑 先在官网下载源码和所有DATA文件，mac上面我下载下来的文件名字是&#34;Darwin-clang17.0.0-Sequoia.tar.gz&#34;，根据官方教程第一步是解压这个文件到想要的位置。先在主目录下新建一个文件夹，然后解压，在终端中输入下面的命令。
+cd mkdir Geant4 cd Geant4 tar -xzf ~/Downloads/Darwin-clang17.0.0-Sequoia.tar.gz 第二步是新建一个build文件夹并且进入，然后运行cmake，我顺便再新建一下install文件夹，接着上面的命令继续输入，不要退出终端。
+mkdir G4_install G4_build cd G4_build cmake -DCMAKE_INSTALL_PREFIX=~/Geant4/G4_install ~/Geant4/Geant4-11.3.2-Darwin 报错如下。
+CMake Warning: Ignoring extra path from command line: &#34;/Users/ninependoragon/Geant4/Geant4-11.3.2-Darwin&#34; CMake Error: The source directory &#34;/Users/ninependoragon/Geant4/Geant4-11.3.2-Darwin&#34; does not appear to contain CMakeLists.txt. Specify --help for usage, or press the help button on the CMake GUI. ninependoragon@Nines-MacBook-Pro G4_build % 复制下来去问ai，结果发现是我下错源码了，我下载错成Binary releases了。。。 OK，下载好源码之后重新跑一遍上面的代码。">
 
     <meta property="og:url" content="https://ninependoragon.xyz/posts/geant4_installation/">
   <meta property="og:site_name" content="Nine_Pendoragon">
@@ -30,7 +33,10 @@ MacOS 今天很晚了，data也没下载完，后面有空了继续来写，我�
 打开Geant4官网https://geant4.web.cern.ch/，选择Docs项，
 然后选择Installation Guide，
 这里就是如何安装Geant4的官方教程。
-MacOS 今天很晚了，data也没下载完，后面有空了继续来写，我已经忍不住想发出来了，等不到写完那天了。这两天在出差，过两天回去了在用arch和Ubuntu安装了再来写这两个的安装过程。">
+MacOS 踩坑 先在官网下载源码和所有DATA文件，mac上面我下载下来的文件名字是&#34;Darwin-clang17.0.0-Sequoia.tar.gz&#34;，根据官方教程第一步是解压这个文件到想要的位置。先在主目录下新建一个文件夹，然后解压，在终端中输入下面的命令。
+cd mkdir Geant4 cd Geant4 tar -xzf ~/Downloads/Darwin-clang17.0.0-Sequoia.tar.gz 第二步是新建一个build文件夹并且进入，然后运行cmake，我顺便再新建一下install文件夹，接着上面的命令继续输入，不要退出终端。
+mkdir G4_install G4_build cd G4_build cmake -DCMAKE_INSTALL_PREFIX=~/Geant4/G4_install ~/Geant4/Geant4-11.3.2-Darwin 报错如下。
+CMake Warning: Ignoring extra path from command line: &#34;/Users/ninependoragon/Geant4/Geant4-11.3.2-Darwin&#34; CMake Error: The source directory &#34;/Users/ninependoragon/Geant4/Geant4-11.3.2-Darwin&#34; does not appear to contain CMakeLists.txt. Specify --help for usage, or press the help button on the CMake GUI. ninependoragon@Nines-MacBook-Pro G4_build % 复制下来去问ai，结果发现是我下错源码了，我下载错成Binary releases了。。。 OK，下载好源码之后重新跑一遍上面的代码。">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
@@ -78,7 +84,7 @@ MacOS 今天很晚了，data也没下载完，后面有空了继续来写，我�
         </div>
         <div>
           <svg class="icon icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>clock</title><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-          1 min read
+          13 min read
         </div>
         <div>
           <svg class="icon icon-tag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
@@ -94,7 +100,629 @@ MacOS 今天很晚了，data也没下载完，后面有空了继续来写，我�
 <p>然后选择<a href="https://geant4-userdoc.web.cern.ch/UsersGuides/InstallationGuide/html/index.html">Installation Guide</a>，<img src="/geant4/docs.png" alt="docs" title="docs"></p>
 <p>这里就是如何安装Geant4的官方教程。<img src="/geant4/installationGuide.png" alt="installation" title="installation"></p>
 <h2 id="macos">MacOS</h2>
-<p>今天很晚了，data也没下载完，后面有空了继续来写，我已经忍不住想发出来了，等不到写完那天了。这两天在出差，过两天回去了在用arch和Ubuntu安装了再来写这两个的安装过程。</p>
+<h3 id="踩坑">踩坑</h3>
+<p>先在官网下载源码和所有DATA文件，mac上面我下载下来的文件名字是&quot;Darwin-clang17.0.0-Sequoia.tar.gz&quot;，根据官方教程第一步是解压这个文件到想要的位置。先在主目录下新建一个文件夹，然后解压，在终端中输入下面的命令。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zsh" data-lang="zsh"><span style="display:flex;"><span>cd 
+</span></span><span style="display:flex;"><span>mkdir Geant4
+</span></span><span style="display:flex;"><span>cd Geant4
+</span></span><span style="display:flex;"><span>tar -xzf ~/Downloads/Darwin-clang17.0.0-Sequoia.tar.gz
+</span></span></code></pre></div><p>第二步是新建一个build文件夹并且进入，然后运行cmake，我顺便再新建一下install文件夹，接着上面的命令继续输入，不要退出终端。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zsh" data-lang="zsh"><span style="display:flex;"><span>mkdir G4_install G4_build
+</span></span><span style="display:flex;"><span>cd G4_build
+</span></span><span style="display:flex;"><span>cmake -DCMAKE_INSTALL_PREFIX<span style="color:#f92672">=</span>~/Geant4/G4_install ~/Geant4/Geant4-11.3.2-Darwin
+</span></span></code></pre></div><p>报错如下。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zsh" data-lang="zsh"><span style="display:flex;"><span>CMake Warning:
+</span></span><span style="display:flex;"><span>  Ignoring extra path from command line:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   <span style="color:#e6db74">&#34;/Users/ninependoragon/Geant4/Geant4-11.3.2-Darwin&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>CMake Error: The source directory <span style="color:#e6db74">&#34;/Users/ninependoragon/Geant4/Geant4-11.3.2-Darwin&#34;</span> does not appear to contain CMakeLists.txt.
+</span></span><span style="display:flex;"><span>Specify --help <span style="color:#66d9ef">for</span> usage, or press the help button on the CMake GUI.
+</span></span><span style="display:flex;"><span>ninependoragon@Nines-MacBook-Pro G4_build % 
+</span></span></code></pre></div><p>复制下来去问ai，结果发现是我下错源码了，我下载错成Binary releases了。。。
+OK，下载好源码之后重新跑一遍上面的代码。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zsh" data-lang="zsh"><span style="display:flex;"><span>ninependoragon@Nines-MacBook-Pro G4_build % cd ..  
+</span></span><span style="display:flex;"><span>ninependoragon@Nines-MacBook-Pro Geant4 % ls
+</span></span><span style="display:flex;"><span>G4_build		G4_install		Geant4-11.3.2-Darwin
+</span></span><span style="display:flex;"><span>ninependoragon@Nines-MacBook-Pro Geant4 % rm -rf Geant4-11.3.2-Darwin 
+</span></span><span style="display:flex;"><span>ninependoragon@Nines-MacBook-Pro Geant4 % cd G4_build 
+</span></span><span style="display:flex;"><span>ninependoragon@Nines-MacBook-Pro G4_build % tar ~/Downloads/geant4-v11.3.2.tar 
+</span></span><span style="display:flex;"><span>Usage:
+</span></span><span style="display:flex;"><span>  List:    tar -tf &lt;archive-filename&gt;
+</span></span><span style="display:flex;"><span>  Extract: tar -xf &lt;archive-filename&gt;
+</span></span><span style="display:flex;"><span>  Create:  tar -cf &lt;archive-filename&gt; <span style="color:#f92672">[</span>filenames...<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>  Help:    tar --help
+</span></span></code></pre></div><p>似乎是tar没加-xf，但是上面为什么是接-xzf，直接问ai。z是gzip，因为上面解压的文件有后缀.gz，但是如果有后缀.gz，不用-xzf就不能解压吗？
+我回头试了一下<code>tar -xf ~/Downloads/Darwin-clang17.0.0-Sequoia.tar.gz</code>，然而还是可以解压。ChatGPT告诉我我的tar是智能版，可以自动调用gzip解压，不知道有没有在骗我。回到正题。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zsh" data-lang="zsh"><span style="display:flex;"><span>ninependoragon@Nines-MacBook-Pro G4_build % cd ..
+</span></span><span style="display:flex;"><span>ninependoragon@Nines-MacBook-Pro Geant4 % ls
+</span></span><span style="display:flex;"><span>G4_build	G4_install
+</span></span></code></pre></div><p>Geant4-11.3.2-Darwin我已经删除，这里我用ls检查一下有没有删掉。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zsh" data-lang="zsh"><span style="display:flex;"><span>ninependoragon@Nines-MacBook-Pro Geant4 % tar -xf ~/Downloads/geant4-v11.3.2.tar
+</span></span><span style="display:flex;"><span>ninependoragon@Nines-MacBook-Pro Geant4 % ls
+</span></span><span style="display:flex;"><span>G4_build	G4_install	geant4-v11.3.2
+</span></span><span style="display:flex;"><span>ninependoragon@Nines-MacBook-Pro Geant4 % cd G4_build 
+</span></span><span style="display:flex;"><span>ninependoragon@Nines-MacBook-Pro G4_build % cmake -DCMAKE_INSTALL_PREFIX<span style="color:#f92672">=</span>~/Geant4/G4_install ~/Geant4/geant4-v11.3.2
+</span></span><span style="display:flex;"><span>-- The C compiler identification is AppleClang 15.0.0.15000309
+</span></span><span style="display:flex;"><span>-- The CXX compiler identification is AppleClang 15.0.0.15000309
+</span></span><span style="display:flex;"><span>-- Detecting C compiler ABI info
+</span></span><span style="display:flex;"><span>-- Detecting C compiler ABI info - <span style="color:#66d9ef">done</span>
+</span></span><span style="display:flex;"><span>-- Check <span style="color:#66d9ef">for</span> working C compiler: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc - skipped
+</span></span><span style="display:flex;"><span>-- Detecting C compile features
+</span></span><span style="display:flex;"><span>-- Detecting C compile features - <span style="color:#66d9ef">done</span>
+</span></span><span style="display:flex;"><span>-- Detecting CXX compiler ABI info
+</span></span><span style="display:flex;"><span>-- Detecting CXX compiler ABI info - <span style="color:#66d9ef">done</span>
+</span></span><span style="display:flex;"><span>-- Check <span style="color:#66d9ef">for</span> working CXX compiler: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ - skipped
+</span></span><span style="display:flex;"><span>-- Detecting CXX compile features
+</span></span><span style="display:flex;"><span>-- Detecting CXX compile features - <span style="color:#66d9ef">done</span>
+</span></span><span style="display:flex;"><span>-- Checking C++ feature CXXSTDLIB_FILESYSTEM_NATIVE - Success
+</span></span><span style="display:flex;"><span>-- Performing Test HAVE_TLS
+</span></span><span style="display:flex;"><span>-- Performing Test HAVE_TLS - Success
+</span></span><span style="display:flex;"><span>-- Found EXPAT: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk/usr/lib/libexpat.tbd <span style="color:#f92672">(</span>found version <span style="color:#e6db74">&#34;2.5.0&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>-- Pre-configuring dataset G4NDL <span style="color:#f92672">(</span>4.7.1<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>-- Pre-configuring dataset G4EMLOW <span style="color:#f92672">(</span>8.6.1<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>-- Pre-configuring dataset PhotonEvaporation <span style="color:#f92672">(</span>6.1<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>-- Pre-configuring dataset RadioactiveDecay <span style="color:#f92672">(</span>6.1.2<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>-- Pre-configuring dataset G4PARTICLEXS <span style="color:#f92672">(</span>4.1<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>-- Pre-configuring dataset G4PII <span style="color:#f92672">(</span>1.3<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>-- Pre-configuring dataset RealSurface <span style="color:#f92672">(</span>2.2<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>-- Pre-configuring dataset G4SAIDDATA <span style="color:#f92672">(</span>2.0<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>-- Pre-configuring dataset G4ABLA <span style="color:#f92672">(</span>3.3<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>-- Pre-configuring dataset G4INCL <span style="color:#f92672">(</span>1.2<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>-- Pre-configuring dataset G4ENSDFSTATE <span style="color:#f92672">(</span>3.0<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>-- Pre-configuring dataset G4CHANNELING <span style="color:#f92672">(</span>1.0<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>  *WARNING*
+</span></span><span style="display:flex;"><span>    Geant4 has been pre-configured to look <span style="color:#66d9ef">for</span> datasets
+</span></span><span style="display:flex;"><span>    in the directory:
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>    /Users/ninependoragon/Geant4/G4_install/share/Geant4/data
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>    but the following datasets are NOT present on disk at
+</span></span><span style="display:flex;"><span>    that location:
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>    G4NDL <span style="color:#f92672">(</span>4.7.1<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    G4EMLOW <span style="color:#f92672">(</span>8.6.1<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    PhotonEvaporation <span style="color:#f92672">(</span>6.1<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    RadioactiveDecay <span style="color:#f92672">(</span>6.1.2<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    G4PARTICLEXS <span style="color:#f92672">(</span>4.1<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    G4PII <span style="color:#f92672">(</span>1.3<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    RealSurface <span style="color:#f92672">(</span>2.2<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    G4SAIDDATA <span style="color:#f92672">(</span>2.0<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    G4ABLA <span style="color:#f92672">(</span>3.3<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    G4INCL <span style="color:#f92672">(</span>1.2<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    G4ENSDFSTATE <span style="color:#f92672">(</span>3.0<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    G4CHANNELING <span style="color:#f92672">(</span>1.0<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span> -  If you have access to cvmfs, you can use standard datasets
+</span></span><span style="display:flex;"><span>    by reconfiguring with:
+</span></span><span style="display:flex;"><span>      cmake -DGEANT4_INSTALL_DATADIR<span style="color:#f92672">=</span>/cvmfs/geant4.cern.ch/share/data &lt;...&gt;
+</span></span><span style="display:flex;"><span>    The variable can also be set in ccmake or cmake-gui.
+</span></span><span style="display:flex;"><span> -  If you want to have these datasets installed by Geant4,
+</span></span><span style="display:flex;"><span>    simply re-run cmake with GEANT4_INSTALL_DATA<span style="color:#f92672">=</span>ON. This will
+</span></span><span style="display:flex;"><span>    configure the build to download and install these datasets <span style="color:#66d9ef">for</span> you.
+</span></span><span style="display:flex;"><span>    For example, use:
+</span></span><span style="display:flex;"><span>      cmake -DGEANT4_INSTALL_DATA<span style="color:#f92672">=</span>ON &lt;otherargs&gt;
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>    If you<span style="color:#e6db74">&#39;re running on a Windows system, this is the best
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    solution as CMake will unpack the datasets for you
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    without any further software being required
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> 
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> -  Alternatively, you can install these datasets manually
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    now or after you have installed Geant4. To do this,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    download the following files:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> 
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    https://cern.ch/geant4-data/datasets/G4NDL.4.7.1.tar.gz
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    https://cern.ch/geant4-data/datasets/G4EMLOW.8.6.1.tar.gz
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    https://cern.ch/geant4-data/datasets/G4PhotonEvaporation.6.1.tar.gz
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    https://cern.ch/geant4-data/datasets/G4RadioactiveDecay.6.1.2.tar.gz
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    https://cern.ch/geant4-data/datasets/G4PARTICLEXS.4.1.tar.gz
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    https://cern.ch/geant4-data/datasets/G4PII.1.3.tar.gz
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    https://cern.ch/geant4-data/datasets/G4RealSurface.2.2.tar.gz
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    https://cern.ch/geant4-data/datasets/G4SAIDDATA.2.0.tar.gz
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    https://cern.ch/geant4-data/datasets/G4ABLA.3.3.tar.gz
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    https://cern.ch/geant4-data/datasets/G4INCL.1.2.tar.gz
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    https://cern.ch/geant4-data/datasets/G4ENSDFSTATE.3.0.tar.gz
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    https://cern.ch/geant4-data/datasets/G4CHANNELING.1.0.tar.gz
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> 
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    and unpack them under the directory:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> 
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    /Users/ninependoragon/Geant4/G4_install/share/Geant4/data
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> 
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    As we supply the datasets packed in gzipped tar files,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    you will need the &#39;</span>tar<span style="color:#e6db74">&#39; utility to unpack them.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> 
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    Nota bene: Missing datasets will not affect or break
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">               compilation and installation of the Geant4
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">               libraries.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> 
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- Looking for sys/types.h
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- Looking for sys/types.h - found
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- Looking for stdint.h
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- Looking for stdint.h - found
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- Looking for stddef.h
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- Looking for stddef.h - found
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- Check size of off64_t
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- Check size of off64_t - failed
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- Looking for fseeko
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- Looking for fseeko - found
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- Looking for unistd.h
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- Looking for unistd.h - found
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- Performing Test G4ZLIB_NEEDS_DNP
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- Performing Test G4ZLIB_NEEDS_DNP - Success
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- Building PTL with option BUILD_STATIC_LIBS - OFF
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- Building PTL with option BUILD_SHARED_LIBS - ON
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- Building PTL with option BUILD_OBJECT_LIBS - 
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- Building PTL with CMAKE_CXX_STANDARD - 17
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- Building PTL with option PTL_USE_COVERAGE - 
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- Building PTL with option PTL_USE_SANITIZER - 
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- Building PTL with option PTL_USE_CLANG_TIDY - 
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- Building PTL with option PTL_USE_TBB - OFF
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- Building PTL with option PTL_USE_LOCKS - OFF
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- Building PTL with option PTL_INSTALL_HEADERS - ON
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- Building PTL with option PTL_INSTALL_CONFIG - ON
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- Found Threads: TRUE
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- The following Geant4 features are enabled:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">CMAKE_CXX_STANDARD: Compiling against C++ Standard &#39;</span>17<span style="color:#e6db74">&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">GEANT4_BUILD_MULTITHREADED: Build multithread enabled libraries
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">GEANT4_BUILD_TLS_MODEL: Building with TLS model &#39;</span>initial-exec<span style="color:#960050;background-color:#1e0010">&#39;</span>
+</span></span><span style="display:flex;"><span>GEANT4_USE_SYSTEM_EXPAT: Using system EXPAT library
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>-- Configuring <span style="color:#66d9ef">done</span> <span style="color:#f92672">(</span>2.6s<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>-- Generating <span style="color:#66d9ef">done</span> <span style="color:#f92672">(</span>0.5s<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>-- Build files have been written to: /Users/ninependoragon/Geant4/G4_build
+</span></span></code></pre></div><p>这个报错和官方教程提到的一模一样，应该就是DATA文件缺失，DATA文件也是在官网的<a href="https://geant4.web.cern.ch/download/11.3.2.html">Download</a>界面下载，我前面已经下载过了，按照教程，应该是需要解压到/Users/ninependoragon/Geant4/G4_install/share/Geant4/data文件夹下，/Users/ninependoragon路径中ninependoragon是我的用户名，如果真的有萌新跟着这篇帖子来安装Geant4的话，请注意把这个改成自己的用户名。不过我记得是得先make完之后再添加data文件。教程下一步是在cmake中激活Geant4的一些功能。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zsh" data-lang="zsh"><span style="display:flex;"><span>cmake -DGEANT4_INSTALL_DATA<span style="color:#f92672">=</span>ON
+</span></span></code></pre></div><p>这个功能是自动下载DATA文件，很久以前我第一次安装Geant4的时候好像有人告诉过我这个一般就选off关掉，当然默认是关掉。所以我没有运行上面的命令。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zsh" data-lang="zsh"><span style="display:flex;"><span>ninependoragon@Nines-MacBook-Pro G4_build % cmake -DGEANT4_INSTALL_DATA<span style="color:#f92672">=</span>OFF -DGEANT4_USE_GDML<span style="color:#f92672">=</span>ON -GEANT4_BUILD_MULTITHREADED<span style="color:#f92672">=</span>ON
+</span></span><span style="display:flex;"><span>CMake Error: Could not create named generator EANT4_BUILD_MULTITHREADED<span style="color:#f92672">=</span>ON
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Generators
+</span></span><span style="display:flex;"><span>* Unix Makefiles               <span style="color:#f92672">=</span> Generates standard UNIX makefiles.
+</span></span><span style="display:flex;"><span>  Ninja                        <span style="color:#f92672">=</span> Generates build.ninja files.
+</span></span><span style="display:flex;"><span>  Ninja Multi-Config           <span style="color:#f92672">=</span> Generates build-&lt;Config&gt;.ninja files.
+</span></span><span style="display:flex;"><span>  Watcom WMake                 <span style="color:#f92672">=</span> Generates Watcom WMake makefiles.
+</span></span><span style="display:flex;"><span>  Xcode                        <span style="color:#f92672">=</span> Generate Xcode project files.
+</span></span><span style="display:flex;"><span>  CodeBlocks - Ninja           <span style="color:#f92672">=</span> Generates CodeBlocks project files
+</span></span><span style="display:flex;"><span>                                 <span style="color:#f92672">(</span>deprecated<span style="color:#f92672">)</span>.
+</span></span><span style="display:flex;"><span>  CodeBlocks - Unix Makefiles  <span style="color:#f92672">=</span> Generates CodeBlocks project files
+</span></span><span style="display:flex;"><span>                                 <span style="color:#f92672">(</span>deprecated<span style="color:#f92672">)</span>.
+</span></span><span style="display:flex;"><span>  CodeLite - Ninja             <span style="color:#f92672">=</span> Generates CodeLite project files
+</span></span><span style="display:flex;"><span>                                 <span style="color:#f92672">(</span>deprecated<span style="color:#f92672">)</span>.
+</span></span><span style="display:flex;"><span>  CodeLite - Unix Makefiles    <span style="color:#f92672">=</span> Generates CodeLite project files
+</span></span><span style="display:flex;"><span>                                 <span style="color:#f92672">(</span>deprecated<span style="color:#f92672">)</span>.
+</span></span><span style="display:flex;"><span>  Eclipse CDT4 - Ninja         <span style="color:#f92672">=</span> Generates Eclipse CDT 4.0 project files
+</span></span><span style="display:flex;"><span>                                 <span style="color:#f92672">(</span>deprecated<span style="color:#f92672">)</span>.
+</span></span><span style="display:flex;"><span>  Eclipse CDT4 - Unix Makefiles<span style="color:#f92672">=</span> Generates Eclipse CDT 4.0 project files
+</span></span><span style="display:flex;"><span>                                 <span style="color:#f92672">(</span>deprecated<span style="color:#f92672">)</span>.
+</span></span><span style="display:flex;"><span>  Kate - Ninja                 <span style="color:#f92672">=</span> Generates Kate project files <span style="color:#f92672">(</span>deprecated<span style="color:#f92672">)</span>.
+</span></span><span style="display:flex;"><span>  Kate - Ninja Multi-Config    <span style="color:#f92672">=</span> Generates Kate project files <span style="color:#f92672">(</span>deprecated<span style="color:#f92672">)</span>.
+</span></span><span style="display:flex;"><span>  Kate - Unix Makefiles        <span style="color:#f92672">=</span> Generates Kate project files <span style="color:#f92672">(</span>deprecated<span style="color:#f92672">)</span>.
+</span></span><span style="display:flex;"><span>  Sublime Text <span style="color:#ae81ff">2</span> - Ninja       <span style="color:#f92672">=</span> Generates Sublime Text <span style="color:#ae81ff">2</span> project files
+</span></span><span style="display:flex;"><span>                                 <span style="color:#f92672">(</span>deprecated<span style="color:#f92672">)</span>.
+</span></span><span style="display:flex;"><span>  Sublime Text <span style="color:#ae81ff">2</span> - Unix Makefiles
+</span></span><span style="display:flex;"><span>                               <span style="color:#f92672">=</span> Generates Sublime Text <span style="color:#ae81ff">2</span> project files
+</span></span><span style="display:flex;"><span>                                 <span style="color:#f92672">(</span>deprecated<span style="color:#f92672">)</span>.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>CMake Warning:
+</span></span><span style="display:flex;"><span>  No source or binary directory provided.  Both will be assumed to be the
+</span></span><span style="display:flex;"><span>  same as the current working directory, but note that this warning will
+</span></span><span style="display:flex;"><span>  become a fatal error in future CMake releases.
+</span></span></code></pre></div><p>似乎没有cmake成功，删掉这个build文件夹重来试试。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zsh" data-lang="zsh"><span style="display:flex;"><span>ninependoragon@Nines-MacBook-Pro G4_build % cd ..
+</span></span><span style="display:flex;"><span>ninependoragon@Nines-MacBook-Pro Geant4 % rm -rf G4_build 
+</span></span><span style="display:flex;"><span>ninependoragon@Nines-MacBook-Pro Geant4 % mkdir G4_build
+</span></span><span style="display:flex;"><span>ninependoragon@Nines-MacBook-Pro Geant4 % cd G4_build 
+</span></span></code></pre></div><p>不过删除之后我发现好像是刚刚命令行输错了，-GEANT4_BUILD_MULTITHREADED=ON少了个D。。。，上面的操作应该是没有问题的，想加什么功能就重新cmake -D 就好了</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zsh" data-lang="zsh"><span style="display:flex;"><span>ninependoragon@Nines-MacBook-Pro G4_build % cmake -DCMAKE_INSTALL_PREFIX<span style="color:#f92672">=</span>~/Geant4/G4_install -DGEANT4_INSTALL_DATA<span style="color:#f92672">=</span>OFF -DGEANT4_USE_GDML<span style="color:#f92672">=</span>ON -DGEANT4_BUILD_MULTITHREADED<span style="color:#f92672">=</span>ON ~/Geant4/geant4-v11.3.2
+</span></span><span style="display:flex;"><span>-- The C compiler identification is AppleClang 15.0.0.15000309
+</span></span><span style="display:flex;"><span>-- The CXX compiler identification is AppleClang 15.0.0.15000309
+</span></span><span style="display:flex;"><span>-- Detecting C compiler ABI info
+</span></span><span style="display:flex;"><span>-- Detecting C compiler ABI info - <span style="color:#66d9ef">done</span>
+</span></span><span style="display:flex;"><span>-- Check <span style="color:#66d9ef">for</span> working C compiler: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc - skipped
+</span></span><span style="display:flex;"><span>-- Detecting C compile features
+</span></span><span style="display:flex;"><span>-- Detecting C compile features - <span style="color:#66d9ef">done</span>
+</span></span><span style="display:flex;"><span>-- Detecting CXX compiler ABI info
+</span></span><span style="display:flex;"><span>-- Detecting CXX compiler ABI info - <span style="color:#66d9ef">done</span>
+</span></span><span style="display:flex;"><span>-- Check <span style="color:#66d9ef">for</span> working CXX compiler: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ - skipped
+</span></span><span style="display:flex;"><span>-- Detecting CXX compile features
+</span></span><span style="display:flex;"><span>-- Detecting CXX compile features - <span style="color:#66d9ef">done</span>
+</span></span><span style="display:flex;"><span>-- Checking C++ feature CXXSTDLIB_FILESYSTEM_NATIVE - Success
+</span></span><span style="display:flex;"><span>-- Performing Test HAVE_TLS
+</span></span><span style="display:flex;"><span>-- Performing Test HAVE_TLS - Success
+</span></span><span style="display:flex;"><span>-- Found EXPAT: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk/usr/lib/libexpat.tbd <span style="color:#f92672">(</span>found version <span style="color:#e6db74">&#34;2.5.0&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>CMake Error at /opt/homebrew/Cellar/cmake/3.29.3/share/cmake/Modules/FindPackageHandleStandardArgs.cmake:230 <span style="color:#f92672">(</span>message<span style="color:#f92672">)</span>:
+</span></span><span style="display:flex;"><span>  Failed to find XercesC <span style="color:#f92672">(</span>missing: XercesC_LIBRARY XercesC_INCLUDE_DIR
+</span></span><span style="display:flex;"><span>  XercesC_VERSION<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>Call Stack <span style="color:#f92672">(</span>most recent call first<span style="color:#f92672">)</span>:
+</span></span><span style="display:flex;"><span>  /opt/homebrew/Cellar/cmake/3.29.3/share/cmake/Modules/FindPackageHandleStandardArgs.cmake:600 <span style="color:#f92672">(</span>_FPHSA_FAILURE_MESSAGE<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>  /opt/homebrew/Cellar/cmake/3.29.3/share/cmake/Modules/FindXercesC.cmake:112 <span style="color:#f92672">(</span>FIND_PACKAGE_HANDLE_STANDARD_ARGS<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>  cmake/Modules/G4OptionalComponents.cmake:165 <span style="color:#f92672">(</span>find_package<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>  cmake/Modules/G4CMakeMain.cmake:59 <span style="color:#f92672">(</span>include<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>  CMakeLists.txt:49 <span style="color:#f92672">(</span>include<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>-- Configuring incomplete, errors occurred!
+</span></span></code></pre></div><p>其实我就是为了DGEANT4_USE_GDML才重新安装Geant4的，上次安装Geant4已经是两年前，源码那个时候不太懂所以应该是删掉了，不然重新cmake一下应该就行了。不过这里出现错误了，先复制给ai看看。“这是因为你开启了 -DGEANT4_USE_GDML=ON，Geant4 需要使用 Xerces-C++ 这个库来处理 GDML，但你本机没装这个库，或者 CMake 找不到它。”，那么就安装一个xerces-c吧。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zsh" data-lang="zsh"><span style="display:flex;"><span>ninependoragon@Nines-MacBook-Pro G4_build % brew install xerces-c
+</span></span><span style="display:flex;"><span><span style="color:#f92672">==</span>&gt; Downloading https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles/api/formul
+</span></span><span style="display:flex;"><span><span style="color:#f92672">==</span>&gt; Downloading https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles/api/cask.j
+</span></span><span style="display:flex;"><span><span style="color:#f92672">==</span>&gt; Fetching xerces-c
+</span></span><span style="display:flex;"><span><span style="color:#f92672">==</span>&gt; Downloading https://mirrors.ustc.edu.cn/homebrew-bottles/xerces-c-3.3.0.arm6
+</span></span><span style="display:flex;"><span><span style="color:#75715e">######################################################################### 100.0%</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">==</span>&gt; Pouring xerces-c-3.3.0.arm64_sonoma.bottle.tar.gz
+</span></span><span style="display:flex;"><span>🍺  /opt/homebrew/Cellar/xerces-c/3.3.0: 1,715 files, 39.0MB
+</span></span><span style="display:flex;"><span><span style="color:#f92672">==</span>&gt; Running <span style="color:#e6db74">`</span>brew cleanup xerces-c<span style="color:#e6db74">`</span>...
+</span></span><span style="display:flex;"><span>Disable this behaviour by setting HOMEBREW_NO_INSTALL_CLEANUP.
+</span></span><span style="display:flex;"><span>Hide these hints with HOMEBREW_NO_ENV_HINTS <span style="color:#f92672">(</span>see <span style="color:#e6db74">`</span>man brew<span style="color:#e6db74">`</span><span style="color:#f92672">)</span>.
+</span></span><span style="display:flex;"><span>ninependoragon@Nines-MacBook-Pro G4_build % cmake -DCMAKE_INSTALL_PREFIX<span style="color:#f92672">=</span>~/Geant4/G4_install -DGEANT4_INSTALL_DATA<span style="color:#f92672">=</span>OFF -DGEANT4_USE_GDML<span style="color:#f92672">=</span>ON -DGEANT4_BUILD_MULTITHREADED<span style="color:#f92672">=</span>ON ~/Geant4/geant4-v11.3.2
+</span></span><span style="display:flex;"><span>-- Checking C++ feature CXXSTDLIB_FILESYSTEM_NATIVE - Success
+</span></span><span style="display:flex;"><span>-- Found XercesC: /opt/homebrew/lib/libxerces-c.dylib <span style="color:#f92672">(</span>found version <span style="color:#e6db74">&#34;3.3.0&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>-- Pre-configuring dataset G4NDL <span style="color:#f92672">(</span>4.7.1<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>-- Pre-configuring dataset G4EMLOW <span style="color:#f92672">(</span>8.6.1<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>-- Pre-configuring dataset PhotonEvaporation <span style="color:#f92672">(</span>6.1<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>-- Pre-configuring dataset RadioactiveDecay <span style="color:#f92672">(</span>6.1.2<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>-- Pre-configuring dataset G4PARTICLEXS <span style="color:#f92672">(</span>4.1<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>-- Pre-configuring dataset G4PII <span style="color:#f92672">(</span>1.3<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>-- Pre-configuring dataset RealSurface <span style="color:#f92672">(</span>2.2<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>-- Pre-configuring dataset G4SAIDDATA <span style="color:#f92672">(</span>2.0<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>-- Pre-configuring dataset G4ABLA <span style="color:#f92672">(</span>3.3<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>-- Pre-configuring dataset G4INCL <span style="color:#f92672">(</span>1.2<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>-- Pre-configuring dataset G4ENSDFSTATE <span style="color:#f92672">(</span>3.0<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>-- Pre-configuring dataset G4CHANNELING <span style="color:#f92672">(</span>1.0<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>  *WARNING*
+</span></span><span style="display:flex;"><span>    Geant4 has been pre-configured to look <span style="color:#66d9ef">for</span> datasets
+</span></span><span style="display:flex;"><span>    in the directory:
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>    /Users/ninependoragon/Geant4/G4_install/share/Geant4/data
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>    but the following datasets are NOT present on disk at
+</span></span><span style="display:flex;"><span>    that location:
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>    G4NDL <span style="color:#f92672">(</span>4.7.1<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    G4EMLOW <span style="color:#f92672">(</span>8.6.1<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    PhotonEvaporation <span style="color:#f92672">(</span>6.1<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    RadioactiveDecay <span style="color:#f92672">(</span>6.1.2<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    G4PARTICLEXS <span style="color:#f92672">(</span>4.1<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    G4PII <span style="color:#f92672">(</span>1.3<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    RealSurface <span style="color:#f92672">(</span>2.2<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    G4SAIDDATA <span style="color:#f92672">(</span>2.0<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    G4ABLA <span style="color:#f92672">(</span>3.3<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    G4INCL <span style="color:#f92672">(</span>1.2<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    G4ENSDFSTATE <span style="color:#f92672">(</span>3.0<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    G4CHANNELING <span style="color:#f92672">(</span>1.0<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span> -  If you have access to cvmfs, you can use standard datasets
+</span></span><span style="display:flex;"><span>    by reconfiguring with:
+</span></span><span style="display:flex;"><span>      cmake -DGEANT4_INSTALL_DATADIR<span style="color:#f92672">=</span>/cvmfs/geant4.cern.ch/share/data &lt;...&gt;
+</span></span><span style="display:flex;"><span>    The variable can also be set in ccmake or cmake-gui.
+</span></span><span style="display:flex;"><span> -  If you want to have these datasets installed by Geant4,
+</span></span><span style="display:flex;"><span>    simply re-run cmake with GEANT4_INSTALL_DATA<span style="color:#f92672">=</span>ON. This will
+</span></span><span style="display:flex;"><span>    configure the build to download and install these datasets <span style="color:#66d9ef">for</span> you.
+</span></span><span style="display:flex;"><span>    For example, use:
+</span></span><span style="display:flex;"><span>      cmake -DGEANT4_INSTALL_DATA<span style="color:#f92672">=</span>ON &lt;otherargs&gt;
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>    If you<span style="color:#e6db74">&#39;re running on a Windows system, this is the best
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    solution as CMake will unpack the datasets for you
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    without any further software being required
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> 
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> -  Alternatively, you can install these datasets manually
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    now or after you have installed Geant4. To do this,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    download the following files:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> 
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    https://cern.ch/geant4-data/datasets/G4NDL.4.7.1.tar.gz
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    https://cern.ch/geant4-data/datasets/G4EMLOW.8.6.1.tar.gz
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    https://cern.ch/geant4-data/datasets/G4PhotonEvaporation.6.1.tar.gz
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    https://cern.ch/geant4-data/datasets/G4RadioactiveDecay.6.1.2.tar.gz
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    https://cern.ch/geant4-data/datasets/G4PARTICLEXS.4.1.tar.gz
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    https://cern.ch/geant4-data/datasets/G4PII.1.3.tar.gz
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    https://cern.ch/geant4-data/datasets/G4RealSurface.2.2.tar.gz
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    https://cern.ch/geant4-data/datasets/G4SAIDDATA.2.0.tar.gz
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    https://cern.ch/geant4-data/datasets/G4ABLA.3.3.tar.gz
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    https://cern.ch/geant4-data/datasets/G4INCL.1.2.tar.gz
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    https://cern.ch/geant4-data/datasets/G4ENSDFSTATE.3.0.tar.gz
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    https://cern.ch/geant4-data/datasets/G4CHANNELING.1.0.tar.gz
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> 
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    and unpack them under the directory:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> 
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    /Users/ninependoragon/Geant4/G4_install/share/Geant4/data
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> 
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    As we supply the datasets packed in gzipped tar files,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    you will need the &#39;</span>tar<span style="color:#e6db74">&#39; utility to unpack them.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> 
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    Nota bene: Missing datasets will not affect or break
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">               compilation and installation of the Geant4
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">               libraries.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"> 
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- Looking for sys/types.h
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- Looking for sys/types.h - found
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- Looking for stdint.h
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- Looking for stdint.h - found
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- Looking for stddef.h
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- Looking for stddef.h - found
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- Check size of off64_t
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- Check size of off64_t - failed
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- Looking for fseeko
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- Looking for fseeko - found
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- Looking for unistd.h
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- Looking for unistd.h - found
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- Performing Test G4ZLIB_NEEDS_DNP
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- Performing Test G4ZLIB_NEEDS_DNP - Success
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- Building PTL with option BUILD_STATIC_LIBS - OFF
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- Building PTL with option BUILD_SHARED_LIBS - ON
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- Building PTL with option BUILD_OBJECT_LIBS - 
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- Building PTL with CMAKE_CXX_STANDARD - 17
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- Building PTL with option PTL_USE_COVERAGE - 
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- Building PTL with option PTL_USE_SANITIZER - 
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- Building PTL with option PTL_USE_CLANG_TIDY - 
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- Building PTL with option PTL_USE_TBB - OFF
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- Building PTL with option PTL_USE_LOCKS - OFF
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- Building PTL with option PTL_INSTALL_HEADERS - ON
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- Building PTL with option PTL_INSTALL_CONFIG - ON
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- Found Threads: TRUE
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- The following Geant4 features are enabled:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">CMAKE_CXX_STANDARD: Compiling against C++ Standard &#39;</span>17<span style="color:#e6db74">&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">GEANT4_BUILD_MULTITHREADED: Build multithread enabled libraries
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">GEANT4_BUILD_TLS_MODEL: Building with TLS model &#39;</span>initial-exec<span style="color:#960050;background-color:#1e0010">&#39;</span>
+</span></span><span style="display:flex;"><span>GEANT4_USE_SYSTEM_EXPAT: Using system EXPAT library
+</span></span><span style="display:flex;"><span>GEANT4_USE_GDML: Building Geant4 with GDML support
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>-- Configuring <span style="color:#66d9ef">done</span> <span style="color:#f92672">(</span>1.9s<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>-- Generating <span style="color:#66d9ef">done</span> <span style="color:#f92672">(</span>0.5s<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>-- Build files have been written to: /Users/ninependoragon/Geant4/G4_build
+</span></span></code></pre></div><p>和之前差不多同样的输出。教程下一步是make。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zsh" data-lang="zsh"><span style="display:flex;"><span>ninependoragon@Nines-MacBook-Pro G4_build % make
+</span></span></code></pre></div><p>然后就是等待。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zsh" data-lang="zsh"><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span> 88%<span style="color:#f92672">]</span> Building CXX object source/CMakeFiles/G4mctruth.dir/persistency/mctruth/src/G4VPHitsCollectionIO.cc.o
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span> 88%<span style="color:#f92672">]</span> Linking CXX shared library ../BuildProducts/lib/libG4mctruth.dylib
+</span></span><span style="display:flex;"><span>ld: warning: search path <span style="color:#e6db74">&#39;/opt/homebrew/Cellar/qt@5/5.15.13_1/lib:&#39;</span> not found
+</span></span><span style="display:flex;"><span>...
+</span></span></code></pre></div><p>make过程中的报错，似乎是忘记安装qt5了。总之先继续下去吧，看能不能打开example B1。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zsh" data-lang="zsh"><span style="display:flex;"><span>ninependoragon@Nines-MacBook-Pro G4_build % make install
+</span></span></code></pre></div><p>继续等待。完成安装后</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zsh" data-lang="zsh"><span style="display:flex;"><span>ninependoragon@Nines-MacBook-Pro G4_build % cd ../G4_install/share/Geant4/
+</span></span><span style="display:flex;"><span>ninependoragon@Nines-MacBook-Pro Geant4 % mkidr data
+</span></span><span style="display:flex;"><span>ninependoragon@Nines-MacBook-Pro Geant4 % cp ~/Downloads/G4DATA/* ~/Geant4/G4_install/share/Geant4/data
+</span></span><span style="display:flex;"><span>cp: /Users/ninependoragon/Downloads/G4DATA/G4ABLA3.3 is a directory <span style="color:#f92672">(</span>not copied<span style="color:#f92672">)</span>.
+</span></span><span style="display:flex;"><span>cp: /Users/ninependoragon/Downloads/G4DATA/G4CHANNELING1.0 is a directory <span style="color:#f92672">(</span>not copied<span style="color:#f92672">)</span>.
+</span></span><span style="display:flex;"><span>cp: /Users/ninependoragon/Downloads/G4DATA/G4EMLOW8.6.1 is a directory <span style="color:#f92672">(</span>not copied<span style="color:#f92672">)</span>.
+</span></span><span style="display:flex;"><span>cp: /Users/ninependoragon/Downloads/G4DATA/G4ENSDFSTATE3.0 is a directory <span style="color:#f92672">(</span>not copied<span style="color:#f92672">)</span>.
+</span></span><span style="display:flex;"><span>cp: /Users/ninependoragon/Downloads/G4DATA/G4INCL1.2 is a directory <span style="color:#f92672">(</span>not copied<span style="color:#f92672">)</span>.
+</span></span><span style="display:flex;"><span>cp: /Users/ninependoragon/Downloads/G4DATA/G4NDL4.7.1 is a directory <span style="color:#f92672">(</span>not copied<span style="color:#f92672">)</span>.
+</span></span><span style="display:flex;"><span>cp: /Users/ninependoragon/Downloads/G4DATA/G4NUDEXLIB1.0 is a directory <span style="color:#f92672">(</span>not copied<span style="color:#f92672">)</span>.
+</span></span><span style="display:flex;"><span>cp: /Users/ninependoragon/Downloads/G4DATA/G4PARTICLEXS4.1 is a directory <span style="color:#f92672">(</span>not copied<span style="color:#f92672">)</span>.
+</span></span><span style="display:flex;"><span>cp: /Users/ninependoragon/Downloads/G4DATA/G4PII1.3 is a directory <span style="color:#f92672">(</span>not copied<span style="color:#f92672">)</span>.
+</span></span><span style="display:flex;"><span>cp: /Users/ninependoragon/Downloads/G4DATA/G4SAIDDATA2.0 is a directory <span style="color:#f92672">(</span>not copied<span style="color:#f92672">)</span>.
+</span></span><span style="display:flex;"><span>cp: /Users/ninependoragon/Downloads/G4DATA/G4TENDL1.4 is a directory <span style="color:#f92672">(</span>not copied<span style="color:#f92672">)</span>.
+</span></span><span style="display:flex;"><span>cp: /Users/ninependoragon/Downloads/G4DATA/G4URRPT1.1 is a directory <span style="color:#f92672">(</span>not copied<span style="color:#f92672">)</span>.
+</span></span><span style="display:flex;"><span>cp: /Users/ninependoragon/Downloads/G4DATA/PhotonEvaporation6.1 is a directory <span style="color:#f92672">(</span>not copied<span style="color:#f92672">)</span>.
+</span></span><span style="display:flex;"><span>cp: /Users/ninependoragon/Downloads/G4DATA/RadioactiveDecay6.1.2 is a directory <span style="color:#f92672">(</span>not copied<span style="color:#f92672">)</span>.
+</span></span><span style="display:flex;"><span>ninependoragon@Nines-MacBook-Pro Geant4 % cd data 
+</span></span><span style="display:flex;"><span>ninependoragon@Nines-MacBook-Pro data % ls
+</span></span><span style="display:flex;"><span>G4ABLA.3.3.tar.gz		G4PII.1.3.tar.gz
+</span></span><span style="display:flex;"><span>G4CHANNELING.1.0.tar.gz		G4PhotonEvaporation.6.1.tar.gz
+</span></span><span style="display:flex;"><span>G4EMLOW.8.6.1.tar.gz		G4RadioactiveDecay.6.1.2.tar.gz
+</span></span><span style="display:flex;"><span>G4ENSDFSTATE.3.0.tar.gz		G4RealSurface.2.2.tar<span style="color:#f92672">(</span>1<span style="color:#f92672">)</span>.gz
+</span></span><span style="display:flex;"><span>G4INCL.1.2.tar.gz		G4SAIDDATA.2.0.tar.gz
+</span></span><span style="display:flex;"><span>G4NDL.4.7.1.tar.gz		G4TENDL.1.4.tar.gz
+</span></span><span style="display:flex;"><span>G4NUDEXLIB.1.0.tar.gz		G4URRPT.1.1.tar.gz
+</span></span><span style="display:flex;"><span>G4PARTICLEXS.4.1.tar.gz
+</span></span><span style="display:flex;"><span>ninependoragon@Nines-MacBook-Pro data % cd ~/Downloads/G4DATA 
+</span></span><span style="display:flex;"><span>ninependoragon@Nines-MacBook-Pro G4DATA % ls
+</span></span><span style="display:flex;"><span>G4ABLA.3.3.tar.gz		G4PII.1.3.tar.gz
+</span></span><span style="display:flex;"><span>G4CHANNELING.1.0.tar.gz		G4PhotonEvaporation.6.1.tar.gz
+</span></span><span style="display:flex;"><span>G4EMLOW.8.6.1.tar.gz		G4RadioactiveDecay.6.1.2.tar.gz
+</span></span><span style="display:flex;"><span>G4ENSDFSTATE.3.0.tar.gz		G4RealSurface.2.2.tar<span style="color:#f92672">(</span>1<span style="color:#f92672">)</span>.gz
+</span></span><span style="display:flex;"><span>G4INCL.1.2.tar.gz		G4SAIDDATA.2.0.tar.gz
+</span></span><span style="display:flex;"><span>G4NDL.4.7.1.tar.gz		G4TENDL.1.4.tar.gz
+</span></span><span style="display:flex;"><span>G4NUDEXLIB.1.0.tar.gz		G4URRPT.1.1.tar.gz
+</span></span><span style="display:flex;"><span>G4PARTICLEXS.4.1.tar.gz
+</span></span><span style="display:flex;"><span>ninependoragon@Nines-MacBook-Pro G4DATA % tar -xf *.tar.gz ~/Geant4/G4_install 
+</span></span><span style="display:flex;"><span>tar: G4CHANNELING.1.0.tar.gz: Not found in archive
+</span></span><span style="display:flex;"><span>tar: G4EMLOW.8.6.1.tar.gz: Not found in archive
+</span></span><span style="display:flex;"><span>tar: G4ENSDFSTATE.3.0.tar.gz: Not found in archive
+</span></span><span style="display:flex;"><span>tar: G4INCL.1.2.tar.gz: Not found in archive
+</span></span><span style="display:flex;"><span>tar: G4NDL.4.7.1.tar.gz: Not found in archive
+</span></span><span style="display:flex;"><span>tar: G4NUDEXLIB.1.0.tar.gz: Not found in archive
+</span></span><span style="display:flex;"><span>tar: G4PARTICLEXS.4.1.tar.gz: Not found in archive
+</span></span><span style="display:flex;"><span>tar: G4PII.1.3.tar.gz: Not found in archive
+</span></span><span style="display:flex;"><span>tar: G4PhotonEvaporation.6.1.tar.gz: Not found in archive
+</span></span><span style="display:flex;"><span>tar: G4RadioactiveDecay.6.1.2.tar.gz: Not found in archive
+</span></span><span style="display:flex;"><span>tar: G4SAIDDATA.2.0.tar.gz: Not found in archive
+</span></span><span style="display:flex;"><span>tar: G4TENDL.1.4.tar.gz: Not found in archive
+</span></span><span style="display:flex;"><span>tar: G4URRPT.1.1.tar.gz: Not found in archive
+</span></span><span style="display:flex;"><span>tar: /Users/ninependoragon/Geant4/G4_install: Not found in archive
+</span></span><span style="display:flex;"><span>tar: Error exit delayed from previous errors.
+</span></span></code></pre></div><p>我把下载的DATA文件全放在一个文件夹G4DATA中，本来以为可以tar一次性解压，但似乎不能用tar -xf *.tar.gz，在网上搜索之后发现可以用<code>for tar in *.tar.gz;  do tar xvf $tar; done</code>一次性解压多个tar.gz文件。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zsh" data-lang="zsh"><span style="display:flex;"><span>ninependoragon@Nines-MacBook-Pro G4DATA % <span style="color:#66d9ef">for</span> tar in *.tar.gz;  <span style="color:#66d9ef">do</span> tar xvf $tar; <span style="color:#66d9ef">done</span>
+</span></span></code></pre></div><p>运行完成之后，</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zsh" data-lang="zsh"><span style="display:flex;"><span>ninependoragon@Nines-MacBook-Pro G4DATA % ls
+</span></span><span style="display:flex;"><span>G4ABLA.3.3.tar.gz		G4PARTICLEXS4.1
+</span></span><span style="display:flex;"><span>G4ABLA3.3			G4PII.1.3.tar.gz
+</span></span><span style="display:flex;"><span>G4CHANNELING.1.0.tar.gz		G4PII1.3
+</span></span><span style="display:flex;"><span>G4CHANNELING1.0			G4PhotonEvaporation.6.1.tar.gz
+</span></span><span style="display:flex;"><span>G4EMLOW.8.6.1.tar.gz		G4RadioactiveDecay.6.1.2.tar.gz
+</span></span><span style="display:flex;"><span>G4EMLOW8.6.1			G4RealSurface.2.2.tar<span style="color:#f92672">(</span>1<span style="color:#f92672">)</span>.gz
+</span></span><span style="display:flex;"><span>G4ENSDFSTATE.3.0.tar.gz		G4SAIDDATA.2.0.tar.gz
+</span></span><span style="display:flex;"><span>G4ENSDFSTATE3.0			G4SAIDDATA2.0
+</span></span><span style="display:flex;"><span>G4INCL.1.2.tar.gz		G4TENDL.1.4.tar.gz
+</span></span><span style="display:flex;"><span>G4INCL1.2			G4TENDL1.4
+</span></span><span style="display:flex;"><span>G4NDL.4.7.1.tar.gz		G4URRPT.1.1.tar.gz
+</span></span><span style="display:flex;"><span>G4NDL4.7.1			G4URRPT1.1
+</span></span><span style="display:flex;"><span>G4NUDEXLIB.1.0.tar.gz		PhotonEvaporation6.1
+</span></span><span style="display:flex;"><span>G4NUDEXLIB1.0			RadioactiveDecay6.1.2
+</span></span><span style="display:flex;"><span>G4PARTICLEXS.4.1.tar.gz
+</span></span></code></pre></div><p>其实应该在Geant4的data目录下解压，</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zsh" data-lang="zsh"><span style="display:flex;"><span>ninependoragon@Nines-MacBook-Pro G4_build % cd ~/Geant4/G4_install/share/Geant4/data/
+</span></span><span style="display:flex;"><span>ninependoragon@Nines-MacBook-Pro data % <span style="color:#66d9ef">for</span> tar in *.tar.gz;  <span style="color:#66d9ef">do</span> tar xvf $tar; <span style="color:#66d9ef">done</span>
+</span></span><span style="display:flex;"><span>ninependoragon@Nines-MacBook-Pro data % rm *.tar.gz
+</span></span><span style="display:flex;"><span>ninependoragon@Nines-MacBook-Pro data % ls
+</span></span><span style="display:flex;"><span>G4ABLA3.3			G4PII1.3
+</span></span><span style="display:flex;"><span>G4CHANNELING1.0			G4RealSurface.2.2.tar<span style="color:#f92672">(</span>1<span style="color:#f92672">)</span>.gz
+</span></span><span style="display:flex;"><span>G4EMLOW8.6.1			G4SAIDDATA2.0
+</span></span><span style="display:flex;"><span>G4ENSDFSTATE3.0			G4TENDL1.4
+</span></span><span style="display:flex;"><span>G4INCL1.2			G4URRPT1.1
+</span></span><span style="display:flex;"><span>G4NDL4.7.1			PhotonEvaporation6.1
+</span></span><span style="display:flex;"><span>G4NUDEXLIB1.0			RadioactiveDecay6.1.2
+</span></span><span style="display:flex;"><span>G4PARTICLEXS4.1
+</span></span></code></pre></div><p>这样data数据应该就准备好了。现在看看example B1能不能运行。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zsh" data-lang="zsh"><span style="display:flex;"><span>ninependoragon@Nines-MacBook-Pro data % cd ..
+</span></span><span style="display:flex;"><span>ninependoragon@Nines-MacBook-Pro Geant4 % ls
+</span></span><span style="display:flex;"><span>data		examples	fonts		geant4make	tools.license
+</span></span><span style="display:flex;"><span>ninependoragon@Nines-MacBook-Pro Geant4 % cd examples/basic/B1 
+</span></span><span style="display:flex;"><span>ninependoragon@Nines-MacBook-Pro B1 % mkdir build
+</span></span><span style="display:flex;"><span>ninependoragon@Nines-MacBook-Pro B1 % cd build 
+</span></span><span style="display:flex;"><span>ninependoragon@Nines-MacBook-Pro build % cmake ..
+</span></span><span style="display:flex;"><span>-- The C compiler identification is AppleClang 15.0.0.15000309
+</span></span><span style="display:flex;"><span>-- The CXX compiler identification is AppleClang 15.0.0.15000309
+</span></span><span style="display:flex;"><span>-- Detecting C compiler ABI info
+</span></span><span style="display:flex;"><span>-- Detecting C compiler ABI info - <span style="color:#66d9ef">done</span>
+</span></span><span style="display:flex;"><span>-- Check <span style="color:#66d9ef">for</span> working C compiler: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc - skipped
+</span></span><span style="display:flex;"><span>-- Detecting C compile features
+</span></span><span style="display:flex;"><span>-- Detecting C compile features - <span style="color:#66d9ef">done</span>
+</span></span><span style="display:flex;"><span>-- Detecting CXX compiler ABI info
+</span></span><span style="display:flex;"><span>-- Detecting CXX compiler ABI info - <span style="color:#66d9ef">done</span>
+</span></span><span style="display:flex;"><span>-- Check <span style="color:#66d9ef">for</span> working CXX compiler: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ - skipped
+</span></span><span style="display:flex;"><span>-- Detecting CXX compile features
+</span></span><span style="display:flex;"><span>-- Detecting CXX compile features - <span style="color:#66d9ef">done</span>
+</span></span><span style="display:flex;"><span>-- Found EXPAT: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk/usr/lib/libexpat.tbd <span style="color:#f92672">(</span>found suitable version <span style="color:#e6db74">&#34;2.5.0&#34;</span>, minimum required is <span style="color:#e6db74">&#34;2.5.0&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+</span></span><span style="display:flex;"><span>-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+</span></span><span style="display:flex;"><span>-- Found Threads: TRUE
+</span></span><span style="display:flex;"><span>-- Found OpenGL: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk/System/Library/Frameworks/OpenGL.framework
+</span></span><span style="display:flex;"><span>-- Found Geant4: /Users/ninependoragon/Documents/Geant4/install/lib/cmake/Geant4/Geant4Config.cmake <span style="color:#f92672">(</span>found version <span style="color:#e6db74">&#34;11.1.2&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>-- Configuring <span style="color:#66d9ef">done</span> <span style="color:#f92672">(</span>1.4s<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>-- Generating <span style="color:#66d9ef">done</span> <span style="color:#f92672">(</span>0.0s<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>-- Build files have been written to: /Users/ninependoragon/Geant4/G4_install/share/Geant4/examples/basic/B1/build
+</span></span><span style="display:flex;"><span>ninependoragon@Nines-MacBook-Pro build % make 
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span> 12%<span style="color:#f92672">]</span> Building CXX object CMakeFiles/exampleB1.dir/exampleB1.cc.o
+</span></span><span style="display:flex;"><span>/Users/ninependoragon/Geant4/G4_install/share/Geant4/examples/basic/B1/exampleB1.cc:79:25: error: no matching constructor <span style="color:#66d9ef">for</span> initialization of <span style="color:#e6db74">&#39;G4VisExecutive&#39;</span>
+</span></span><span style="display:flex;"><span>  auto visManager <span style="color:#f92672">=</span> new G4VisExecutive<span style="color:#f92672">(</span>argc, argv<span style="color:#f92672">)</span>;
+</span></span><span style="display:flex;"><span>                        ^              ~~~~~~~~~~
+</span></span><span style="display:flex;"><span>/Users/ninependoragon/Documents/Geant4/install/include/Geant4/G4VisExecutive.icc:126:17: note: candidate constructor not viable: allows at most single argument <span style="color:#e6db74">&#39;verbosityString&#39;</span>, but <span style="color:#ae81ff">2</span> arguments were provided
+</span></span><span style="display:flex;"><span>G4VisExecutive::G4VisExecutive <span style="color:#f92672">(</span>const G4String&amp; verbosityString<span style="color:#f92672">)</span>:
+</span></span><span style="display:flex;"><span>                ^
+</span></span><span style="display:flex;"><span>/Users/ninependoragon/Documents/Geant4/install/include/Geant4/G4VisExecutive.hh:119:7: note: candidate constructor <span style="color:#f92672">(</span>the implicit copy constructor<span style="color:#f92672">)</span> not viable: requires <span style="color:#ae81ff">1</span> argument, but <span style="color:#ae81ff">2</span> were provided
+</span></span><span style="display:flex;"><span>class G4VisExecutive: public G4VisManager <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>      ^
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1</span> error generated.
+</span></span><span style="display:flex;"><span>make<span style="color:#f92672">[</span>2<span style="color:#f92672">]</span>: *** <span style="color:#f92672">[</span>CMakeFiles/exampleB1.dir/exampleB1.cc.o<span style="color:#f92672">]</span> Error <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>make<span style="color:#f92672">[</span>1<span style="color:#f92672">]</span>: *** <span style="color:#f92672">[</span>CMakeFiles/exampleB1.dir/all<span style="color:#f92672">]</span> Error <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>make: *** <span style="color:#f92672">[</span>all<span style="color:#f92672">]</span> Error <span style="color:#ae81ff">2</span>
+</span></span></code></pre></div><p>报错与可视化有关，可能是因为没安装qt5，但是我在思考，为什么我的旧的Geant4可以运行。也有可能是环境变量的问题，先设置一下变量再看看。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zsh" data-lang="zsh"><span style="display:flex;"><span>ninependoragon@Nines-MacBook-Pro ~ % nano .zshrc 
+</span></span></code></pre></div><p>看一眼zshrc的配置文件</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#a6e22e">export</span> <span style="color:#a6e22e">PATH</span>=<span style="color:#f92672">/</span><span style="color:#a6e22e">opt</span><span style="color:#f92672">/</span><span style="color:#a6e22e">homebrew</span><span style="color:#f92672">/</span><span style="color:#a6e22e">opt</span><span style="color:#f92672">/</span><span style="color:#a6e22e">qt</span><span style="color:#960050;background-color:#1e0010">@</span><span style="color:#ae81ff">5</span><span style="color:#f92672">/</span><span style="color:#a6e22e">bin</span>:<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#a6e22e">PATH</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span><span style="color:#a6e22e">export</span> <span style="color:#a6e22e">LDFLAGS</span>=<span style="color:#e6db74">&#34;-L/opt/homebrew/Cellar/qt@5/5.15.13_1/lib&#34;</span>:<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#a6e22e">LDFLAGS</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span><span style="color:#a6e22e">export</span> <span style="color:#a6e22e">CPPFLAGS</span>=<span style="color:#e6db74">&#34;-I/opt/homebrew/Cellar/qt@5/5.15.13_1/include&#34;</span>:<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#a6e22e">CPPFLAGS</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span><span style="color:#a6e22e">export</span> <span style="color:#a6e22e">PKG_CONFIG_PATH</span>=<span style="color:#f92672">/</span><span style="color:#a6e22e">opt</span><span style="color:#f92672">/</span><span style="color:#a6e22e">homebrew</span><span style="color:#f92672">/</span><span style="color:#a6e22e">Cellar</span><span style="color:#f92672">/</span><span style="color:#a6e22e">qt</span><span style="color:#f92672">/</span><span style="color:#ae81ff">6.7.0</span><span style="color:#a6e22e">_1</span><span style="color:#f92672">/</span><span style="color:#a6e22e">lib</span><span style="color:#f92672">/</span><span style="color:#a6e22e">pkgconfig</span>:<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#a6e22e">PKG_CONFI</span><span style="color:#960050;background-color:#1e0010">$</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7</span><span><span style="color:#a6e22e">source</span> ~<span style="color:#f92672">/</span><span style="color:#a6e22e">Documents</span><span style="color:#f92672">/</span><span style="color:#a6e22e">Geant4</span><span style="color:#f92672">/</span><span style="color:#a6e22e">install</span><span style="color:#f92672">/</span><span style="color:#a6e22e">bin</span><span style="color:#f92672">/</span><span style="color:#a6e22e">geant4</span>.<span style="color:#a6e22e">sh</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9</span><span><span style="color:#a6e22e">alias</span> <span style="color:#a6e22e">g4camke</span>=<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#a6e22e">cmake</span> <span style="color:#f92672">-</span><span style="color:#a6e22e">DGant4_DIR</span>=~<span style="color:#f92672">/</span><span style="color:#a6e22e">Documents</span><span style="color:#f92672">/</span><span style="color:#a6e22e">Geant4</span><span style="color:#f92672">/</span><span style="color:#a6e22e">install</span><span style="color:#f92672">/</span><span style="color:#a6e22e">lib</span><span style="color:#f92672">/</span><span style="color:#a6e22e">cmake</span><span style="color:#f92672">/</span><span style="color:#a6e22e">Geant4</span><span style="color:#f92672">/</span><span style="color:#960050;background-color:#1e0010">&#39;</span>
+</span></span></code></pre></div><p>可以看见是有qt5的，可是Geant4的环境变量没有修改。先修改环境变量试试。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#a6e22e">export</span> <span style="color:#a6e22e">PATH</span>=<span style="color:#f92672">/</span><span style="color:#a6e22e">opt</span><span style="color:#f92672">/</span><span style="color:#a6e22e">homebrew</span><span style="color:#f92672">/</span><span style="color:#a6e22e">opt</span><span style="color:#f92672">/</span><span style="color:#a6e22e">qt</span><span style="color:#960050;background-color:#1e0010">@</span><span style="color:#ae81ff">5</span><span style="color:#f92672">/</span><span style="color:#a6e22e">bin</span>:<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#a6e22e">PATH</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span><span style="color:#a6e22e">export</span> <span style="color:#a6e22e">LDFLAGS</span>=<span style="color:#e6db74">&#34;-L/opt/homebrew/Cellar/qt@5/5.15.13_1/lib&#34;</span>:<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#a6e22e">LDFLAGS</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span><span style="color:#a6e22e">export</span> <span style="color:#a6e22e">CPPFLAGS</span>=<span style="color:#e6db74">&#34;-I/opt/homebrew/Cellar/qt@5/5.15.13_1/include&#34;</span>:<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#a6e22e">CPPFLAGS</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span><span style="color:#a6e22e">export</span> <span style="color:#a6e22e">PKG_CONFIG_PATH</span>=<span style="color:#f92672">/</span><span style="color:#a6e22e">opt</span><span style="color:#f92672">/</span><span style="color:#a6e22e">homebrew</span><span style="color:#f92672">/</span><span style="color:#a6e22e">Cellar</span><span style="color:#f92672">/</span><span style="color:#a6e22e">qt</span><span style="color:#f92672">/</span><span style="color:#ae81ff">6.7.0</span><span style="color:#a6e22e">_1</span><span style="color:#f92672">/</span><span style="color:#a6e22e">lib</span><span style="color:#f92672">/</span><span style="color:#a6e22e">pkgconfig</span>:<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#a6e22e">PKG_CONFI</span><span style="color:#960050;background-color:#1e0010">$</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7</span><span><span style="color:#a6e22e">source</span> ~<span style="color:#75715e">//Geant4/G4_install/bin/geant4.sh</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9</span><span><span style="color:#a6e22e">alias</span> <span style="color:#a6e22e">g4camke</span>=<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#a6e22e">cmake</span> <span style="color:#f92672">-</span><span style="color:#a6e22e">DGant4_DIR</span>=~<span style="color:#f92672">/</span><span style="color:#a6e22e">Geant4</span><span style="color:#f92672">/</span><span style="color:#a6e22e">G4_install</span><span style="color:#f92672">/</span><span style="color:#a6e22e">lib</span><span style="color:#f92672">/</span><span style="color:#a6e22e">cmake</span><span style="color:#f92672">/</span><span style="color:#a6e22e">Geant4</span><span style="color:#f92672">/</span><span style="color:#960050;background-color:#1e0010">&#39;</span>
+</span></span></code></pre></div><p>control x 退出，y 回车两次保存。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zsh" data-lang="zsh"><span style="display:flex;"><span>ninependoragon@Nines-MacBook-Pro B1 % mkdir build2
+</span></span><span style="display:flex;"><span>ninependoragon@Nines-MacBook-Pro B1 % cd build2
+</span></span><span style="display:flex;"><span>ninependoragon@Nines-MacBook-Pro build2 % cmake ../
+</span></span><span style="display:flex;"><span>ninependoragon@Nines-MacBook-Pro build2 % make
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span> 12%<span style="color:#f92672">]</span> Building CXX object CMakeFiles/exampleB1.dir/exampleB1.cc.o
+</span></span><span style="display:flex;"><span>/Users/ninependoragon/Geant4/G4_install/share/Geant4/examples/basic/B1/exampleB1.cc:79:25: error: no matching constructor <span style="color:#66d9ef">for</span> initialization of <span style="color:#e6db74">&#39;G4VisExecutive&#39;</span>
+</span></span><span style="display:flex;"><span>  auto visManager <span style="color:#f92672">=</span> new G4VisExecutive<span style="color:#f92672">(</span>argc, argv<span style="color:#f92672">)</span>;
+</span></span><span style="display:flex;"><span>                        ^              ~~~~~~~~~~
+</span></span><span style="display:flex;"><span>/Users/ninependoragon/Documents/Geant4/install/include/Geant4/G4VisExecutive.icc:126:17: note: candidate constructor not viable: allows at most single argument <span style="color:#e6db74">&#39;verbosityString&#39;</span>, but <span style="color:#ae81ff">2</span> arguments were provided
+</span></span><span style="display:flex;"><span>G4VisExecutive::G4VisExecutive <span style="color:#f92672">(</span>const G4String&amp; verbosityString<span style="color:#f92672">)</span>:
+</span></span><span style="display:flex;"><span>                ^
+</span></span><span style="display:flex;"><span>/Users/ninependoragon/Documents/Geant4/install/include/Geant4/G4VisExecutive.hh:119:7: note: candidate constructor <span style="color:#f92672">(</span>the implicit copy constructor<span style="color:#f92672">)</span> not viable: requires <span style="color:#ae81ff">1</span> argument, but <span style="color:#ae81ff">2</span> were provided
+</span></span><span style="display:flex;"><span>class G4VisExecutive: public G4VisManager <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>      ^
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1</span> error generated.
+</span></span><span style="display:flex;"><span>make<span style="color:#f92672">[</span>2<span style="color:#f92672">]</span>: *** <span style="color:#f92672">[</span>CMakeFiles/exampleB1.dir/exampleB1.cc.o<span style="color:#f92672">]</span> Error <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>make<span style="color:#f92672">[</span>1<span style="color:#f92672">]</span>: *** <span style="color:#f92672">[</span>CMakeFiles/exampleB1.dir/all<span style="color:#f92672">]</span> Error <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>make: *** <span style="color:#f92672">[</span>all<span style="color:#f92672">]</span> Error <span style="color:#ae81ff">2</span>
+</span></span></code></pre></div><p>还是报错，回头发现配置文件写错了，多写了个/。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zsh" data-lang="zsh"><span style="display:flex;"><span>ninependoragon@Nines-MacBook-Pro B1 % mkdir build3
+</span></span><span style="display:flex;"><span>ninependoragon@Nines-MacBook-Pro B1 % cd build3 
+</span></span><span style="display:flex;"><span>ninependoragon@Nines-MacBook-Pro build3 % source ~/Geant4/G4_install/bin/geant4.sh 
+</span></span><span style="display:flex;"><span>ninependoragon@Nines-MacBook-Pro build3 % cmake ..
+</span></span><span style="display:flex;"><span>ninependoragon@Nines-MacBook-Pro build3 % make 
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span> 12%<span style="color:#f92672">]</span> Building CXX object CMakeFiles/exampleB1.dir/exampleB1.cc.o
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span> 25%<span style="color:#f92672">]</span> Building CXX object CMakeFiles/exampleB1.dir/src/ActionInitialization.cc.o
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span> 37%<span style="color:#f92672">]</span> Building CXX object CMakeFiles/exampleB1.dir/src/DetectorConstruction.cc.o
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span> 50%<span style="color:#f92672">]</span> Building CXX object CMakeFiles/exampleB1.dir/src/EventAction.cc.o
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span> 62%<span style="color:#f92672">]</span> Building CXX object CMakeFiles/exampleB1.dir/src/PrimaryGeneratorAction.cc.o
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span> 75%<span style="color:#f92672">]</span> Building CXX object CMakeFiles/exampleB1.dir/src/RunAction.cc.o
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span> 87%<span style="color:#f92672">]</span> Building CXX object CMakeFiles/exampleB1.dir/src/SteppingAction.cc.o
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>100%<span style="color:#f92672">]</span> Linking CXX executable exampleB1
+</span></span><span style="display:flex;"><span>ld: warning: search path <span style="color:#e6db74">&#39;/opt/homebrew/Cellar/qt@5/5.15.13_1/lib:&#39;</span> not found
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>100%<span style="color:#f92672">]</span> Built target exampleB1
+</span></span><span style="display:flex;"><span>ninependoragon@Nines-MacBook-Pro build3 % ./exampleB1 
+</span></span></code></pre></div><p>并没有出现可视化窗口，然后才注意到刚刚的报错，还是没找到qt5，但是我这台电脑应该是有qt5的，</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zsh" data-lang="zsh"><span style="display:flex;"><span>ninependoragon@Nines-MacBook-Pro build3 % ls /opt/homebrew/Cellar/qt@5/5.15.13_1/
+</span></span><span style="display:flex;"><span>Frameworks			doc
+</span></span><span style="display:flex;"><span>INSTALL_RECEIPT.json		include
+</span></span><span style="display:flex;"><span>LICENSE.FDL			lib
+</span></span><span style="display:flex;"><span>LICENSE.GPL3-EXCEPT		libexec
+</span></span><span style="display:flex;"><span>LICENSE.GPLv2			mkspecs
+</span></span><span style="display:flex;"><span>LICENSE.GPLv3			phrasebooks
+</span></span><span style="display:flex;"><span>LICENSE.LGPLv21			plugins
+</span></span><span style="display:flex;"><span>LICENSE.LGPLv3			qml
+</span></span><span style="display:flex;"><span>LICENSE.QT-LICENSE-AGREEMENT	share
+</span></span><span style="display:flex;"><span>README				translations
+</span></span><span style="display:flex;"><span>bin
+</span></span></code></pre></div><p>发现是有这个目录的，但是打不开，还是环境变量问题。听ai的修改成：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#960050;background-color:#1e0010">#</span><span style="color:#a6e22e">export</span> <span style="color:#a6e22e">PATH</span>=<span style="color:#f92672">/</span><span style="color:#a6e22e">opt</span><span style="color:#f92672">/</span><span style="color:#a6e22e">homebrew</span><span style="color:#f92672">/</span><span style="color:#a6e22e">opt</span><span style="color:#f92672">/</span><span style="color:#a6e22e">qt</span><span style="color:#960050;background-color:#1e0010">@</span><span style="color:#ae81ff">5</span><span style="color:#f92672">/</span><span style="color:#a6e22e">bin</span>:<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#a6e22e">PATH</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span><span style="color:#960050;background-color:#1e0010">#</span><span style="color:#a6e22e">export</span> <span style="color:#a6e22e">LDFLAGS</span>=<span style="color:#e6db74">&#34;-L/opt/homebrew/Cellar/qt@5/5.15.13_1/lib&#34;</span>:<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#a6e22e">LDFLAGS</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span><span style="color:#960050;background-color:#1e0010">#</span><span style="color:#a6e22e">export</span> <span style="color:#a6e22e">CPPFLAGS</span>=<span style="color:#e6db74">&#34;-I/opt/homebrew/Cellar/qt@5/5.15.13_1/include&#34;</span>:<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#a6e22e">CPPFLAGS</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span><span style="color:#960050;background-color:#1e0010">#</span><span style="color:#a6e22e">export</span> <span style="color:#a6e22e">PKG_CONFIG_PATH</span>=<span style="color:#f92672">/</span><span style="color:#a6e22e">opt</span><span style="color:#f92672">/</span><span style="color:#a6e22e">homebrew</span><span style="color:#f92672">/</span><span style="color:#a6e22e">Cellar</span><span style="color:#f92672">/</span><span style="color:#a6e22e">qt</span><span style="color:#f92672">/</span><span style="color:#ae81ff">6.7.0</span><span style="color:#a6e22e">_1</span><span style="color:#f92672">/</span><span style="color:#a6e22e">lib</span><span style="color:#f92672">/</span><span style="color:#a6e22e">pkgconfig</span>:<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#a6e22e">PKG_CONF</span><span style="color:#960050;background-color:#1e0010">$</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span><span style="color:#a6e22e">export</span> <span style="color:#a6e22e">PATH</span>=<span style="color:#f92672">/</span><span style="color:#a6e22e">opt</span><span style="color:#f92672">/</span><span style="color:#a6e22e">homebrew</span><span style="color:#f92672">/</span><span style="color:#a6e22e">opt</span><span style="color:#f92672">/</span><span style="color:#a6e22e">qt</span><span style="color:#960050;background-color:#1e0010">@</span><span style="color:#ae81ff">5</span><span style="color:#f92672">/</span><span style="color:#a6e22e">bin</span>:<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#a6e22e">PATH</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span><span style="color:#a6e22e">export</span> <span style="color:#a6e22e">LDFLAGS</span>=<span style="color:#e6db74">&#34;-L/opt/homebrew/opt/qt@5/lib $LDFLAGS&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span><span style="color:#a6e22e">export</span> <span style="color:#a6e22e">CPPFLAGS</span>=<span style="color:#e6db74">&#34;-I/opt/homebrew/opt/qt@5/include $CPPFLAGS&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span><span style="color:#a6e22e">export</span> <span style="color:#a6e22e">PKG_CONFIG_PATH</span>=<span style="color:#f92672">/</span><span style="color:#a6e22e">opt</span><span style="color:#f92672">/</span><span style="color:#a6e22e">homebrew</span><span style="color:#f92672">/</span><span style="color:#a6e22e">opt</span><span style="color:#f92672">/</span><span style="color:#a6e22e">qt</span><span style="color:#960050;background-color:#1e0010">@</span><span style="color:#ae81ff">5</span><span style="color:#f92672">/</span><span style="color:#a6e22e">lib</span><span style="color:#f92672">/</span><span style="color:#a6e22e">pkgconfig</span>:<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#a6e22e">PKG_CONFIG_PATH</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span><span style="color:#a6e22e">source</span> ~<span style="color:#f92672">/</span><span style="color:#a6e22e">Geant4</span><span style="color:#f92672">/</span><span style="color:#a6e22e">G4_install</span><span style="color:#f92672">/</span><span style="color:#a6e22e">bin</span><span style="color:#f92672">/</span><span style="color:#a6e22e">geant4</span>.<span style="color:#a6e22e">sh</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span><span style="color:#a6e22e">alias</span> <span style="color:#a6e22e">g4camke</span>=<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#a6e22e">cmake</span> <span style="color:#f92672">-</span><span style="color:#a6e22e">DGant4_DIR</span>=~<span style="color:#f92672">/</span><span style="color:#a6e22e">Geant4</span><span style="color:#f92672">/</span><span style="color:#a6e22e">G4_install</span><span style="color:#f92672">/</span><span style="color:#a6e22e">lib</span><span style="color:#f92672">/</span><span style="color:#a6e22e">cmake</span><span style="color:#f92672">/</span><span style="color:#a6e22e">Geant4</span><span style="color:#f92672">/</span><span style="color:#960050;background-color:#1e0010">&#39;</span>
+</span></span></code></pre></div><p>然后</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zsh" data-lang="zsh"><span style="display:flex;"><span>source ~/.zshrc
+</span></span></code></pre></div><p>再次make example B1结果还是不行。</p>
+<p>搜到一篇帖子说G4不支持在zsh中执行，只能bash中执行，我先看看我的.bashrc。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#a6e22e">export</span> <span style="color:#a6e22e">PATH</span>=<span style="color:#f92672">/</span><span style="color:#a6e22e">opt</span><span style="color:#f92672">/</span><span style="color:#a6e22e">homebrew</span><span style="color:#f92672">/</span><span style="color:#a6e22e">Cellar</span><span style="color:#f92672">/</span><span style="color:#a6e22e">qt</span><span style="color:#f92672">/</span><span style="color:#ae81ff">6.5.1</span><span style="color:#a6e22e">_2</span><span style="color:#f92672">/</span><span style="color:#a6e22e">bin</span>:<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#a6e22e">PATH</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span><span style="color:#a6e22e">export</span> <span style="color:#a6e22e">LDFLAGS</span>=<span style="color:#e6db74">&#34;-L/opt/homebrew/Cellar/qt/6.5.1_2/lib&#34;</span>:<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#a6e22e">LDFLAGS</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span><span style="color:#a6e22e">export</span> <span style="color:#a6e22e">CPPFLAGS</span>=<span style="color:#e6db74">&#34;-I/opt/homebrew/Cellar/qt/6.5.1_2/include&#34;</span>:<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#a6e22e">CPPFLAGS</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span><span style="color:#a6e22e">export</span> <span style="color:#a6e22e">PKG_CONFIG_PATH</span>=<span style="color:#f92672">/</span><span style="color:#a6e22e">opt</span><span style="color:#f92672">/</span><span style="color:#a6e22e">homebrew</span><span style="color:#f92672">/</span><span style="color:#a6e22e">Cellar</span><span style="color:#f92672">/</span><span style="color:#a6e22e">qt</span><span style="color:#f92672">/</span><span style="color:#ae81ff">6.5.1</span><span style="color:#a6e22e">_2</span><span style="color:#f92672">/</span><span style="color:#a6e22e">lib</span><span style="color:#f92672">/</span><span style="color:#a6e22e">pkgconfig</span>:<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#a6e22e">PKG_CONFI</span><span style="color:#960050;background-color:#1e0010">$</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span><span style="color:#a6e22e">export</span> <span style="color:#a6e22e">CMAKE_PREFIX_PATH</span>=<span style="color:#f92672">/</span><span style="color:#a6e22e">opt</span><span style="color:#f92672">/</span><span style="color:#a6e22e">homebrew</span><span style="color:#f92672">/</span><span style="color:#a6e22e">Cellar</span><span style="color:#f92672">/</span><span style="color:#a6e22e">qt</span><span style="color:#960050;background-color:#1e0010">@</span><span style="color:#ae81ff">5</span><span style="color:#f92672">/</span><span style="color:#ae81ff">5.15.10</span><span style="color:#f92672">/</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8</span><span><span style="color:#a6e22e">source</span> <span style="color:#f92672">/</span><span style="color:#a6e22e">Users</span><span style="color:#f92672">/</span><span style="color:#a6e22e">ninependoragon</span><span style="color:#f92672">/</span><span style="color:#a6e22e">Documents</span><span style="color:#f92672">/</span><span style="color:#a6e22e">Geant4</span><span style="color:#f92672">/</span><span style="color:#a6e22e">install</span><span style="color:#f92672">/</span><span style="color:#a6e22e">bin</span><span style="color:#f92672">/</span><span style="color:#a6e22e">geant4</span>.<span style="color:#a6e22e">sh</span>
+</span></span></code></pre></div><p>修改一下，</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#a6e22e">export</span> <span style="color:#a6e22e">PATH</span>=<span style="color:#f92672">/</span><span style="color:#a6e22e">opt</span><span style="color:#f92672">/</span><span style="color:#a6e22e">homebrew</span><span style="color:#f92672">/</span><span style="color:#a6e22e">Cellar</span><span style="color:#f92672">/</span><span style="color:#a6e22e">qt</span><span style="color:#f92672">/</span><span style="color:#ae81ff">6.5.1</span><span style="color:#a6e22e">_2</span><span style="color:#f92672">/</span><span style="color:#a6e22e">bin</span>:<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#a6e22e">PATH</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span><span style="color:#a6e22e">export</span> <span style="color:#a6e22e">LDFLAGS</span>=<span style="color:#e6db74">&#34;-L/opt/homebrew/Cellar/qt/6.5.1_2/lib&#34;</span>:<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#a6e22e">LDFLAGS</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span><span style="color:#a6e22e">export</span> <span style="color:#a6e22e">CPPFLAGS</span>=<span style="color:#e6db74">&#34;-I/opt/homebrew/Cellar/qt/6.5.1_2/include&#34;</span>:<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#a6e22e">CPPFLAGS</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span><span style="color:#a6e22e">export</span> <span style="color:#a6e22e">PKG_CONFIG_PATH</span>=<span style="color:#f92672">/</span><span style="color:#a6e22e">opt</span><span style="color:#f92672">/</span><span style="color:#a6e22e">homebrew</span><span style="color:#f92672">/</span><span style="color:#a6e22e">Cellar</span><span style="color:#f92672">/</span><span style="color:#a6e22e">qt</span><span style="color:#f92672">/</span><span style="color:#ae81ff">6.5.1</span><span style="color:#a6e22e">_2</span><span style="color:#f92672">/</span><span style="color:#a6e22e">lib</span><span style="color:#f92672">/</span><span style="color:#a6e22e">pkgconfig</span>:<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#a6e22e">PKG_CONFI</span><span style="color:#960050;background-color:#1e0010">$</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span><span style="color:#a6e22e">export</span> <span style="color:#a6e22e">CMAKE_PREFIX_PATH</span>=<span style="color:#f92672">/</span><span style="color:#a6e22e">opt</span><span style="color:#f92672">/</span><span style="color:#a6e22e">homebrew</span><span style="color:#f92672">/</span><span style="color:#a6e22e">Cellar</span><span style="color:#f92672">/</span><span style="color:#a6e22e">qt</span><span style="color:#960050;background-color:#1e0010">@</span><span style="color:#ae81ff">5</span><span style="color:#f92672">/</span><span style="color:#ae81ff">5.15.10</span><span style="color:#f92672">/</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8</span><span><span style="color:#a6e22e">source</span> <span style="color:#f92672">/</span><span style="color:#a6e22e">Users</span><span style="color:#f92672">/</span><span style="color:#a6e22e">ninependoragon</span><span style="color:#f92672">/</span><span style="color:#a6e22e">Geant4</span><span style="color:#f92672">/</span><span style="color:#a6e22e">G4_install</span><span style="color:#f92672">/</span><span style="color:#a6e22e">bin</span><span style="color:#f92672">/</span><span style="color:#a6e22e">geant4</span>.<span style="color:#a6e22e">sh</span>
+</span></span></code></pre></div><p>修改之后运行还是不对，而且我记得两年前我用zsh运行过example B1。</p>
+<p>明天再写吧 累了 踩坑写完后给个总结我会放在最前面</p>
 
     </div>
     <div class="post-footer">
