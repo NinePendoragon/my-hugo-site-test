@@ -652,7 +652,7 @@ LICENSE.QT-LICENSE-AGREEMENT	share
 README				translations
 bin
 ```
-发现是有这个目录的，但是打不开，还是环境变量问题。听ai的修改成：
+发现是有这个目录的，还是环境变量问题。听ai的修改成：
 ```go {linenos=inline}
 #export PATH=/opt/homebrew/opt/qt@5/bin:$PATH
 #export LDFLAGS="-L/opt/homebrew/Cellar/qt@5/5.15.13_1/lib":$LDFLAGS
@@ -698,7 +698,57 @@ export CMAKE_PREFIX_PATH=/opt/homebrew/Cellar/qt@5/5.15.10/
 source /Users/ninependoragon/Geant4/G4_install/bin/geant4.sh
 ```
 修改之后运行还是不对，而且我记得两年前我用zsh运行过example B1。
+又在网上搜了一堆之后发现可能是关联cmake的时候没有开启GEANT4_USE_QT，现在重新cmake安装试试。
+删掉旧的build文件夹，
+```zsh
+ninependoragon@Nines-MacBook-Pro G4_build % cmake -DCMAKE_INSTALL_PREFIX=~/Geant4/G4_install -DGEANT4_INSTALL_DATA=OFF -DGEANT4_USE_GDML=ON -DGEANT4_BUILD_MULTITHREADED=ON -DGEANT4_USE_QT=ON ~/Geant4/geant4-v11.3.2
 
+```
+折腾一个小时后，发现还是zshrc配置文件写错了。修改后的.zshrc文件如下。
+```go {linenos=inline}
+#export PATH=/opt/homebrew/opt/qt@5/bin:$PATH
+#export LDFLAGS="-L/opt/homebrew/Cellar/qt@5/5.15.13_1/lib":$LDFLAGS
+#export CPPFLAGS="-I/opt/homebrew/Cellar/qt@5/5.15.13_1/include":$CPPFLAGS
+#export PKG_CONFIG_PATH=/opt/homebrew/Cellar/qt/6.7.0_1/lib/pkgconfig:$PKG_CONFIG_PATH
 
+export LDFLAGS="-L/opt/homebrew/Cellar/qt@5/5.15.13_1/lib${LDFLAGS:+:$LDFLAGS}"
+export CPPFLAGS="-I/opt/homebrew/Cellar/qt@5/5.15.13_1/include${CPPFLAGS:+:$CPPFLAGS}"
+export PKG_CONFIG_PATH="/opt/homebrew/Cellar/qt@5/5.15.13_1/lib/pkgconfig${PKG_CONFIG_PATH:+:$PK$
+export PATH="/opt/homebrew/opt/qt@5/bin${PATH:+:}$PATH"
+
+#export PATH="/opt/homebrew/opt/qt@5/bin:$PATH"
+#export LDFLAGS="-L/opt/homebrew/Cellar/qt@5/5.15.13_1/lib:$LDFLAGS"
+#export CPPFLAGS="-I/opt/homebrew/Cellar/qt@5/5.15.13_1/include:$CPPFLAGS"
+#export PKG_CONFIG_PATH="/opt/homebrew/Cellar/qt/6.7.0_1/lib/pkgconfig:$PKG_CONFIG_PATH"
+
+#export CMAKE_PREFIX_PATH=/opt/homebrew/Cellar/qt@5/5.15.13_1/:$CMAKE_PREFIX_PATH
+
+#export PATH=/opt/homebrew/opt/qt@5/bin:$PATH
+#export LDFLAGS="-L/opt/homebrew/opt/qt@5/lib $LDFLAGS"
+```
+
+而且我发现source ~/.zshrc 后会导致$LDFLAGS等相同路径重复多次，重启终端则是正常的。
+```zsh
+ninependoragon@Nines-MacBook-Pro G4_build % cmake -DCMAKE_INSTALL_PREFIX=~/Geant4/G4_install -DGEANT4_INSTALL_DATA=OFF -DGEANT4_USE_GDML=ON -DGEANT4_BUILD_MULTITHREADED=ON -DGEANT4_USE_QT=ON ~/Geant4/geant4-v11.3.2
+ninependoragon@Nines-MacBook-Pro G4_build % make
+```
+目前没有报warning了，所以大概还是ld: warning: search path '/opt/homebrew/Cellar/qt@5/5.15.13_1/lib:' not found这个报错的原因，路径最后含有冒号，按照ai的修改意见改了.zshrc之后就不提示这个warning了。然而这个文件两年了一直没动过，想不起来两年前怎么安装的Geant4了。
+make完操作跟上面一样，先make install，然后拷贝data文件，
+```zsh
+ninependoragon@Nines-MacBook-Pro build % source ~/Geant4/G4_install/bin/geant4.sh
+ninependoragon@Nines-MacBook-Pro build % alias g4camke='cmake -DGant4_DIR=~/Geant4/G4_install/lib/cmake/Geant4/'
+ninependoragon@Nines-MacBook-Pro build % cmake ..   
+ninependoragon@Nines-MacBook-Pro build % make -j4
+ninependoragon@Nines-MacBook-Pro build % ./exampleB1
+```
+![exampleB1](/geant4/B1.png "exampleB1")
+终于搞定了，泪目，每次安装都是全新体验。
 
 明天再写吧 累了 踩坑写完后给个总结我会放在最前面
+大概就是
+1. 下载源码和依赖
+2. qt5环境
+3. 安装
+4. 拷贝data
+5. geant4环境
+6. 运行example B1
