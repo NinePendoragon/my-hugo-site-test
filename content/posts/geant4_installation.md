@@ -15,7 +15,102 @@ date = "2025-06-21"
 
 这里就是如何安装Geant4的官方教程。![installation](/geant4/installationGuide.png "installation")
 
+***
+
 ## MacOS
+跟着大佬学着列一下我的设备和环境：
+- MacBookPro(M2 2022)
+- OS: macOS 14.4.1 23E224 arm64 
+- Shell: zsh 5.9 
+- Homebrew 4.5.8
+### 总结
+为了省流，我把总结放在前面，我自己安装时候的记录放在了后面。
+1. **下载Geant4源码和相关依赖；**
+
+在Geant4官网[https://geant4.web.cern.ch/](https://geant4.web.cern.ch/)主页的Download内下载"Source code"(我下载的是"tar")，还有"Datasets"下的所有数据。
+相关依赖我能记得的只有qt5、cmake了，qt需要安装码？先就安装这三个吧。不过看到有大佬安装提到了CLHEP，我不清楚这个是否需要安装，去可能是CLHEP的[wiki](https://www.hep.ucl.ac.uk/pbt/wiki/Software/Geant4/Installation/CLHEP)上看了一眼，似乎不是必须要手动安装的？总之安装一下也无妨。打开终端，
+```zsh
+brew install cmake
+brew install clhep
+brew install qt
+brew install qt5
+```
+然后解压下载的源码。这里我把源码解压到主目录下新建的文件夹Geant4中。
+```zsh
+cd ~
+mkdir Geant4
+cd Geant4
+tar -xf ~/Downloads/geant4-v11.3.2.tar 
+```
+"geant4-v11.3.2.tar"是我下载的Geant4源码压缩包的文件名，请修改成自己下载的压缩包的文件名。
+2. **配置qt5环境**
+
+终端内输入
+```zsh
+nano ~/.zshrc
+```
+我这里用的文本编辑器是nano，MacOS似乎默认包含nano，如果没有也可以用brew安装一下，也可以选择其他文本编辑器。执行上面的命令之后将下面的4行代码写入到文件内，然后按control+x退出，输入y按两次回车保存。
+
+```
+export LDFLAGS="-L/opt/homebrew/Cellar/qt@5/5.15.13_1/lib${LDFLAGS:+:$LDFLAGS}"
+export CPPFLAGS="-I/opt/homebrew/Cellar/qt@5/5.15.13_1/include${CPPFLAGS:+:$CPPFLAGS}"
+export PKG_CONFIG_PATH="/opt/homebrew/Cellar/qt@5/5.15.13_1/lib/pkgconfig${PKG_CONFIG_PATH:+:$PKG_CONFIG_PATH}"
+export PATH="/opt/homebrew/opt/qt@5/bin${PATH:+:}$PATH"
+```
+退出之后source一下
+```zsh
+source ~/.zshrc
+```
+
+3. **编译安装**
+我想在主目录下刚刚新建的Geant4文件夹内安装Geant4，所以就先在这个文件夹内新建一个build文件夹和一个install文件夹。
+```zsh
+cd ~/Geant4
+mkdir G4_build G4_install
+ls
+cd G4_build
+cmake -DCMAKE_INSTALL_PREFIX=~/Geant4/G4_install -DGEANT4_INSTALL_DATA=OFF -DGEANT4_USE_GDML=ON -DGEANT4_BUILD_MULTITHREADED=ON -DGEANT4_USE_QT=ON ~/Geant4/geant4-v11.3.2
+```
+”-DCMAKE_INSTALL_PREFIX=~/Geant4/G4_install“和”-DGEANT4_USE_QT=ON ~/Geant4/geant4-v11.3.2“中间的内容是设置开关Geant4的一些选项，可以在Geant4安装教程的standard options内查询相关功能的介绍，开关其他功能需要输入”-D“+选项的名字+”=ON/OFF“。安装完之后如果需要开启某些选项，需要重新cmake，所以源码不要删。cmake这一步会弹出一堆输出，大致内容就是关于data文件的，可以先不管，如果是其他报错建议复制报错给ai或者网上搜索。cmake结束后，
+```zsh
+make -j4
+```
+make -jN "where is the number of parallel jobs you require N"，N是同时并行的任务数，和CPU核心数有关。
+```zsh
+make install
+```
+上述两个命令运行的时候都要注意输出的waring。
+
+4. **配置Geant4环境**
+
+```zsh
+nano ~/.zshrc
+```
+在最后面写入
+```
+source ~/Geant4/G4_install/bin/geant4.sh
+```
+上述路径都以自己的为准。保存退出之后source一下.zshrc，或者重启一下终端。
+```zsh
+source ~/.zshrc
+```
+5. **运行example B1**
+
+运行一下example B1看有没有安装成功。
+```zsh
+cd ~/Geant4
+cp -r G4_install/share/Geant4/examples/basic G4_examples
+cd G4_examples
+mkdir B1_build
+cd B1_build
+cmake ../B1
+make -j4
+./exampleB1
+```
+出现下图一样的可视化窗口就说明Geant4安装成功了。
+![exampleB1](/geant4/B1.png "exampleB1")
+如果有其他问题可以联系在B站私信我，一起讨论共同成长。
+
 ### 踩坑
 先在官网下载源码和所有DATA文件，mac上面我下载下来的文件名字是"Darwin-clang17.0.0-Sequoia.tar.gz"，根据官方教程第一步是解压这个文件到想要的位置。先在主目录下新建一个文件夹，然后解压，在终端中输入下面的命令。
 ```zsh
@@ -752,3 +847,50 @@ ninependoragon@Nines-MacBook-Pro build % ./exampleB1
 4. 拷贝data
 5. geant4环境
 6. 运行example B1
+
+6月24日晚我来写总结部分的时候发现我的.zshrc文件alias部分写错了，是拼写错误。而且之前折腾的时候测试的一些注释掉的行也没有删除，显得很乱。
+```go {linenos=inline}
+#export PATH=/opt/homebrew/opt/qt@5/bin:$PATH
+#export LDFLAGS="-L/opt/homebrew/Cellar/qt@5/5.15.13_1/lib":$LDFLAGS
+#export CPPFLAGS="-I/opt/homebrew/Cellar/qt@5/5.15.13_1/include":$CPPFLAGS
+#export PKG_CONFIG_PATH=/opt/homebrew/Cellar/qt/6.7.0_1/lib/pkgconfig:$PKG_CONFIG_PATH
+
+export LDFLAGS="-L/opt/homebrew/Cellar/qt@5/5.15.13_1/lib${LDFLAGS:+:$LDFLAGS}"
+export CPPFLAGS="-I/opt/homebrew/Cellar/qt@5/5.15.13_1/include${CPPFLAGS:+:$CPPFLAGS}"
+export PKG_CONFIG_PATH="/opt/homebrew/Cellar/qt@5/5.15.13_1/lib/pkgconfig${PKG_CONFIG_PATH:+:$PKG_CONFIG_PATH}"
+export PATH="/opt/homebrew/opt/qt@5/bin${PATH:+:}$PATH"
+
+#export PATH="/opt/homebrew/opt/qt@5/bin:$PATH"
+#export LDFLAGS="-L/opt/homebrew/Cellar/qt@5/5.15.13_1/lib:$LDFLAGS"
+#export CPPFLAGS="-I/opt/homebrew/Cellar/qt@5/5.15.13_1/include:$CPPFLAGS"
+#export PKG_CONFIG_PATH="/opt/homebrew/Cellar/qt/6.7.0_1/lib/pkgconfig:$PKG_CONFIG_PATH"
+
+#export CMAKE_PREFIX_PATH=/opt/homebrew/Cellar/qt@5/5.15.13_1/:$CMAKE_PREFIX_PATH
+
+#export PATH=/opt/homebrew/opt/qt@5/bin:$PATH
+#export LDFLAGS="-L/opt/homebrew/opt/qt@5/lib $LDFLAGS"
+#export CPPFLAGS="-I/opt/homebrew/opt/qt@5/include $CPPFLAGS"
+#export PKG_CONFIG_PATH=/opt/homebrew/opt/qt@5/lib/pkgconfig:$PKG_CONFIG_PATH
+
+
+source ~/Geant4/G4_install/bin/geant4.sh
+
+alias g4camke='cmake -DGant4_DIR=~/Geant4/G4_install/lib/cmake/Geant4/'
+```
+不过这一行相当于给cmake换了个名字，我不运行g4cmake的话倒是没什么问题。但是直接cmake也行，感觉用处不大，直接删掉了。我最后的配置文件是，
+```go {linenos=inline}
+#export PATH=/opt/homebrew/opt/qt@5/bin:$PATH
+#export LDFLAGS="-L/opt/homebrew/Cellar/qt@5/5.15.13_1/lib":$LDFLAGS
+#export CPPFLAGS="-I/opt/homebrew/Cellar/qt@5/5.15.13_1/include":$CPPFLAGS
+#export PKG_CONFIG_PATH=/opt/homebrew/Cellar/qt/6.7.0_1/lib/pkgconfig:$PKG_CONFIG$
+
+export LDFLAGS="-L/opt/homebrew/Cellar/qt@5/5.15.13_1/lib${LDFLAGS:+:$LDFLAGS}"
+export CPPFLAGS="-I/opt/homebrew/Cellar/qt@5/5.15.13_1/include${CPPFLAGS:+:$CPPFL$
+export PKG_CONFIG_PATH="/opt/homebrew/Cellar/qt@5/5.15.13_1/lib/pkgconfig${PKG_CO$
+export PATH="/opt/homebrew/opt/qt@5/bin${PATH:+:}$PATH"
+
+#export CMAKE_PREFIX_PATH=/opt/homebrew/Cellar/qt@5/5.15.13_1/:$CMAKE_PREFIX_PATH
+
+source ~/Geant4/G4_install/bin/geant4.sh
+```
+注释掉的几行对未来可能有帮助，我就留下来。
