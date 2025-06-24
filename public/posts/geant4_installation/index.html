@@ -20,10 +20,15 @@
 打开Geant4官网https://geant4.web.cern.ch/，选择Docs项，
 然后选择Installation Guide，
 这里就是如何安装Geant4的官方教程。
-MacOS 踩坑 先在官网下载源码和所有DATA文件，mac上面我下载下来的文件名字是&#34;Darwin-clang17.0.0-Sequoia.tar.gz&#34;，根据官方教程第一步是解压这个文件到想要的位置。先在主目录下新建一个文件夹，然后解压，在终端中输入下面的命令。
-cd mkdir Geant4 cd Geant4 tar -xzf ~/Downloads/Darwin-clang17.0.0-Sequoia.tar.gz 第二步是新建一个build文件夹并且进入，然后运行cmake，我顺便再新建一下install文件夹，接着上面的命令继续输入，不要退出终端。
-mkdir G4_install G4_build cd G4_build cmake -DCMAKE_INSTALL_PREFIX=~/Geant4/G4_install ~/Geant4/Geant4-11.3.2-Darwin 报错如下。
-CMake Warning: Ignoring extra path from command line: &#34;/Users/ninependoragon/Geant4/Geant4-11.3.2-Darwin&#34; CMake Error: The source directory &#34;/Users/ninependoragon/Geant4/Geant4-11.3.2-Darwin&#34; does not appear to contain CMakeLists.txt. Specify --help for usage, or press the help button on the CMake GUI. ninependoragon@Nines-MacBook-Pro G4_build % 复制下来去问ai，结果发现是我下错源码了，我下载错成Binary releases了。。。 OK，下载好源码之后重新跑一遍上面的代码。">
+MacOS 跟着大佬学着列一下我的设备和环境：
+MacBookPro(M2 2022) OS: macOS 14.4.1 23E224 arm64 Shell: zsh 5.9 Homebrew 4.5.8 总结 为了省流，我把总结放在前面，我自己安装时候的记录放在了后面。
+下载Geant4源码和相关依赖； 在Geant4官网https://geant4.web.cern.ch/主页的Download内下载&#34;Source code&#34;(我下载的是&#34;tar&#34;)，还有&#34;Datasets&#34;下的所有数据。 相关依赖我能记得的只有qt5、cmake了，qt需要安装码？先就安装这三个吧。不过看到有大佬安装提到了CLHEP，我不清楚这个是否需要安装，去可能是CLHEP的wiki上看了一眼，似乎不是必须要手动安装的？总之安装一下也无妨。打开终端，
+brew install cmake brew install clhep brew install qt brew install qt5 然后解压下载的源码。这里我把源码解压到主目录下新建的文件夹Geant4中。
+cd ~ mkdir Geant4 cd Geant4 tar -xf ~/Downloads/geant4-v11.3.2.tar “geant4-v11.3.2.tar&#34;是我下载的Geant4源码压缩包的文件名，请修改成自己下载的压缩包的文件名。 2. 配置qt5环境
+终端内输入
+nano ~/.zshrc 我这里用的文本编辑器是nano，MacOS似乎默认包含nano，如果没有也可以用brew安装一下，也可以选择其他文本编辑器。执行上面的命令之后将下面的4行代码写入到文件内，然后按control&#43;x退出，输入y按两次回车保存。
+export LDFLAGS=&#34;-L/opt/homebrew/Cellar/qt@5/5.15.13_1/lib${LDFLAGS:&#43;:$LDFLAGS}&#34; export CPPFLAGS=&#34;-I/opt/homebrew/Cellar/qt@5/5.15.13_1/include${CPPFLAGS:&#43;:$CPPFLAGS}&#34; export PKG_CONFIG_PATH=&#34;/opt/homebrew/Cellar/qt@5/5.15.13_1/lib/pkgconfig${PKG_CONFIG_PATH:&#43;:$PKG_CONFIG_PATH}&#34; export PATH=&#34;/opt/homebrew/opt/qt@5/bin${PATH:&#43;:}$PATH&#34; 退出之后source一下
+source ~/.zshrc 编译安装 我想在主目录下刚刚新建的Geant4文件夹内安装Geant4，所以就先在这个文件夹内新建一个build文件夹和一个install文件夹。 cd ~/Geant4 mkdir G4_build G4_install ls cd G4_build cmake -DCMAKE_INSTALL_PREFIX=~/Geant4/G4_install -DGEANT4_INSTALL_DATA=OFF -DGEANT4_USE_GDML=ON -DGEANT4_BUILD_MULTITHREADED=ON -DGEANT4_USE_QT=ON ~/Geant4/geant4-v11.3.2 ”-DCMAKE_INSTALL_PREFIX=~/Geant4/G4_install“和”-DGEANT4_USE_QT=ON ~/Geant4/geant4-v11.3.2“中间的内容是设置开关Geant4的一些选项，可以在Geant4安装教程的standard options内查询相关功能的介绍，开关其他功能需要输入”-D“&#43;选项的名字&#43;”=ON/OFF“。安装完之后如果需要开启某些选项，需要重新cmake，所以源码不要删。cmake这一步会弹出一堆输出，大致内容就是关于data文件的，可以先不管，如果是其他报错建议复制报错给ai或者网上搜索。cmake结束后，">
 
     <meta property="og:url" content="https://ninependoragon.xyz/posts/geant4_installation/">
   <meta property="og:site_name" content="Nine_Pendoragon">
@@ -33,10 +38,15 @@ CMake Warning: Ignoring extra path from command line: &#34;/Users/ninependoragon
 打开Geant4官网https://geant4.web.cern.ch/，选择Docs项，
 然后选择Installation Guide，
 这里就是如何安装Geant4的官方教程。
-MacOS 踩坑 先在官网下载源码和所有DATA文件，mac上面我下载下来的文件名字是&#34;Darwin-clang17.0.0-Sequoia.tar.gz&#34;，根据官方教程第一步是解压这个文件到想要的位置。先在主目录下新建一个文件夹，然后解压，在终端中输入下面的命令。
-cd mkdir Geant4 cd Geant4 tar -xzf ~/Downloads/Darwin-clang17.0.0-Sequoia.tar.gz 第二步是新建一个build文件夹并且进入，然后运行cmake，我顺便再新建一下install文件夹，接着上面的命令继续输入，不要退出终端。
-mkdir G4_install G4_build cd G4_build cmake -DCMAKE_INSTALL_PREFIX=~/Geant4/G4_install ~/Geant4/Geant4-11.3.2-Darwin 报错如下。
-CMake Warning: Ignoring extra path from command line: &#34;/Users/ninependoragon/Geant4/Geant4-11.3.2-Darwin&#34; CMake Error: The source directory &#34;/Users/ninependoragon/Geant4/Geant4-11.3.2-Darwin&#34; does not appear to contain CMakeLists.txt. Specify --help for usage, or press the help button on the CMake GUI. ninependoragon@Nines-MacBook-Pro G4_build % 复制下来去问ai，结果发现是我下错源码了，我下载错成Binary releases了。。。 OK，下载好源码之后重新跑一遍上面的代码。">
+MacOS 跟着大佬学着列一下我的设备和环境：
+MacBookPro(M2 2022) OS: macOS 14.4.1 23E224 arm64 Shell: zsh 5.9 Homebrew 4.5.8 总结 为了省流，我把总结放在前面，我自己安装时候的记录放在了后面。
+下载Geant4源码和相关依赖； 在Geant4官网https://geant4.web.cern.ch/主页的Download内下载&#34;Source code&#34;(我下载的是&#34;tar&#34;)，还有&#34;Datasets&#34;下的所有数据。 相关依赖我能记得的只有qt5、cmake了，qt需要安装码？先就安装这三个吧。不过看到有大佬安装提到了CLHEP，我不清楚这个是否需要安装，去可能是CLHEP的wiki上看了一眼，似乎不是必须要手动安装的？总之安装一下也无妨。打开终端，
+brew install cmake brew install clhep brew install qt brew install qt5 然后解压下载的源码。这里我把源码解压到主目录下新建的文件夹Geant4中。
+cd ~ mkdir Geant4 cd Geant4 tar -xf ~/Downloads/geant4-v11.3.2.tar “geant4-v11.3.2.tar&#34;是我下载的Geant4源码压缩包的文件名，请修改成自己下载的压缩包的文件名。 2. 配置qt5环境
+终端内输入
+nano ~/.zshrc 我这里用的文本编辑器是nano，MacOS似乎默认包含nano，如果没有也可以用brew安装一下，也可以选择其他文本编辑器。执行上面的命令之后将下面的4行代码写入到文件内，然后按control&#43;x退出，输入y按两次回车保存。
+export LDFLAGS=&#34;-L/opt/homebrew/Cellar/qt@5/5.15.13_1/lib${LDFLAGS:&#43;:$LDFLAGS}&#34; export CPPFLAGS=&#34;-I/opt/homebrew/Cellar/qt@5/5.15.13_1/include${CPPFLAGS:&#43;:$CPPFLAGS}&#34; export PKG_CONFIG_PATH=&#34;/opt/homebrew/Cellar/qt@5/5.15.13_1/lib/pkgconfig${PKG_CONFIG_PATH:&#43;:$PKG_CONFIG_PATH}&#34; export PATH=&#34;/opt/homebrew/opt/qt@5/bin${PATH:&#43;:}$PATH&#34; 退出之后source一下
+source ~/.zshrc 编译安装 我想在主目录下刚刚新建的Geant4文件夹内安装Geant4，所以就先在这个文件夹内新建一个build文件夹和一个install文件夹。 cd ~/Geant4 mkdir G4_build G4_install ls cd G4_build cmake -DCMAKE_INSTALL_PREFIX=~/Geant4/G4_install -DGEANT4_INSTALL_DATA=OFF -DGEANT4_USE_GDML=ON -DGEANT4_BUILD_MULTITHREADED=ON -DGEANT4_USE_QT=ON ~/Geant4/geant4-v11.3.2 ”-DCMAKE_INSTALL_PREFIX=~/Geant4/G4_install“和”-DGEANT4_USE_QT=ON ~/Geant4/geant4-v11.3.2“中间的内容是设置开关Geant4的一些选项，可以在Geant4安装教程的standard options内查询相关功能的介绍，开关其他功能需要输入”-D“&#43;选项的名字&#43;”=ON/OFF“。安装完之后如果需要开启某些选项，需要重新cmake，所以源码不要删。cmake这一步会弹出一堆输出，大致内容就是关于data文件的，可以先不管，如果是其他报错建议复制报错给ai或者网上搜索。cmake结束后，">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
@@ -84,7 +94,7 @@ CMake Warning: Ignoring extra path from command line: &#34;/Users/ninependoragon
         </div>
         <div>
           <svg class="icon icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>clock</title><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-          14 min read
+          15 min read
         </div>
         <div>
           <svg class="icon icon-tag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
@@ -99,9 +109,81 @@ CMake Warning: Ignoring extra path from command line: &#34;/Users/ninependoragon
 <p>打开Geant4官网<a href="https://geant4.web.cern.ch/">https://geant4.web.cern.ch/</a>，选择Docs项，<img src="/geant4/geant4.jpg" alt="Geant4主页" title="Geant4主页"></p>
 <p>然后选择<a href="https://geant4-userdoc.web.cern.ch/UsersGuides/InstallationGuide/html/index.html">Installation Guide</a>，<img src="/geant4/docs.png" alt="docs" title="docs"></p>
 <p>这里就是如何安装Geant4的官方教程。<img src="/geant4/installationGuide.png" alt="installation" title="installation"></p>
+<hr>
 <h2 id="macos">MacOS</h2>
+<p>跟着大佬学着列一下我的设备和环境：</p>
+<ul>
+<li>MacBookPro(M2 2022)</li>
+<li>OS: macOS 14.4.1 23E224 arm64</li>
+<li>Shell: zsh 5.9</li>
+<li>Homebrew 4.5.8</li>
+</ul>
+<h3 id="总结">总结</h3>
+<p>为了省流，我把总结放在前面，我自己安装时候的记录放在了后面。</p>
+<ol>
+<li><strong>下载Geant4源码和相关依赖；</strong></li>
+</ol>
+<p>在Geant4官网<a href="https://geant4.web.cern.ch/">https://geant4.web.cern.ch/</a>主页的Download内下载&quot;Source code&quot;(我下载的是&quot;tar&quot;)，还有&quot;Datasets&quot;下的所有数据。
+相关依赖我能记得的只有qt5、cmake了，qt需要安装码？先就安装这三个吧。不过看到有大佬安装提到了CLHEP，我不清楚这个是否需要安装，去可能是CLHEP的<a href="https://www.hep.ucl.ac.uk/pbt/wiki/Software/Geant4/Installation/CLHEP">wiki</a>上看了一眼，似乎不是必须要手动安装的？总之安装一下也无妨。打开终端，</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zsh" data-lang="zsh"><span style="display:flex;"><span>brew install cmake
+</span></span><span style="display:flex;"><span>brew install clhep
+</span></span><span style="display:flex;"><span>brew install qt
+</span></span><span style="display:flex;"><span>brew install qt5
+</span></span></code></pre></div><p>然后解压下载的源码。这里我把源码解压到主目录下新建的文件夹Geant4中。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zsh" data-lang="zsh"><span style="display:flex;"><span>cd ~
+</span></span><span style="display:flex;"><span>mkdir Geant4
+</span></span><span style="display:flex;"><span>cd Geant4
+</span></span><span style="display:flex;"><span>tar -xf ~/Downloads/geant4-v11.3.2.tar 
+</span></span></code></pre></div><p>&ldquo;geant4-v11.3.2.tar&quot;是我下载的Geant4源码压缩包的文件名，请修改成自己下载的压缩包的文件名。
+2. <strong>配置qt5环境</strong></p>
+<p>终端内输入</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zsh" data-lang="zsh"><span style="display:flex;"><span>nano ~/.zshrc
+</span></span></code></pre></div><p>我这里用的文本编辑器是nano，MacOS似乎默认包含nano，如果没有也可以用brew安装一下，也可以选择其他文本编辑器。执行上面的命令之后将下面的4行代码写入到文件内，然后按control+x退出，输入y按两次回车保存。</p>
+<pre tabindex="0"><code>export LDFLAGS=&#34;-L/opt/homebrew/Cellar/qt@5/5.15.13_1/lib${LDFLAGS:+:$LDFLAGS}&#34;
+export CPPFLAGS=&#34;-I/opt/homebrew/Cellar/qt@5/5.15.13_1/include${CPPFLAGS:+:$CPPFLAGS}&#34;
+export PKG_CONFIG_PATH=&#34;/opt/homebrew/Cellar/qt@5/5.15.13_1/lib/pkgconfig${PKG_CONFIG_PATH:+:$PKG_CONFIG_PATH}&#34;
+export PATH=&#34;/opt/homebrew/opt/qt@5/bin${PATH:+:}$PATH&#34;
+</code></pre><p>退出之后source一下</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zsh" data-lang="zsh"><span style="display:flex;"><span>source ~/.zshrc
+</span></span></code></pre></div><ol start="3">
+<li><strong>编译安装</strong>
+我想在主目录下刚刚新建的Geant4文件夹内安装Geant4，所以就先在这个文件夹内新建一个build文件夹和一个install文件夹。</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zsh" data-lang="zsh"><span style="display:flex;"><span>cd ~/Geant4
+</span></span><span style="display:flex;"><span>mkdir G4_build G4_install
+</span></span><span style="display:flex;"><span>ls
+</span></span><span style="display:flex;"><span>cd G4_build
+</span></span><span style="display:flex;"><span>cmake -DCMAKE_INSTALL_PREFIX<span style="color:#f92672">=</span>~/Geant4/G4_install -DGEANT4_INSTALL_DATA<span style="color:#f92672">=</span>OFF -DGEANT4_USE_GDML<span style="color:#f92672">=</span>ON -DGEANT4_BUILD_MULTITHREADED<span style="color:#f92672">=</span>ON -DGEANT4_USE_QT<span style="color:#f92672">=</span>ON ~/Geant4/geant4-v11.3.2
+</span></span></code></pre></div><p>”-DCMAKE_INSTALL_PREFIX=~/Geant4/G4_install“和”-DGEANT4_USE_QT=ON ~/Geant4/geant4-v11.3.2“中间的内容是设置开关Geant4的一些选项，可以在Geant4安装教程的standard options内查询相关功能的介绍，开关其他功能需要输入”-D“+选项的名字+”=ON/OFF“。安装完之后如果需要开启某些选项，需要重新cmake，所以源码不要删。cmake这一步会弹出一堆输出，大致内容就是关于data文件的，可以先不管，如果是其他报错建议复制报错给ai或者网上搜索。cmake结束后，</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zsh" data-lang="zsh"><span style="display:flex;"><span>make -j4
+</span></span></code></pre></div><p>make -jN &ldquo;where is the number of parallel jobs you require N&rdquo;，N是同时并行的任务数，和CPU核心数有关。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zsh" data-lang="zsh"><span style="display:flex;"><span>make install
+</span></span></code></pre></div><p>上述两个命令运行的时候都要注意输出的waring。</p>
+<ol start="4">
+<li><strong>配置Geant4环境</strong></li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zsh" data-lang="zsh"><span style="display:flex;"><span>nano ~/.zshrc
+</span></span></code></pre></div><p>在最后面写入</p>
+<pre tabindex="0"><code>source ~/Geant4/G4_install/bin/geant4.sh
+</code></pre><p>上述路径都以自己的为准。保存退出之后source一下.zshrc，或者重启一下终端。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zsh" data-lang="zsh"><span style="display:flex;"><span>source ~/.zshrc
+</span></span></code></pre></div><ol start="5">
+<li><strong>运行example B1</strong></li>
+</ol>
+<p>运行一下example B1看有没有安装成功。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zsh" data-lang="zsh"><span style="display:flex;"><span>cd ~/Geant4
+</span></span><span style="display:flex;"><span>cp -r G4_install/share/Geant4/examples/basic G4_examples
+</span></span><span style="display:flex;"><span>cd G4_examples
+</span></span><span style="display:flex;"><span>mkdir B1_build
+</span></span><span style="display:flex;"><span>cd B1_build
+</span></span><span style="display:flex;"><span>cmake ../B1
+</span></span><span style="display:flex;"><span>make -j4
+</span></span><span style="display:flex;"><span>./exampleB1
+</span></span></code></pre></div><p>出现下图一样的可视化窗口就说明Geant4安装成功了。
+<img src="/geant4/B1.png" alt="exampleB1" title="exampleB1">
+如果有其他问题可以联系在B站私信我，一起讨论共同成长。</p>
 <h3 id="踩坑">踩坑</h3>
-<p>先在官网下载源码和所有DATA文件，mac上面我下载下来的文件名字是&quot;Darwin-clang17.0.0-Sequoia.tar.gz&quot;，根据官方教程第一步是解压这个文件到想要的位置。先在主目录下新建一个文件夹，然后解压，在终端中输入下面的命令。</p>
+<p>先在官网下载源码和所有DATA文件，mac上面我下载下来的文件名字是&quot;Darwin-clang17.0.0-Sequoia.tar.gz&rdquo;，根据官方教程第一步是解压这个文件到想要的位置。先在主目录下新建一个文件夹，然后解压，在终端中输入下面的命令。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zsh" data-lang="zsh"><span style="display:flex;"><span>cd 
 </span></span><span style="display:flex;"><span>mkdir Geant4
 </span></span><span style="display:flex;"><span>cd Geant4
@@ -767,6 +849,48 @@ make完操作跟上面一样，先make install，然后拷贝data文件，</p>
 <li>geant4环境</li>
 <li>运行example B1</li>
 </ol>
+<p>6月24日晚我来写总结部分的时候发现我的.zshrc文件alias部分写错了，是拼写错误。而且之前折腾的时候测试的一些注释掉的行也没有删除，显得很乱。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#960050;background-color:#1e0010">#</span><span style="color:#a6e22e">export</span> <span style="color:#a6e22e">PATH</span>=<span style="color:#f92672">/</span><span style="color:#a6e22e">opt</span><span style="color:#f92672">/</span><span style="color:#a6e22e">homebrew</span><span style="color:#f92672">/</span><span style="color:#a6e22e">opt</span><span style="color:#f92672">/</span><span style="color:#a6e22e">qt</span><span style="color:#960050;background-color:#1e0010">@</span><span style="color:#ae81ff">5</span><span style="color:#f92672">/</span><span style="color:#a6e22e">bin</span>:<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#a6e22e">PATH</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span><span style="color:#960050;background-color:#1e0010">#</span><span style="color:#a6e22e">export</span> <span style="color:#a6e22e">LDFLAGS</span>=<span style="color:#e6db74">&#34;-L/opt/homebrew/Cellar/qt@5/5.15.13_1/lib&#34;</span>:<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#a6e22e">LDFLAGS</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span><span style="color:#960050;background-color:#1e0010">#</span><span style="color:#a6e22e">export</span> <span style="color:#a6e22e">CPPFLAGS</span>=<span style="color:#e6db74">&#34;-I/opt/homebrew/Cellar/qt@5/5.15.13_1/include&#34;</span>:<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#a6e22e">CPPFLAGS</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span><span style="color:#960050;background-color:#1e0010">#</span><span style="color:#a6e22e">export</span> <span style="color:#a6e22e">PKG_CONFIG_PATH</span>=<span style="color:#f92672">/</span><span style="color:#a6e22e">opt</span><span style="color:#f92672">/</span><span style="color:#a6e22e">homebrew</span><span style="color:#f92672">/</span><span style="color:#a6e22e">Cellar</span><span style="color:#f92672">/</span><span style="color:#a6e22e">qt</span><span style="color:#f92672">/</span><span style="color:#ae81ff">6.7.0</span><span style="color:#a6e22e">_1</span><span style="color:#f92672">/</span><span style="color:#a6e22e">lib</span><span style="color:#f92672">/</span><span style="color:#a6e22e">pkgconfig</span>:<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#a6e22e">PKG_CONFIG_PATH</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span><span style="color:#a6e22e">export</span> <span style="color:#a6e22e">LDFLAGS</span>=<span style="color:#e6db74">&#34;-L/opt/homebrew/Cellar/qt@5/5.15.13_1/lib${LDFLAGS:+:$LDFLAGS}&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span><span style="color:#a6e22e">export</span> <span style="color:#a6e22e">CPPFLAGS</span>=<span style="color:#e6db74">&#34;-I/opt/homebrew/Cellar/qt@5/5.15.13_1/include${CPPFLAGS:+:$CPPFLAGS}&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span><span style="color:#a6e22e">export</span> <span style="color:#a6e22e">PKG_CONFIG_PATH</span>=<span style="color:#e6db74">&#34;/opt/homebrew/Cellar/qt@5/5.15.13_1/lib/pkgconfig${PKG_CONFIG_PATH:+:$PKG_CONFIG_PATH}&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span><span style="color:#a6e22e">export</span> <span style="color:#a6e22e">PATH</span>=<span style="color:#e6db74">&#34;/opt/homebrew/opt/qt@5/bin${PATH:+:}$PATH&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span><span style="color:#960050;background-color:#1e0010">#</span><span style="color:#a6e22e">export</span> <span style="color:#a6e22e">PATH</span>=<span style="color:#e6db74">&#34;/opt/homebrew/opt/qt@5/bin:$PATH&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span><span style="color:#960050;background-color:#1e0010">#</span><span style="color:#a6e22e">export</span> <span style="color:#a6e22e">LDFLAGS</span>=<span style="color:#e6db74">&#34;-L/opt/homebrew/Cellar/qt@5/5.15.13_1/lib:$LDFLAGS&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span><span style="color:#960050;background-color:#1e0010">#</span><span style="color:#a6e22e">export</span> <span style="color:#a6e22e">CPPFLAGS</span>=<span style="color:#e6db74">&#34;-I/opt/homebrew/Cellar/qt@5/5.15.13_1/include:$CPPFLAGS&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span><span style="color:#960050;background-color:#1e0010">#</span><span style="color:#a6e22e">export</span> <span style="color:#a6e22e">PKG_CONFIG_PATH</span>=<span style="color:#e6db74">&#34;/opt/homebrew/Cellar/qt/6.7.0_1/lib/pkgconfig:$PKG_CONFIG_PATH&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span><span style="color:#960050;background-color:#1e0010">#</span><span style="color:#a6e22e">export</span> <span style="color:#a6e22e">CMAKE_PREFIX_PATH</span>=<span style="color:#f92672">/</span><span style="color:#a6e22e">opt</span><span style="color:#f92672">/</span><span style="color:#a6e22e">homebrew</span><span style="color:#f92672">/</span><span style="color:#a6e22e">Cellar</span><span style="color:#f92672">/</span><span style="color:#a6e22e">qt</span><span style="color:#960050;background-color:#1e0010">@</span><span style="color:#ae81ff">5</span><span style="color:#f92672">/</span><span style="color:#ae81ff">5.15.13</span><span style="color:#a6e22e">_1</span><span style="color:#f92672">/</span>:<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#a6e22e">CMAKE_PREFIX_PATH</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span><span style="color:#960050;background-color:#1e0010">#</span><span style="color:#a6e22e">export</span> <span style="color:#a6e22e">PATH</span>=<span style="color:#f92672">/</span><span style="color:#a6e22e">opt</span><span style="color:#f92672">/</span><span style="color:#a6e22e">homebrew</span><span style="color:#f92672">/</span><span style="color:#a6e22e">opt</span><span style="color:#f92672">/</span><span style="color:#a6e22e">qt</span><span style="color:#960050;background-color:#1e0010">@</span><span style="color:#ae81ff">5</span><span style="color:#f92672">/</span><span style="color:#a6e22e">bin</span>:<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#a6e22e">PATH</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span><span style="color:#960050;background-color:#1e0010">#</span><span style="color:#a6e22e">export</span> <span style="color:#a6e22e">LDFLAGS</span>=<span style="color:#e6db74">&#34;-L/opt/homebrew/opt/qt@5/lib $LDFLAGS&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span><span style="color:#960050;background-color:#1e0010">#</span><span style="color:#a6e22e">export</span> <span style="color:#a6e22e">CPPFLAGS</span>=<span style="color:#e6db74">&#34;-I/opt/homebrew/opt/qt@5/include $CPPFLAGS&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span><span><span style="color:#960050;background-color:#1e0010">#</span><span style="color:#a6e22e">export</span> <span style="color:#a6e22e">PKG_CONFIG_PATH</span>=<span style="color:#f92672">/</span><span style="color:#a6e22e">opt</span><span style="color:#f92672">/</span><span style="color:#a6e22e">homebrew</span><span style="color:#f92672">/</span><span style="color:#a6e22e">opt</span><span style="color:#f92672">/</span><span style="color:#a6e22e">qt</span><span style="color:#960050;background-color:#1e0010">@</span><span style="color:#ae81ff">5</span><span style="color:#f92672">/</span><span style="color:#a6e22e">lib</span><span style="color:#f92672">/</span><span style="color:#a6e22e">pkgconfig</span>:<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#a6e22e">PKG_CONFIG_PATH</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24</span><span><span style="color:#a6e22e">source</span> ~<span style="color:#f92672">/</span><span style="color:#a6e22e">Geant4</span><span style="color:#f92672">/</span><span style="color:#a6e22e">G4_install</span><span style="color:#f92672">/</span><span style="color:#a6e22e">bin</span><span style="color:#f92672">/</span><span style="color:#a6e22e">geant4</span>.<span style="color:#a6e22e">sh</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26</span><span><span style="color:#a6e22e">alias</span> <span style="color:#a6e22e">g4camke</span>=<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#a6e22e">cmake</span> <span style="color:#f92672">-</span><span style="color:#a6e22e">DGant4_DIR</span>=~<span style="color:#f92672">/</span><span style="color:#a6e22e">Geant4</span><span style="color:#f92672">/</span><span style="color:#a6e22e">G4_install</span><span style="color:#f92672">/</span><span style="color:#a6e22e">lib</span><span style="color:#f92672">/</span><span style="color:#a6e22e">cmake</span><span style="color:#f92672">/</span><span style="color:#a6e22e">Geant4</span><span style="color:#f92672">/</span><span style="color:#960050;background-color:#1e0010">&#39;</span>
+</span></span></code></pre></div><p>不过这一行相当于给cmake换了个名字，我不运行g4cmake的话倒是没什么问题。但是直接cmake也行，感觉用处不大，直接删掉了。我最后的配置文件是，</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#960050;background-color:#1e0010">#</span><span style="color:#a6e22e">export</span> <span style="color:#a6e22e">PATH</span>=<span style="color:#f92672">/</span><span style="color:#a6e22e">opt</span><span style="color:#f92672">/</span><span style="color:#a6e22e">homebrew</span><span style="color:#f92672">/</span><span style="color:#a6e22e">opt</span><span style="color:#f92672">/</span><span style="color:#a6e22e">qt</span><span style="color:#960050;background-color:#1e0010">@</span><span style="color:#ae81ff">5</span><span style="color:#f92672">/</span><span style="color:#a6e22e">bin</span>:<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#a6e22e">PATH</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span><span style="color:#960050;background-color:#1e0010">#</span><span style="color:#a6e22e">export</span> <span style="color:#a6e22e">LDFLAGS</span>=<span style="color:#e6db74">&#34;-L/opt/homebrew/Cellar/qt@5/5.15.13_1/lib&#34;</span>:<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#a6e22e">LDFLAGS</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span><span style="color:#960050;background-color:#1e0010">#</span><span style="color:#a6e22e">export</span> <span style="color:#a6e22e">CPPFLAGS</span>=<span style="color:#e6db74">&#34;-I/opt/homebrew/Cellar/qt@5/5.15.13_1/include&#34;</span>:<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#a6e22e">CPPFLAGS</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span><span style="color:#960050;background-color:#1e0010">#</span><span style="color:#a6e22e">export</span> <span style="color:#a6e22e">PKG_CONFIG_PATH</span>=<span style="color:#f92672">/</span><span style="color:#a6e22e">opt</span><span style="color:#f92672">/</span><span style="color:#a6e22e">homebrew</span><span style="color:#f92672">/</span><span style="color:#a6e22e">Cellar</span><span style="color:#f92672">/</span><span style="color:#a6e22e">qt</span><span style="color:#f92672">/</span><span style="color:#ae81ff">6.7.0</span><span style="color:#a6e22e">_1</span><span style="color:#f92672">/</span><span style="color:#a6e22e">lib</span><span style="color:#f92672">/</span><span style="color:#a6e22e">pkgconfig</span>:<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#a6e22e">PKG_CONFIG</span><span style="color:#960050;background-color:#1e0010">$</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span><span style="color:#a6e22e">export</span> <span style="color:#a6e22e">LDFLAGS</span>=<span style="color:#e6db74">&#34;-L/opt/homebrew/Cellar/qt@5/5.15.13_1/lib${LDFLAGS:+:$LDFLAGS}&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span><span style="color:#a6e22e">export</span> <span style="color:#a6e22e">CPPFLAGS</span>=<span style="color:#e6db74">&#34;-I/opt/homebrew/Cellar/qt@5/5.15.13_1/include${CPPFLAGS:+:$CPPFL$
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span><span style="color:#e6db74">export PKG_CONFIG_PATH=&#34;</span><span style="color:#f92672">/</span><span style="color:#a6e22e">opt</span><span style="color:#f92672">/</span><span style="color:#a6e22e">homebrew</span><span style="color:#f92672">/</span><span style="color:#a6e22e">Cellar</span><span style="color:#f92672">/</span><span style="color:#a6e22e">qt</span><span style="color:#960050;background-color:#1e0010">@</span><span style="color:#ae81ff">5</span><span style="color:#f92672">/</span><span style="color:#ae81ff">5.15.13</span><span style="color:#a6e22e">_1</span><span style="color:#f92672">/</span><span style="color:#a6e22e">lib</span><span style="color:#f92672">/</span><span style="color:#a6e22e">pkgconfig</span><span style="color:#960050;background-color:#1e0010">$</span>{<span style="color:#a6e22e">PKG_CO</span><span style="color:#960050;background-color:#1e0010">$</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span><span style="color:#a6e22e">export</span> <span style="color:#a6e22e">PATH</span>=<span style="color:#e6db74">&#34;/opt/homebrew/opt/qt@5/bin${PATH:+:}$PATH&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span><span style="color:#960050;background-color:#1e0010">#</span><span style="color:#a6e22e">export</span> <span style="color:#a6e22e">CMAKE_PREFIX_PATH</span>=<span style="color:#f92672">/</span><span style="color:#a6e22e">opt</span><span style="color:#f92672">/</span><span style="color:#a6e22e">homebrew</span><span style="color:#f92672">/</span><span style="color:#a6e22e">Cellar</span><span style="color:#f92672">/</span><span style="color:#a6e22e">qt</span><span style="color:#960050;background-color:#1e0010">@</span><span style="color:#ae81ff">5</span><span style="color:#f92672">/</span><span style="color:#ae81ff">5.15.13</span><span style="color:#a6e22e">_1</span><span style="color:#f92672">/</span>:<span style="color:#960050;background-color:#1e0010">$</span><span style="color:#a6e22e">CMAKE_PREFIX_PATH</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span><span style="color:#a6e22e">source</span> ~<span style="color:#f92672">/</span><span style="color:#a6e22e">Geant4</span><span style="color:#f92672">/</span><span style="color:#a6e22e">G4_install</span><span style="color:#f92672">/</span><span style="color:#a6e22e">bin</span><span style="color:#f92672">/</span><span style="color:#a6e22e">geant4</span>.<span style="color:#a6e22e">sh</span>
+</span></span></code></pre></div><p>注释掉的几行对未来可能有帮助，我就留下来。</p>
 
     </div>
     <div class="post-footer">
