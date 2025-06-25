@@ -43,6 +43,7 @@ cd Geant4
 tar -xf ~/Downloads/geant4-v11.3.2.tar 
 ```
 "geant4-v11.3.2.tar"是我下载的Geant4源码压缩包的文件名，请修改成自己下载的压缩包的文件名。
+
 2. **配置qt5环境**
 
 终端内输入
@@ -63,6 +64,7 @@ source ~/.zshrc
 ```
 
 3. **编译安装**
+
 我想在主目录下刚刚新建的Geant4文件夹内安装Geant4，所以就先在这个文件夹内新建一个build文件夹和一个install文件夹。
 ```zsh
 cd ~/Geant4
@@ -81,7 +83,20 @@ make install
 ```
 上述两个命令运行的时候都要注意输出的waring。
 
-4. **配置Geant4环境**
+4. **创建DATA文件**
+
+可以把下载的DATA文件先随便放在一个文件夹中，比如我放在Downloads下的G4DATA文件夹内，然后终端输入，
+```zsh
+cp ~/Downloads/G4DATA/* ~/Geant4/G4_install/share/Geant4/data
+cd ~/Geant4/G4_install/share/Geant4/data
+for tar in *.tar.gz;  do tar xvf $tar; done
+rm *.tar.gz
+ls
+```
+不过要注意下载的DATA文件后缀是不是tar.gz，或者不用上面的命令，直接用Finder去文件夹里面将数据文件解压后复制到Geant4安装目录下的share/Geant4/data文件夹内。上面的ls命令是为了看data文件是否是完整的。
+
+
+5. **配置Geant4环境**
 
 ```zsh
 nano ~/.zshrc
@@ -94,7 +109,7 @@ source ~/Geant4/G4_install/bin/geant4.sh
 ```zsh
 source ~/.zshrc
 ```
-5. **运行example B1**
+6. **运行example B1**
 
 运行一下example B1看有没有安装成功。
 ```zsh
@@ -296,7 +311,7 @@ GEANT4_USE_SYSTEM_EXPAT: Using system EXPAT library
 -- Generating done (0.5s)
 -- Build files have been written to: /Users/ninependoragon/Geant4/G4_build
 ```
-这个报错和官方教程提到的一模一样，应该就是DATA文件缺失，DATA文件也是在官网的[Download](https://geant4.web.cern.ch/download/11.3.2.html)界面下载，我前面已经下载过了，按照教程，应该是需要解压到/Users/ninependoragon/Geant4/G4_install/share/Geant4/data文件夹下，/Users/ninependoragon路径中ninependoragon是我的用户名，如果真的有萌新跟着这篇帖子来安装Geant4的话，请注意把这个改成自己的用户名。不过我记得是得先make完之后再添加data文件。教程下一步是在cmake中激活Geant4的一些功能。
+这个报错和官方教程提到的一模一样，应该就是DATA文件缺失，DATA文件也是在官网的[Download](https://geant4.web.cern.ch/download/11.3.2.html)界面下载，我前面已经下载过了，按照教程，应该是需要解压到~/Geant4/G4_install/share/Geant4/data文件夹下，/Users/ninependoragon路径中ninependoragon是我的用户名，如果真的有萌新跟着这篇帖子来安装Geant4的话，请注意把这个改成自己的用户名。不过我记得是得先make完之后再添加data文件。教程下一步是在cmake中激活Geant4的一些功能。
 ```zsh
 cmake -DGEANT4_INSTALL_DATA=ON
 ```
