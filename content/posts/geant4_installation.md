@@ -73,7 +73,7 @@ ls
 cd G4_build
 cmake -DCMAKE_INSTALL_PREFIX=~/Geant4/G4_install -DGEANT4_INSTALL_DATA=OFF -DGEANT4_USE_GDML=ON -DGEANT4_BUILD_MULTITHREADED=ON -DGEANT4_USE_QT=ON ~/Geant4/geant4-v11.3.2
 ```
-”-DCMAKE_INSTALL_PREFIX=~/Geant4/G4_install“和”-DGEANT4_USE_QT=ON ~/Geant4/geant4-v11.3.2“中间的内容是设置开关Geant4的一些选项，可以在Geant4安装教程的standard options内查询相关功能的介绍，开关其他功能需要输入”-D“+选项的名字+”=ON/OFF“。安装完之后如果需要开启某些选项，需要重新cmake，所以源码不要删。cmake这一步会弹出一堆输出，大致内容就是关于data文件的，可以先不管，如果是其他报错建议复制报错给ai或者网上搜索。cmake结束后，
+”-DCMAKE_INSTALL_PREFIX= ~/Geant4/G4_install“和”-DGEANT4_USE_QT= ON ~/Geant4/geant4-v11.3.2“中间的内容是设置开关Geant4的一些选项，可以在Geant4安装教程的standard options内查询相关功能的介绍，开关其他功能需要输入”-D“+选项的名字+”=ON/OFF“。安装完之后如果需要开启某些选项，需要重新cmake，所以源码不要删。cmake这一步会弹出一堆输出，大致内容就是关于data文件的，可以先不管，如果是其他报错建议复制报错给ai或者网上搜索。cmake结束后，
 ```zsh
 make -j4
 ```
