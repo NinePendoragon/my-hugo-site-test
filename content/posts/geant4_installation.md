@@ -25,7 +25,7 @@ date = "2025-06-21"
 - Homebrew 4.5.8
 ### 总结
 为了省流，我把总结放在前面，我自己安装时候的记录放在了后面。
-1. **下载Geant4源码和相关依赖；**
+#### 1. **下载Geant4源码和相关依赖；**
 
 在Geant4官网[https://geant4.web.cern.ch/](https://geant4.web.cern.ch/)主页的Download内下载"Source code"(我下载的是"tar")，还有"Datasets"下的所有数据。
 相关依赖我能记得的只有qt5、cmake了，qt需要安装码？先就安装这三个吧。不过看到有大佬安装提到了CLHEP，我不清楚这个是否需要安装，去可能是CLHEP的[wiki](https://www.hep.ucl.ac.uk/pbt/wiki/Software/Geant4/Installation/CLHEP)上看了一眼，似乎不是必须要手动安装的？总之安装一下也无妨。打开终端，
@@ -44,7 +44,7 @@ tar -xf ~/Downloads/geant4-v11.3.2.tar
 ```
 "geant4-v11.3.2.tar"是我下载的Geant4源码压缩包的文件名，请修改成自己下载的压缩包的文件名。
 
-2. **配置qt5环境**
+#### 2. **配置qt5环境**
 
 终端内输入
 ```zsh
@@ -63,7 +63,7 @@ export PATH="/opt/homebrew/opt/qt@5/bin${PATH:+:}$PATH"
 source ~/.zshrc
 ```
 
-3. **编译安装**
+#### 3. **编译安装**
 
 我想在主目录下刚刚新建的Geant4文件夹内安装Geant4，所以就先在这个文件夹内新建一个build文件夹和一个install文件夹。
 ```zsh
@@ -83,7 +83,7 @@ make install
 ```
 上述两个命令运行的时候都要注意输出的waring。
 
-4. **创建DATA文件**
+#### 4. **创建DATA文件**
 
 可以把下载的DATA文件先随便放在一个文件夹中，比如我放在Downloads下的G4DATA文件夹内，然后终端输入，
 ```zsh
@@ -96,7 +96,7 @@ ls
 不过要注意下载的DATA文件后缀是不是tar.gz，或者不用上面的命令，直接用Finder去文件夹里面将数据文件解压后复制到Geant4安装目录下的share/Geant4/data文件夹内。上面的ls命令是为了看data文件是否是完整的。
 
 
-5. **配置Geant4环境**
+#### 5. **配置Geant4环境**
 
 ```zsh
 nano ~/.zshrc
@@ -109,7 +109,7 @@ source ~/Geant4/G4_install/bin/geant4.sh
 ```zsh
 source ~/.zshrc
 ```
-6. **运行example B1**
+#### 6. **运行example B1**
 
 运行一下example B1看有没有安装成功。
 ```zsh
@@ -124,7 +124,7 @@ make -j4
 ```
 出现下图一样的可视化窗口就说明Geant4安装成功了。
 ![exampleB1](/geant4/B1.png "exampleB1")
-如果有其他问题可以联系在B站私信我，一起讨论共同成长。
+如果有其他问题可以在[B站](https://b23.tv/5W03nDb)私信我，一起讨论共同成长。
 
 ### 踩坑
 先在官网下载源码和所有DATA文件，mac上面我下载下来的文件名字是"Darwin-clang17.0.0-Sequoia.tar.gz"，根据官方教程第一步是解压这个文件到想要的位置。先在主目录下新建一个文件夹，然后解压，在终端中输入下面的命令。
