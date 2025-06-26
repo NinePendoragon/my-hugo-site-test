@@ -1,43 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Geant4 on Nine_Pendoragon</title><link>https://ninependoragon.moe/tags/geant4/</link><description>Recent content in Geant4 on Nine_Pendoragon</description><generator>Hugo</generator><language>en</language><lastBuildDate>Sat, 21 Jun 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://ninependoragon.moe/tags/geant4/index.xml" rel="self" type="application/rss+xml"/><item><title>通过源码安装Geant4</title><link>https://ninependoragon.moe/posts/geant4_installation/</link><pubDate>Sat, 21 Jun 2025 00:00:00 +0000</pubDate><guid>https://ninependoragon.moe/posts/geant4_installation/</guid><description>&lt;p>今天拿我师兄的Geant4模拟在mac运行又运行不了了，折腾后发现似乎要重装Geant4。虽然Geant4我不会用，但是安装Geant4我还是蛮有经验的！我在ubuntu、arch、mac上都多次安装过Geant4，所以趁这个机会，就把安装Geant4作为我的第一篇帖子吧。&lt;/p>
-&lt;h2 id="官方教程">官方教程&lt;/h2>
-&lt;p>我是计算机小白，如果有想将这篇帖子作为教程来安装Geant4的话还是有很大的风险的，所以还是以官方教程为准，这里说点题外话，我在折腾arch的时候，每次遇到问题去问师兄A，他会让我去查arch的wiki，去问师兄B，他会让我去问ai，我现在每次想问他们问题的时候，都会选择直接去问ai还有查wiki了，所以大家也要养成自己查wiki的好习惯！有很多问题其实仔细查阅wiki都能自己解决的。现在的ai很强大了，就算wiki上查不到，去问ai也是可以解决大部分问题的，当然这些都是我根据个人经验来看是这样的。不过上面提到的两个师兄人其实是非常好的，只能说他们让我体会到什么叫作”授人以鱼不如授人以渔“。&lt;/p>
-&lt;p>打开Geant4官网&lt;a href="https://geant4.web.cern.ch/">https://geant4.web.cern.ch/&lt;/a>，选择Docs项，&lt;img src="https://ninependoragon.moe/geant4/geant4.jpg" alt="Geant4主页" title="Geant4主页">&lt;/p>
-&lt;p>然后选择&lt;a href="https://geant4-userdoc.web.cern.ch/UsersGuides/InstallationGuide/html/index.html">Installation Guide&lt;/a>，&lt;img src="https://ninependoragon.moe/geant4/docs.png" alt="docs" title="docs">&lt;/p>
-&lt;p>这里就是如何安装Geant4的官方教程。&lt;img src="https://ninependoragon.moe/geant4/installationGuide.png" alt="installation" title="installation">&lt;/p>
-&lt;hr>
-&lt;h2 id="macos">MacOS&lt;/h2>
-&lt;p>跟着大佬学着列一下我的设备和环境：&lt;/p>
-&lt;ul>
-&lt;li>MacBookPro(M2 2022)&lt;/li>
-&lt;li>OS: macOS 14.4.1 23E224 arm64&lt;/li>
-&lt;li>Shell: zsh 5.9&lt;/li>
-&lt;li>Homebrew 4.5.8&lt;/li>
-&lt;/ul>
-&lt;h3 id="总结">总结&lt;/h3>
-&lt;p>为了省流，我把总结放在前面，我自己安装时候的记录放在了后面。&lt;/p>
-&lt;h4 id="1-下载geant4源码和相关依赖">1. &lt;strong>下载Geant4源码和相关依赖&lt;/strong>&lt;/h4>
-&lt;p>在Geant4官网&lt;a href="https://geant4.web.cern.ch/">https://geant4.web.cern.ch/&lt;/a>主页的Download内下载&amp;quot;Source code&amp;quot;(我下载的是&amp;quot;tar&amp;quot;)，还有&amp;quot;Datasets&amp;quot;下的所有数据。
-相关依赖我能记得的只有qt5、cmake了，qt需要安装码？先就安装这三个吧。xerces-c是GDML的依赖，因为我后面开启了GDML，如果不开启的话应该不需要安装xerces-c。不过看到有大佬安装提到了CLHEP，我不清楚这个是否需要安装，去可能是CLHEP的&lt;a href="https://www.hep.ucl.ac.uk/pbt/wiki/Software/Geant4/Installation/CLHEP">wiki&lt;/a>上看了一眼，似乎不是必须要手动安装的？总之安装一下也无妨。打开终端，&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-zsh" data-lang="zsh">&lt;span style="display:flex;">&lt;span>brew install cmake
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>brew install clhep
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>brew install qt
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>brew install qt5
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>brew install xerces-c
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>然后解压下载的源码。这里我把源码解压到主目录下新建的文件夹Geant4中。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-zsh" data-lang="zsh">&lt;span style="display:flex;">&lt;span>cd ~
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>mkdir Geant4
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>cd Geant4
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>tar -xf ~/Downloads/geant4-v11.3.2.tar 
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&amp;ldquo;geant4-v11.3.2.tar&amp;quot;是我下载的Geant4源码压缩包的文件名，请修改成自己下载的压缩包的文件名。&lt;/p>
-&lt;h4 id="2-配置qt5环境">2. &lt;strong>配置qt5环境&lt;/strong>&lt;/h4>
-&lt;p>终端内输入&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-zsh" data-lang="zsh">&lt;span style="display:flex;">&lt;span>nano ~/.zshrc
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>我这里用的文本编辑器是nano，MacOS似乎默认包含nano，如果没有也可以用brew安装一下，也可以选择其他文本编辑器。执行上面的命令之后将下面的4行代码写入到文件内，然后按control+x退出，输入y按两次回车保存。&lt;/p>
-&lt;pre tabindex="0">&lt;code>export LDFLAGS=&amp;#34;-L/opt/homebrew/Cellar/qt@5/5.15.13_1/lib${LDFLAGS:+:$LDFLAGS}&amp;#34;
-export CPPFLAGS=&amp;#34;-I/opt/homebrew/Cellar/qt@5/5.15.13_1/include${CPPFLAGS:+:$CPPFLAGS}&amp;#34;
-export PKG_CONFIG_PATH=&amp;#34;/opt/homebrew/Cellar/qt@5/5.15.13_1/lib/pkgconfig${PKG_CONFIG_PATH:+:$PKG_CONFIG_PATH}&amp;#34;
-export PATH=&amp;#34;/opt/homebrew/opt/qt@5/bin${PATH:+:}$PATH&amp;#34;
-&lt;/code>&lt;/pre>&lt;p>退出之后source一下&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-zsh" data-lang="zsh">&lt;span style="display:flex;">&lt;span>source ~/.zshrc
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="3-编译安装">3. &lt;strong>编译安装&lt;/strong>&lt;/h4>
-&lt;p>我想在主目录下刚刚新建的Geant4文件夹内安装Geant4，所以就先在这个文件夹内新建一个build文件夹和一个install文件夹。&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Geant4 on Nine_Pendoragon</title>
+    <link>https://ninependoragon.moe/tags/geant4/</link>
+    <description>Recent content in Geant4 on Nine_Pendoragon</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 21 Jun 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://ninependoragon.moe/tags/geant4/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>通过源码安装Geant4</title>
+      <link>https://ninependoragon.moe/posts/geant4_installation/</link>
+      <pubDate>Sat, 21 Jun 2025 00:00:00 +0000</pubDate>
+      <guid>https://ninependoragon.moe/posts/geant4_installation/</guid>
+      <description>&lt;p&gt;今天拿我师兄的Geant4模拟在mac运行又运行不了了，折腾后发现似乎要重装Geant4。虽然Geant4我不会用，但是安装Geant4我还是蛮有经验的！我在ubuntu、arch、mac上都多次安装过Geant4，所以趁这个机会，就把安装Geant4作为我的第一篇帖子吧。&lt;/p&gt;&#xA;&lt;h2 id=&#34;官方教程&#34;&gt;官方教程&lt;/h2&gt;&#xA;&lt;p&gt;我是计算机小白，如果有想将这篇帖子作为教程来安装Geant4的话还是有很大的风险的，所以还是以官方教程为准，这里说点题外话，我在折腾arch的时候，每次遇到问题去问师兄A，他会让我去查arch的wiki，去问师兄B，他会让我去问ai，我现在每次想问他们问题的时候，都会选择直接去问ai还有查wiki了，所以大家也要养成自己查wiki的好习惯！有很多问题其实仔细查阅wiki都能自己解决的。现在的ai很强大了，就算wiki上查不到，去问ai也是可以解决大部分问题的，当然这些都是我根据个人经验来看是这样的。不过上面提到的两个师兄人其实是非常好的，只能说他们让我体会到什么叫作”授人以鱼不如授人以渔“。&lt;/p&gt;&#xA;&lt;p&gt;打开Geant4官网&lt;a href=&#34;https://geant4.web.cern.ch/&#34;&gt;https://geant4.web.cern.ch/&lt;/a&gt;，选择Docs项，&lt;img src=&#34;https://ninependoragon.moe/geant4/geant4.jpg&#34; alt=&#34;Geant4主页&#34; title=&#34;Geant4主页&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;然后选择&lt;a href=&#34;https://geant4-userdoc.web.cern.ch/UsersGuides/InstallationGuide/html/index.html&#34;&gt;Installation Guide&lt;/a&gt;，&lt;img src=&#34;https://ninependoragon.moe/geant4/docs.png&#34; alt=&#34;docs&#34; title=&#34;docs&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;这里就是如何安装Geant4的官方教程。&lt;img src=&#34;https://ninependoragon.moe/geant4/installationGuide.png&#34; alt=&#34;installation&#34; title=&#34;installation&#34;&gt;&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;macos&#34;&gt;MacOS&lt;/h2&gt;&#xA;&lt;p&gt;跟着大佬学着列一下我的设备和环境：&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;MacBookPro(M2 2022)&lt;/li&gt;&#xA;&lt;li&gt;OS: macOS 14.4.1 23E224 arm64&lt;/li&gt;&#xA;&lt;li&gt;Shell: zsh 5.9&lt;/li&gt;&#xA;&lt;li&gt;Homebrew 4.5.8&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;总结&#34;&gt;总结&lt;/h3&gt;&#xA;&lt;p&gt;为了省流，我把总结放在前面，我自己安装时候的记录放在了后面。&lt;/p&gt;&#xA;&lt;h4 id=&#34;1-下载geant4源码和相关依赖&#34;&gt;1. &lt;strong&gt;下载Geant4源码和相关依赖&lt;/strong&gt;&lt;/h4&gt;&#xA;&lt;p&gt;在Geant4官网&lt;a href=&#34;https://geant4.web.cern.ch/&#34;&gt;https://geant4.web.cern.ch/&lt;/a&gt;主页的Download内下载&amp;quot;Source code&amp;quot;(我下载的是&amp;quot;tar&amp;quot;)，还有&amp;quot;Datasets&amp;quot;下的所有数据。&#xA;相关依赖我能记得的只有qt5、cmake了，qt需要安装码？先就安装这三个吧。xerces-c是GDML的依赖，因为我后面开启了GDML，如果不开启的话应该不需要安装xerces-c。不过看到有大佬安装提到了CLHEP，我不清楚这个是否需要安装，去可能是CLHEP的&lt;a href=&#34;https://www.hep.ucl.ac.uk/pbt/wiki/Software/Geant4/Installation/CLHEP&#34;&gt;wiki&lt;/a&gt;上看了一眼，似乎不是必须要手动安装的？总之安装一下也无妨。打开终端，&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-zsh&#34; data-lang=&#34;zsh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;brew install cmake&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;brew install clhep&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;brew install qt&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;brew install qt5&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;brew install xerces-c&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;然后解压下载的源码。这里我把源码解压到主目录下新建的文件夹Geant4中。&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-zsh&#34; data-lang=&#34;zsh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;cd ~&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;mkdir Geant4&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;cd Geant4&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;tar -xf ~/Downloads/geant4-v11.3.2.tar &#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&amp;ldquo;geant4-v11.3.2.tar&amp;quot;是我下载的Geant4源码压缩包的文件名，请修改成自己下载的压缩包的文件名。&lt;/p&gt;&#xA;&lt;h4 id=&#34;2-配置qt5环境&#34;&gt;2. &lt;strong&gt;配置qt5环境&lt;/strong&gt;&lt;/h4&gt;&#xA;&lt;p&gt;终端内输入&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-zsh&#34; data-lang=&#34;zsh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;nano ~/.zshrc&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;我这里用的文本编辑器是nano，MacOS似乎默认包含nano，如果没有也可以用brew安装一下，也可以选择其他文本编辑器。执行上面的命令之后将下面的4行代码写入到文件内，然后按control+x退出，输入y按两次回车保存。&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;export LDFLAGS=&amp;#34;-L/opt/homebrew/Cellar/qt@5/5.15.13_1/lib${LDFLAGS:+:$LDFLAGS}&amp;#34;&#xA;export CPPFLAGS=&amp;#34;-I/opt/homebrew/Cellar/qt@5/5.15.13_1/include${CPPFLAGS:+:$CPPFLAGS}&amp;#34;&#xA;export PKG_CONFIG_PATH=&amp;#34;/opt/homebrew/Cellar/qt@5/5.15.13_1/lib/pkgconfig${PKG_CONFIG_PATH:+:$PKG_CONFIG_PATH}&amp;#34;&#xA;export PATH=&amp;#34;/opt/homebrew/opt/qt@5/bin${PATH:+:}$PATH&amp;#34;&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;退出之后source一下&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-zsh&#34; data-lang=&#34;zsh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;source ~/.zshrc&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;3-编译安装&#34;&gt;3. &lt;strong&gt;编译安装&lt;/strong&gt;&lt;/h4&gt;&#xA;&lt;p&gt;我想在主目录下刚刚新建的Geant4文件夹内安装Geant4，所以就先在这个文件夹内新建一个build文件夹和一个install文件夹。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
