@@ -102,44 +102,42 @@ source ~/.zshrc 3. 编译安装 我想在主目录下刚刚新建的Geant4文件
       </div>
     </div>
   </header>
-
-  
-  <style>
-    .post-wrapper {
-      display: flex;
-      gap: 2rem;
-    }
-    .post-main {
-      flex: 1;
-      max-width: 65rem;
-    }
-    .post-toc {
-      flex: 0 0 250px;
-      font-size: 0.9em;
-      position: sticky;
-      top: 100px;
-      max-height: calc(100vh - 100px);
-      overflow: auto;
-      border-left: 1px solid #ddd;
-      padding-left: 1rem;
-    }
-    .post img {
-      max-width: 100%;
-      height: auto;
-    }
-    @media (max-width: 939px) {
+    
+    <style>
       .post-wrapper {
-        flex-direction: column;
-      }
-      .post-toc {
-        display: none;
+        display: flex;
+        gap: 2rem;
       }
       .post-main {
-        max-width: 100% !important;
+        flex: 1;
+        max-width: 65rem;
       }
-    }
-  </style>
-
+      .post-toc {
+        flex: 0 0 250px;
+        font-size: 0.9em;
+        position: sticky;
+        top: 100px;
+        max-height: calc(100vh - 100px);
+        overflow: auto;
+        border-left: 1px solid #ddd;
+        padding-left: 1rem;
+      }
+      .post img {
+        max-width: 100%;
+        height: auto;
+      }
+      @media (max-width: 939px) {
+        .post-wrapper {
+          flex-direction: column;
+        }
+        .post-toc {
+          display: none;
+        }
+        .post-main {
+          max-width: 100% !important;
+        }
+      }
+    </style>
   <div class="post-wrapper">
     <div class="post-main" style="flex: 1; max-width: 65rem; width: 100%;">
       <p>今天拿我师兄的Geant4模拟在mac运行又运行不了了，折腾后发现似乎要重装Geant4。虽然Geant4我不会用，但是安装Geant4我还是蛮有经验的！我在ubuntu、arch、mac上都多次安装过Geant4，所以趁这个机会，就把安装Geant4作为我的第一篇帖子吧。</p>
@@ -950,6 +948,7 @@ make完操作跟上面一样，先make install，然后拷贝data文件，</p>
     
   </div>
 
+  
   <div class="post-footer">
     <script src="https://giscus.app/client.js"
             data-repo="NinePendoragon/my-hugo-site-test"
