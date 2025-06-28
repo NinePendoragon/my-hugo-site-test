@@ -1,4 +1,12 @@
 window.addEventListener("DOMContentLoaded", () => {
+    const path = window.location.pathname   //获取路径
+    // const path = window.location.pathname.replace(/\/$/,"");
+    // const hideCommentButton = ["/", "/tags/", "/about/"].some(p => path.startsWith(p));
+    // const showCommentButton = path === "/tags/" ? false :true;
+    // const showCommentButton = !["/","/tags/"].includes(path);  //在[...]的路径下就返回false
+    const hidePrefixes = ["/", "/tags/"];
+    const showCommentButton = !hidePrefixes.some(p => path === p || path.startsWith("/tags/"));
+
   // ⬆ 回到顶部按钮
   const backBtn = document.createElement("button");
   backBtn.textContent = "⬆";
@@ -29,7 +37,23 @@ window.addEventListener("DOMContentLoaded", () => {
     gap: 10px;
     z-index: 1000;
   `;
-  [commentBtn, backBtn].forEach(btn => {
+
+  if(showCommentButton){  //判断是否显示跳转到评论按钮
+    [commentBtn].forEach(btn => {
+        btn.style.cssText = `
+        padding: 8px 12px;
+        font-size: 18px;
+        border: none;
+        border-radius: 8px;
+        background-color: #ecb027;
+        color: white;
+        cursor: pointer;
+        display: none;
+        `;
+        container.appendChild(btn);
+    });
+    }
+  [backBtn].forEach(btn => {
     btn.style.cssText = `
       padding: 8px 12px;
       font-size: 18px;
