@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-cn">
   <head>
     <title>通过源码安装Geant4 // Nine_Pendoragon</title>
     <link rel="shortcut icon" href="/favicon.jpg" />
@@ -47,7 +47,7 @@ cd ~ mkdir Geant4 cd Geant4 tar -xf ~/Downloads/geant4-v11.3.2.tar “geant4-v11
 nano ~/.zshrc 我这里用的文本编辑器是nano，MacOS似乎默认包含nano，如果没有也可以用brew安装一下，也可以选择其他文本编辑器。执行上面的命令之后将下面的4行代码写入到文件内，然后按control&#43;x退出，输入y按两次回车保存。
 export LDFLAGS=&#34;-L/opt/homebrew/Cellar/qt@5/5.15.13_1/lib${LDFLAGS:&#43;:$LDFLAGS}&#34; export CPPFLAGS=&#34;-I/opt/homebrew/Cellar/qt@5/5.15.13_1/include${CPPFLAGS:&#43;:$CPPFLAGS}&#34; export PKG_CONFIG_PATH=&#34;/opt/homebrew/Cellar/qt@5/5.15.13_1/lib/pkgconfig${PKG_CONFIG_PATH:&#43;:$PKG_CONFIG_PATH}&#34; export PATH=&#34;/opt/homebrew/opt/qt@5/bin${PATH:&#43;:}$PATH&#34; 退出之后source一下
 source ~/.zshrc 3. 编译安装 我想在主目录下刚刚新建的Geant4文件夹内安装Geant4，所以就先在这个文件夹内新建一个build文件夹和一个install文件夹。">
-  <meta property="og:locale" content="en">
+  <meta property="og:locale" content="zh_cn">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2025-06-21T00:00:00+00:00">
@@ -948,26 +948,35 @@ make完操作跟上面一样，先make install，然后拷贝data文件，</p>
     
   </div>
 
-  
-  <div class="post-footer">
-    <script src="https://giscus.app/client.js"
-            data-repo="NinePendoragon/my-hugo-site-test"
-            data-repo-id="R_kgDOO9SV6g"
-            data-category="General"
-            data-category-id="DIC_kwDOO9SV6s4CsDnd"
-            data-mapping="pathname"
-            data-strict="0"
-            data-reactions-enabled="1"
-            data-emit-metadata="0"
-            data-input-position="top"
-            data-theme="dark_dimmed"
-            data-lang="zh-CN"
-            crossorigin="anonymous"
-            async>
-    </script>
+
+  <div id ="comments">
+    
+    <div class="post-footer">
+      <script src="https://giscus.app/client.js"
+              data-repo="NinePendoragon/my-hugo-site-test"
+              data-repo-id="R_kgDOO9SV6g"
+              data-category="General"
+              data-category-id="DIC_kwDOO9SV6s4CsDnd"
+              data-mapping="pathname"
+              data-strict="0"
+              data-reactions-enabled="1"
+              data-emit-metadata="0"
+              data-input-position="top"
+              data-theme="dark_dimmed"
+              data-lang="zh-CN"
+              crossorigin="anonymous"
+              async>
+      </script>
+    </div>
   </div>
 </article>
 
     </main>
+      
+    
+      
+        <script src="/js/custom.js"></script>
+      
+    
   </body>
 </html>
