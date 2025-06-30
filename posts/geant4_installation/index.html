@@ -22,7 +22,7 @@
 这里就是如何安装Geant4的官方教程。
 MacOS 跟着大佬学着列一下我的设备和环境：
 MacBookPro(M2 2022) OS: macOS 14.4.1 23E224 arm64 Shell: zsh 5.9 Homebrew 4.5.8 总结 为了省流，我把总结放在前面，我自己安装时候的记录放在了后面。
-1. 下载Geant4源码和相关依赖 在Geant4官网https://geant4.web.cern.ch/主页的Download内下载&#34;Source code&#34;(我下载的是&#34;tar&#34;)，还有&#34;Datasets&#34;下的所有数据。 相关依赖我能记得的只有qt5、cmake了，qt需要安装码？先就安装这三个吧。xerces-c是GDML的依赖，因为我后面开启了GDML，如果不开启的话应该不需要安装xerces-c。不过看到有大佬安装提到了CLHEP，我不清楚这个是否需要安装，去可能是CLHEP的wiki上看了一眼，似乎不是必须要手动安装的？总之安装一下也无妨。打开终端，
+1. 下载Geant4源码和相关依赖 在Geant4官网https://geant4.web.cern.ch/主页的Download内下载&#34;Source code&#34;(我下载的是&#34;tar&#34;)，还有&#34;Datasets&#34;下的所有数据。 相关依赖我能记得的只有qt5、cmake了，qt需要安装吗？先就安装这三个吧。xerces-c是GDML的依赖，因为我后面开启了GDML，如果不开启的话应该不需要安装xerces-c。不过看到有大佬安装提到了CLHEP，我不清楚这个是否需要安装，去可能是CLHEP的wiki上看了一眼，似乎不是必须要手动安装的？总之安装一下也无妨。打开终端，
 brew install cmake brew install clhep brew install qt brew install qt5 brew install xerces-c 然后解压下载的源码。这里我把源码解压到主目录下新建的文件夹Geant4中。
 cd ~ mkdir Geant4 cd Geant4 tar -xf ~/Downloads/geant4-v11.3.2.tar “geant4-v11.3.2.tar&#34;是我下载的Geant4源码压缩包的文件名，请修改成自己下载的压缩包的文件名。
 2. 配置qt5环境 终端内输入
@@ -40,7 +40,7 @@ source ~/.zshrc 3. 编译安装 我想在主目录下刚刚新建的Geant4文件
 这里就是如何安装Geant4的官方教程。
 MacOS 跟着大佬学着列一下我的设备和环境：
 MacBookPro(M2 2022) OS: macOS 14.4.1 23E224 arm64 Shell: zsh 5.9 Homebrew 4.5.8 总结 为了省流，我把总结放在前面，我自己安装时候的记录放在了后面。
-1. 下载Geant4源码和相关依赖 在Geant4官网https://geant4.web.cern.ch/主页的Download内下载&#34;Source code&#34;(我下载的是&#34;tar&#34;)，还有&#34;Datasets&#34;下的所有数据。 相关依赖我能记得的只有qt5、cmake了，qt需要安装码？先就安装这三个吧。xerces-c是GDML的依赖，因为我后面开启了GDML，如果不开启的话应该不需要安装xerces-c。不过看到有大佬安装提到了CLHEP，我不清楚这个是否需要安装，去可能是CLHEP的wiki上看了一眼，似乎不是必须要手动安装的？总之安装一下也无妨。打开终端，
+1. 下载Geant4源码和相关依赖 在Geant4官网https://geant4.web.cern.ch/主页的Download内下载&#34;Source code&#34;(我下载的是&#34;tar&#34;)，还有&#34;Datasets&#34;下的所有数据。 相关依赖我能记得的只有qt5、cmake了，qt需要安装吗？先就安装这三个吧。xerces-c是GDML的依赖，因为我后面开启了GDML，如果不开启的话应该不需要安装xerces-c。不过看到有大佬安装提到了CLHEP，我不清楚这个是否需要安装，去可能是CLHEP的wiki上看了一眼，似乎不是必须要手动安装的？总之安装一下也无妨。打开终端，
 brew install cmake brew install clhep brew install qt brew install qt5 brew install xerces-c 然后解压下载的源码。这里我把源码解压到主目录下新建的文件夹Geant4中。
 cd ~ mkdir Geant4 cd Geant4 tar -xf ~/Downloads/geant4-v11.3.2.tar “geant4-v11.3.2.tar&#34;是我下载的Geant4源码压缩包的文件名，请修改成自己下载的压缩包的文件名。
 2. 配置qt5环境 终端内输入
@@ -68,6 +68,9 @@ source ~/.zshrc 3. 编译安装 我想在主目录下刚刚新建的Geant4文件
              - 
           
           <a class="app-header-menu-item" href="/about/">About</a>
+             - 
+          
+          <a class="app-header-menu-item" href="/tools/">Tools</a>
       </nav>
       <p>磨刀不误砍柴工</p>
       <div class="app-header-social">
@@ -159,7 +162,7 @@ source ~/.zshrc 3. 编译安装 我想在主目录下刚刚新建的Geant4文件
 <p>为了省流，我把总结放在前面，我自己安装时候的记录放在了后面。</p>
 <h4 id="1-下载geant4源码和相关依赖">1. <strong>下载Geant4源码和相关依赖</strong></h4>
 <p>在Geant4官网<a href="https://geant4.web.cern.ch/">https://geant4.web.cern.ch/</a>主页的Download内下载&quot;Source code&quot;(我下载的是&quot;tar&quot;)，还有&quot;Datasets&quot;下的所有数据。
-相关依赖我能记得的只有qt5、cmake了，qt需要安装码？先就安装这三个吧。xerces-c是GDML的依赖，因为我后面开启了GDML，如果不开启的话应该不需要安装xerces-c。不过看到有大佬安装提到了CLHEP，我不清楚这个是否需要安装，去可能是CLHEP的<a href="https://www.hep.ucl.ac.uk/pbt/wiki/Software/Geant4/Installation/CLHEP">wiki</a>上看了一眼，似乎不是必须要手动安装的？总之安装一下也无妨。打开终端，</p>
+相关依赖我能记得的只有qt5、cmake了，qt需要安装吗？先就安装这三个吧。xerces-c是GDML的依赖，因为我后面开启了GDML，如果不开启的话应该不需要安装xerces-c。不过看到有大佬安装提到了CLHEP，我不清楚这个是否需要安装，去可能是CLHEP的<a href="https://www.hep.ucl.ac.uk/pbt/wiki/Software/Geant4/Installation/CLHEP">wiki</a>上看了一眼，似乎不是必须要手动安装的？总之安装一下也无妨。打开终端，</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-zsh" data-lang="zsh"><span style="display:flex;"><span>brew install cmake
 </span></span><span style="display:flex;"><span>brew install clhep
 </span></span><span style="display:flex;"><span>brew install qt
