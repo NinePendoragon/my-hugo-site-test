@@ -1,0 +1,632 @@
+<!doctype html>
+<html lang="zh-cn">
+  <head>
+    <title>使用wsl安装archlinux，Geant4及ROOT // Nine_Pendoragon</title>
+    <link rel="shortcut icon" href="/favicon.jpg" />
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.147.8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Nine_Pendoragon" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="/css/main.min.93c02c49e4bbf2f909b7de8482c126e6a280953404a9dea238289ff38844e4e3.css" />
+    
+
+    
+    
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="使用wsl安装archlinux，Geant4及ROOT">
+  <meta name="twitter:description" content="官网： https://learn.microsoft.com/zh-cn/windows/wsl/install
+使用wsl安装linux 1. 安装wsl 打开终端管理员，win11鼠标右键点击win菜单可以找到。
+# PowerShell wsl --install 遇到如下报错：
+# PowerShell PS C:\Users\gouz&gt; wsl --install 正在下载: Ubuntu 正在安装: Ubuntu 由于未安装所需的特性，无法启动操作。 错误代码: Wsl/InstallDistro/Service/RegisterDistro/CreateVm/HCS/HCS_E_SERVICE_NOT_AVAILABLE 按照旧版本的步骤先启用适用于linux的windows子系统，然后启用虚拟机功能，然后关机重启。
+# PowerShell dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart 重启之后再次打开终端管理员，输入：
+# PowerShell wsl --install 默认安装的是Ubuntu，在windows终端内输入
+# PowerShell wsl -l -o 可以查看在线商店可用的linux分发版的列表。 我更换成了archlinux，
+# PowerShell wsl --install -d archlinux 2. 为archlinux创建非root用户 先在windows终端中打开wsl archlinux
+# PowerShell wsl -d archlinux 进入archlinux默认是root用户，先安装sudo软件包
+# bash pacman -Syu pacman -S sudo 然后创建非root用户，注意下面的命令仍然是在archlinux的终端中输入。">
+
+    <meta property="og:url" content="https://ninependoragon.moe/posts/wsl_archlinux/">
+  <meta property="og:site_name" content="Nine_Pendoragon">
+  <meta property="og:title" content="使用wsl安装archlinux，Geant4及ROOT">
+  <meta property="og:description" content="官网： https://learn.microsoft.com/zh-cn/windows/wsl/install
+使用wsl安装linux 1. 安装wsl 打开终端管理员，win11鼠标右键点击win菜单可以找到。
+# PowerShell wsl --install 遇到如下报错：
+# PowerShell PS C:\Users\gouz&gt; wsl --install 正在下载: Ubuntu 正在安装: Ubuntu 由于未安装所需的特性，无法启动操作。 错误代码: Wsl/InstallDistro/Service/RegisterDistro/CreateVm/HCS/HCS_E_SERVICE_NOT_AVAILABLE 按照旧版本的步骤先启用适用于linux的windows子系统，然后启用虚拟机功能，然后关机重启。
+# PowerShell dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart 重启之后再次打开终端管理员，输入：
+# PowerShell wsl --install 默认安装的是Ubuntu，在windows终端内输入
+# PowerShell wsl -l -o 可以查看在线商店可用的linux分发版的列表。 我更换成了archlinux，
+# PowerShell wsl --install -d archlinux 2. 为archlinux创建非root用户 先在windows终端中打开wsl archlinux
+# PowerShell wsl -d archlinux 进入archlinux默认是root用户，先安装sudo软件包
+# bash pacman -Syu pacman -S sudo 然后创建非root用户，注意下面的命令仍然是在archlinux的终端中输入。">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-07-03T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-07-03T00:00:00+00:00">
+    <meta property="article:tag" content="Geant4">
+    <meta property="article:tag" content="Wsl">
+    <meta property="article:tag" content="ROOT">
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="/"><img class="app-header-avatar" src="/avatar.jpg" alt="Nine_Pendoragon" /></a>
+      <span class="app-header-title">Nine_Pendoragon</span>
+      <nav class="app-header-menu">
+          <a class="app-header-menu-item" href="/">Home</a>
+             - 
+          
+          <a class="app-header-menu-item" href="/tags/">Tags</a>
+             - 
+          
+          <a class="app-header-menu-item" href="/about/">About</a>
+             - 
+          
+          <a class="app-header-menu-item" href="/tools/">Tools</a>
+      </nav>
+      <p>磨刀不误砍柴工</p>
+      <div class="app-header-social">
+        
+          <a href="https://github.com/NinePendoragon" target="_blank" rel="noreferrer noopener me">
+            <svg class="icon icon-brand-github" viewBox="0 0 24 24" fill="currentColor"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          </a>
+        
+          <a href="https://b23.tv/5W03nDb" target="_blank" rel="noreferrer noopener me">
+            <svg class="icon icon-brand-bilibili" viewBox="0 0 24 24" fill="currentColor"><title>Bilibili</title><path d="M17.813 4.653h.854c1.51.054 2.769.578 3.773 1.574 1.004.995 1.524 2.249 1.56 3.76v7.36c-.036 1.51-.556 2.769-1.56 3.773s-2.262 1.524-3.773 1.56H5.333c-1.51-.036-2.769-.556-3.773-1.56S.036 18.858 0 17.347v-7.36c.036-1.511.556-2.765 1.56-3.76 1.004-.996 2.262-1.52 3.773-1.574h.774l-1.174-1.12a1.234 1.234 0 0 1-.373-.906c0-.356.124-.658.373-.907l.027-.027c.267-.249.573-.373.92-.373.347 0 .653.124.92.373L9.653 4.44c.071.071.134.142.187.213h4.267a.836.836 0 0 1 .16-.213l2.853-2.747c.267-.249.573-.373.92-.373.347 0 .662.151.929.4.267.249.391.551.391.907 0 .355-.124.657-.373.906zM5.333 7.24c-.746.018-1.373.276-1.88.773-.506.498-.769 1.13-.786 1.894v7.52c.017.764.28 1.395.786 1.893.507.498 1.134.756 1.88.773h13.334c.746-.017 1.373-.275 1.88-.773.506-.498.769-1.129.786-1.893v-7.52c-.017-.765-.28-1.396-.786-1.894-.507-.497-1.134-.755-1.88-.773zM8 11.107c.373 0 .684.124.933.373.25.249.383.569.4.96v1.173c-.017.391-.15.711-.4.96-.249.25-.56.374-.933.374s-.684-.125-.933-.374c-.25-.249-.383-.569-.4-.96V12.44c0-.373.129-.689.386-.947.258-.257.574-.386.947-.386zm8 0c.373 0 .684.124.933.373.25.249.383.569.4.96v1.173c-.017.391-.15.711-.4.96-.249.25-.56.374-.933.374s-.684-.125-.933-.374c-.25-.249-.383-.569-.4-.96V12.44c.017-.391.15-.711.4-.96.249-.249.56-.373.933-.373Z"/></svg>
+          </a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+<article class="post">
+  <header class="post-header">
+    <h1 class="post-title">使用wsl安装archlinux，Geant4及ROOT</h1>
+    <div class="post-meta">
+      <div>
+        <svg class="icon icon-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+        Jul 3, 2025
+      </div>
+      <div>
+        <svg class="icon icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>clock</title><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+        10 min read
+      </div>
+      <div>
+        <svg class="icon icon-tag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
+            <a class="tag" href="/tags/geant4/">Geant4</a>
+            <a class="tag" href="/tags/wsl/">Wsl</a>
+            <a class="tag" href="/tags/root/">ROOT</a>
+      </div>
+    </div>
+  </header>
+    
+    <style>
+      .post-wrapper {
+        display: flex;
+        gap: 2rem;
+      }
+      .post-main {
+        flex: 1;
+        max-width: 65rem;
+      }
+      .post-toc {
+        flex: 0 0 250px;
+        font-size: 0.9em;
+        position: sticky;
+        top: 100px;
+        max-height: calc(100vh - 100px);
+        overflow: auto;
+        border-left: 1px solid #ddd;
+        padding-left: 1rem;
+      }
+      .post img {
+        max-width: 100%;
+        height: auto;
+      }
+      @media (max-width: 939px) {
+        .post-wrapper {
+          flex-direction: column;
+        }
+        .post-toc {
+          display: none;
+        }
+        .post-main {
+          max-width: 100% !important;
+        }
+      }
+    </style>
+  <div class="post-wrapper">
+    <div class="post-content" style="flex: 1; max-width: 65rem; width: 100%;">
+      <h2 id="官网">官网：</h2>
+<p><a href="https://learn.microsoft.com/zh-cn/windows/wsl/install">https://learn.microsoft.com/zh-cn/windows/wsl/install</a></p>
+<h2 id="使用wsl安装linux">使用wsl安装linux</h2>
+<h3 id="1-安装wsl">1. 安装wsl</h3>
+<p>打开终端管理员，win11鼠标右键点击win菜单可以找到。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-PowerShell" data-lang="PowerShell"><span style="display:flex;"><span><span style="color:#75715e"># PowerShell</span>
+</span></span><span style="display:flex;"><span>wsl --install
+</span></span></code></pre></div><p>遇到如下报错：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-PowerShell" data-lang="PowerShell"><span style="display:flex;"><span><span style="color:#75715e"># PowerShell</span>
+</span></span><span style="display:flex;"><span>PS C:\Users\gouz&gt; wsl --install
+</span></span><span style="display:flex;"><span>正在下载<span style="color:#960050;background-color:#1e0010">:</span> Ubuntu
+</span></span><span style="display:flex;"><span>正在安装<span style="color:#960050;background-color:#1e0010">:</span> Ubuntu
+</span></span><span style="display:flex;"><span>由于未安装所需的特性<span style="color:#960050;background-color:#1e0010">，</span>无法启动操作<span style="color:#960050;background-color:#1e0010">。</span>
+</span></span><span style="display:flex;"><span>错误代码<span style="color:#960050;background-color:#1e0010">:</span> Wsl/InstallDistro/Service/RegisterDistro/CreateVm/HCS/HCS_E_SERVICE_NOT_AVAILABLE
+</span></span></code></pre></div><p>按照旧版本的步骤先启用适用于linux的windows子系统，然后启用虚拟机功能，然后关机重启。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-PowerShell" data-lang="PowerShell"><span style="display:flex;"><span><span style="color:#75715e"># PowerShell</span>
+</span></span><span style="display:flex;"><span>dism.exe /online /enable-feature /featurename<span style="color:#960050;background-color:#1e0010">:</span>Microsoft-Windows-Subsystem-Linux /all /norestart
+</span></span><span style="display:flex;"><span>dism.exe /online /enable-feature /featurename<span style="color:#960050;background-color:#1e0010">:</span>VirtualMachinePlatform /all /norestart
+</span></span></code></pre></div><p>重启之后再次打开终端管理员，输入：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-PowerShell" data-lang="PowerShell"><span style="display:flex;"><span><span style="color:#75715e"># PowerShell</span>
+</span></span><span style="display:flex;"><span>wsl --install
+</span></span></code></pre></div><p>默认安装的是Ubuntu，在windows终端内输入</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-PowerShell" data-lang="PowerShell"><span style="display:flex;"><span><span style="color:#75715e"># PowerShell</span>
+</span></span><span style="display:flex;"><span>wsl -l -o
+</span></span></code></pre></div><p>可以查看在线商店可用的linux分发版的列表。
+我更换成了archlinux，</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-PowerShell" data-lang="PowerShell"><span style="display:flex;"><span><span style="color:#75715e"># PowerShell</span>
+</span></span><span style="display:flex;"><span>wsl --install -d archlinux
+</span></span></code></pre></div><h3 id="2-为archlinux创建非root用户">2. 为archlinux创建非root用户</h3>
+<p>先在windows终端中打开wsl archlinux</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-PowerShell" data-lang="PowerShell"><span style="display:flex;"><span><span style="color:#75715e"># PowerShell</span>
+</span></span><span style="display:flex;"><span>wsl -d archlinux
+</span></span></code></pre></div><p>进入archlinux默认是root用户，先安装sudo软件包</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># bash</span>
+</span></span><span style="display:flex;"><span>pacman -Syu
+</span></span><span style="display:flex;"><span>pacman -S sudo
+</span></span></code></pre></div><p>然后创建非root用户，注意下面的命令仍然是在archlinux的终端中输入。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># bash</span>
+</span></span><span style="display:flex;"><span>useradd -m -G wheel -s /bin/bash username
+</span></span><span style="display:flex;"><span>passwd username  <span style="color:#75715e">#为用户username设置密码</span>
+</span></span></code></pre></div><p>然后还需要将用户配置为sudo用户</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># bash</span>
+</span></span><span style="display:flex;"><span>pacman -S nano  <span style="color:#75715e">#nano是文本编辑器，我个人比较喜欢用，感觉适合小白</span>
+</span></span><span style="display:flex;"><span>nano /etc/sudoers
+</span></span></code></pre></div><p>打开文件后ctrl+F搜索wheel，然后将%wheel ALL=(ALL:ALL) ALL 这一行的注释删掉，也就是删掉“# %wheel ALL=(ALL:ALL) ALL”前面的“#”，随后ctrl+X退出，输入Y按下回车保存。
+然后切换成新建的用户测试一下sudo是否能够使用。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># bash</span>
+</span></span><span style="display:flex;"><span>su username
+</span></span><span style="display:flex;"><span>sudo pacman -Syu
+</span></span></code></pre></div><p>如果需要，可以将wsl的archlinux默认启动用户改成刚刚新建的用户。打开windows终端</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-PowerShell" data-lang="PowerShell"><span style="display:flex;"><span><span style="color:#75715e">#PowerShell</span>
+</span></span><span style="display:flex;"><span>wsl --manage archlinux --set-default-user username
+</span></span></code></pre></div><p>&ldquo;wsl &ndash;help&quot;可以查看更多关于wsl的命令选项。</p>
+<h2 id="安装root">安装ROOT</h2>
+<h3 id="1-包管理器安装推荐">1. 包管理器安装（推荐）</h3>
+<p>打开终端，输入，</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#bash</span>
+</span></span><span style="display:flex;"><span>sudo pacman -S root
+</span></span></code></pre></div><p>安装完之后打开root检查一下，</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># bash</span>
+</span></span><span style="display:flex;"><span>root
+</span></span></code></pre></div><h3 id="2-从源码构建不推荐">2. 从源码构建（不推荐）</h3>
+<p>不推荐，不推荐，不推荐！我自己已经放弃了，根本不知道要安装多少依赖
+<a href="https://root.cern.ch/install/">https://root.cern.ch/install/</a> 打开链接翻到最下面的“Build from source”处，跟着输入命令即可</p>
+<p>当然得先安装一下git依赖和camke等依赖。这里的依赖没安装完全，根据报错自行添加吧。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># bash</span>
+</span></span><span style="display:flex;"><span>sudo pacman -S git
+</span></span><span style="display:flex;"><span>sudo pacman -S base-devel gcc cmake libx11 libxpm libxft libxext
+</span></span><span style="display:flex;"><span>sudo pacman -S gsl giflib libjpeg-turbo libtiff libpng fontconfig
+</span></span><span style="display:flex;"><span>sudo pacman -S python
+</span></span><span style="display:flex;"><span>sudo pacman -S xrootd davix
+</span></span></code></pre></div><p>安装完git之后复制粘贴官网教程中的命令即可，可能需要科学上网。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># bash</span>
+</span></span><span style="display:flex;"><span>mkdir root <span style="color:#f92672">&amp;&amp;</span> cd root
+</span></span><span style="display:flex;"><span>git clone --branch latest-stable --depth<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> https://github.com/root-project/root.git root_src
+</span></span><span style="display:flex;"><span>mkdir root_build root_install <span style="color:#f92672">&amp;&amp;</span> cd root_build
+</span></span><span style="display:flex;"><span>cmake -DCMAKE_INSTALL_PREFIX<span style="color:#f92672">=</span>../root_install ../root_src
+</span></span></code></pre></div><p>一直报错，我放弃了。</p>
+<h4 id="报错">报错</h4>
+<p>我在cmake时出现报错，此时依赖我只安装了cmake和git：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># bash</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>nine@DESKTOP-VL1ESD8 root_build<span style="color:#f92672">]</span>$ cmake -DCMAKE_INSTALL_PREFIX<span style="color:#f92672">=</span>../root_install ../root_src/
+</span></span><span style="display:flex;"><span>CMake Deprecation Warning at CMakeLists.txt:32 <span style="color:#f92672">(</span>cmake_policy<span style="color:#f92672">)</span>:
+</span></span><span style="display:flex;"><span>  The OLD behavior <span style="color:#66d9ef">for</span> policy CMP0116 will be removed from a future version
+</span></span><span style="display:flex;"><span>  of CMake.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  The cmake-policies<span style="color:#f92672">(</span>7<span style="color:#f92672">)</span> manual explains that the OLD behaviors of all
+</span></span><span style="display:flex;"><span>  policies are deprecated and that a policy should be set to OLD only under
+</span></span><span style="display:flex;"><span>  specific short-term circumstances.  Projects should be ported to the NEW
+</span></span><span style="display:flex;"><span>  behavior and not rely on setting a policy to OLD.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>CMake Deprecation Warning at CMakeLists.txt:32 <span style="color:#f92672">(</span>cmake_policy<span style="color:#f92672">)</span>:
+</span></span><span style="display:flex;"><span>  The OLD behavior <span style="color:#66d9ef">for</span> policy CMP0135 will be removed from a future version
+</span></span><span style="display:flex;"><span>  of CMake.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  The cmake-policies<span style="color:#f92672">(</span>7<span style="color:#f92672">)</span> manual explains that the OLD behaviors of all
+</span></span><span style="display:flex;"><span>  policies are deprecated and that a policy should be set to OLD only under
+</span></span><span style="display:flex;"><span>  specific short-term circumstances.  Projects should be ported to the NEW
+</span></span><span style="display:flex;"><span>  behavior and not rely on setting a policy to OLD.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>CMake Error: CMake was unable to find a build program corresponding to <span style="color:#e6db74">&#34;Unix Makefiles&#34;</span>.  CMAKE_MAKE_PROGRAM is not set.  You probably need to <span style="color:#66d9ef">select</span> a different build tool.
+</span></span><span style="display:flex;"><span>CMake Error: CMAKE_C_COMPILER not set, after EnableLanguage
+</span></span><span style="display:flex;"><span>CMake Error: CMAKE_CXX_COMPILER not set, after EnableLanguage
+</span></span><span style="display:flex;"><span>-- Configuring incomplete, errors occurred!
+</span></span></code></pre></div><p>问过ai之后发现是缺少依赖，还得安装base-devel, gcc。</p>
+<p>重新cmake又遇到报错：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>-- Looking <span style="color:#66d9ef">for</span> X11
+</span></span><span style="display:flex;"><span>CMake Error at /usr/share/cmake/Modules/FindPackageHandleStandardArgs.cmake:227 <span style="color:#f92672">(</span>message<span style="color:#f92672">)</span>:
+</span></span><span style="display:flex;"><span>  Could NOT find X11 <span style="color:#f92672">(</span>missing: X11_X11_INCLUDE_PATH X11_X11_LIB Xpm Xft Xext<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>Call Stack <span style="color:#f92672">(</span>most recent call first<span style="color:#f92672">)</span>:
+</span></span><span style="display:flex;"><span>  /usr/share/cmake/Modules/FindPackageHandleStandardArgs.cmake:591 <span style="color:#f92672">(</span>_FPHSA_FAILURE_MESSAGE<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>  /usr/share/cmake/Modules/FindX11.cmake:684 <span style="color:#f92672">(</span>find_package_handle_standard_args<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>  cmake/modules/SearchInstalledSoftware.cmake:80 <span style="color:#f92672">(</span>_find_package<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>  cmake/modules/SearchInstalledSoftware.cmake:423 <span style="color:#f92672">(</span>find_package<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>  CMakeLists.txt:287 <span style="color:#f92672">(</span>include<span style="color:#f92672">)</span>
+</span></span></code></pre></div><p>复制给ai，发现还得安装libx11 libxpm libxft libxext。安装完之后cmake继续报错</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># bash</span>
+</span></span><span style="display:flex;"><span>CMake Error at /usr/share/cmake/Modules/FindPackageHandleStandardArgs.cmake:227 <span style="color:#f92672">(</span>message<span style="color:#f92672">)</span>:
+</span></span><span style="display:flex;"><span>  Could NOT find Python3 <span style="color:#f92672">(</span>missing: Python3_EXECUTABLE Interpreter<span style="color:#f92672">)</span> <span style="color:#f92672">(</span>Required
+</span></span><span style="display:flex;"><span>  is at least version <span style="color:#e6db74">&#34;3.0&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>Call Stack <span style="color:#f92672">(</span>most recent call first<span style="color:#f92672">)</span>:
+</span></span><span style="display:flex;"><span>  /usr/share/cmake/Modules/FindPackageHandleStandardArgs.cmake:591 <span style="color:#f92672">(</span>_FPHSA_FAILURE_MESSAGE<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>  /usr/share/cmake/Modules/FindPython/Support.cmake:4082 <span style="color:#f92672">(</span>find_package_handle_standard_args<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>  /usr/share/cmake/Modules/FindPython3.cmake:640 <span style="color:#f92672">(</span>include<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>  cmake/modules/SearchInstalledSoftware.cmake:80 <span style="color:#f92672">(</span>_find_package<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>  interpreter/llvm-project/llvm/CMakeLists.txt:892 <span style="color:#f92672">(</span>find_package<span style="color:#f92672">)</span>
+</span></span></code></pre></div><p>这是因为缺少python3解释器。
+还注意到在cmake过程中的输出信息:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># bash</span>
+</span></span><span style="display:flex;"><span>-- Could NOT find GIF <span style="color:#f92672">(</span>missing: GIF_LIBRARY GIF_INCLUDE_DIR<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>-- Found PNG: /usr/lib/libpng.so <span style="color:#f92672">(</span>found version <span style="color:#e6db74">&#34;1.6.50&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>-- Could NOT find JPEG <span style="color:#f92672">(</span>missing: JPEG_LIBRARY JPEG_INCLUDE_DIR<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>-- Could NOT find TIFF <span style="color:#f92672">(</span>missing: TIFF_LIBRARY TIFF_INCLUDE_DIR<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>-- Could NOT find GSL: <span style="color:#f92672">(</span>Required is at least version <span style="color:#e6db74">&#34;1.10&#34;</span><span style="color:#f92672">)</span> <span style="color:#f92672">(</span>found GSL_INCLUDE_DIR-NOTFOUND<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>-- GSL not found. Set variable GSL_ROOT_DIR to point to your GSL installation
+</span></span><span style="display:flex;"><span>--                Alternatively, you can also enable the option <span style="color:#e6db74">&#39;builtin_gsl&#39;</span> to build the GSL libraries internally<span style="color:#e6db74">&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">--                For the time being switching OFF &#39;</span>mathmore<span style="color:#960050;background-color:#1e0010">&#39;</span> option
+</span></span></code></pre></div><p>这是要安装gsl giflib libjpeg-turbo libtiff libpng freetype fontconfig，freetype安装不了，跳过，然后cmake继续报错：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># bash</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>nine@DESKTOP-VL1ESD8 root_build<span style="color:#f92672">]</span>$ cmake -DCMAKE_INSTALL_PREFIX<span style="color:#f92672">=</span>../root_install ../root_src/
+</span></span><span style="display:flex;"><span>CMake Deprecation Warning at CMakeLists.txt:32 <span style="color:#f92672">(</span>cmake_policy<span style="color:#f92672">)</span>:
+</span></span><span style="display:flex;"><span>  The OLD behavior <span style="color:#66d9ef">for</span> policy CMP0116 will be removed from a future version
+</span></span><span style="display:flex;"><span>  of CMake.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  The cmake-policies<span style="color:#f92672">(</span>7<span style="color:#f92672">)</span> manual explains that the OLD behaviors of all
+</span></span><span style="display:flex;"><span>  policies are deprecated and that a policy should be set to OLD only under
+</span></span><span style="display:flex;"><span>  specific short-term circumstances.  Projects should be ported to the NEW
+</span></span><span style="display:flex;"><span>  behavior and not rely on setting a policy to OLD.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>CMake Deprecation Warning at CMakeLists.txt:32 <span style="color:#f92672">(</span>cmake_policy<span style="color:#f92672">)</span>:
+</span></span><span style="display:flex;"><span>  The OLD behavior <span style="color:#66d9ef">for</span> policy CMP0135 will be removed from a future version
+</span></span><span style="display:flex;"><span>  of CMake.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  The cmake-policies<span style="color:#f92672">(</span>7<span style="color:#f92672">)</span> manual explains that the OLD behaviors of all
+</span></span><span style="display:flex;"><span>  policies are deprecated and that a policy should be set to OLD only under
+</span></span><span style="display:flex;"><span>  specific short-term circumstances.  Projects should be ported to the NEW
+</span></span><span style="display:flex;"><span>  behavior and not rely on setting a policy to OLD.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>-- The C compiler identification is GNU 15.1.1
+</span></span><span style="display:flex;"><span>-- The CXX compiler identification is GNU 15.1.1
+</span></span><span style="display:flex;"><span>-- Detecting C compiler ABI info
+</span></span><span style="display:flex;"><span>-- Detecting C compiler ABI info - <span style="color:#66d9ef">done</span>
+</span></span><span style="display:flex;"><span>-- Check <span style="color:#66d9ef">for</span> working C compiler: /usr/sbin/cc - skipped
+</span></span><span style="display:flex;"><span>-- Detecting C compile features
+</span></span><span style="display:flex;"><span>-- Detecting C compile features - <span style="color:#66d9ef">done</span>
+</span></span><span style="display:flex;"><span>-- Detecting CXX compiler ABI info
+</span></span><span style="display:flex;"><span>-- Detecting CXX compiler ABI info - <span style="color:#66d9ef">done</span>
+</span></span><span style="display:flex;"><span>-- Check <span style="color:#66d9ef">for</span> working CXX compiler: /usr/sbin/c++ - skipped
+</span></span><span style="display:flex;"><span>-- Detecting CXX compile features
+</span></span><span style="display:flex;"><span>-- Detecting CXX compile features - <span style="color:#66d9ef">done</span>
+</span></span><span style="display:flex;"><span>-- Found Git: /usr/sbin/git <span style="color:#f92672">(</span>found version <span style="color:#e6db74">&#34;2.50.0&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>-- Building ROOT version 6.36.000
+</span></span><span style="display:flex;"><span>-- Looking <span style="color:#66d9ef">for</span> a CUDA compiler
+</span></span><span style="display:flex;"><span>-- Looking <span style="color:#66d9ef">for</span> a CUDA compiler - NOTFOUND
+</span></span><span style="display:flex;"><span>-- Found GCC. Major version 15, minor version <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+</span></span><span style="display:flex;"><span>-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+</span></span><span style="display:flex;"><span>-- Found Threads: TRUE
+</span></span><span style="display:flex;"><span>-- Performing Test GLIBCXX_USE_CXX11_ABI
+</span></span><span style="display:flex;"><span>-- Performing Test GLIBCXX_USE_CXX11_ABI - Success
+</span></span><span style="display:flex;"><span>-- ROOT default compression algorithm: zlib
+</span></span><span style="display:flex;"><span>-- Checking internet connectivity
+</span></span><span style="display:flex;"><span>-- Checking internet connectivity - found
+</span></span><span style="display:flex;"><span>-- Looking <span style="color:#66d9ef">for</span> ZLib
+</span></span><span style="display:flex;"><span>-- Found ZLIB: /usr/lib/libz.so <span style="color:#f92672">(</span>found version <span style="color:#e6db74">&#34;1.3.1&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>-- Looking <span style="color:#66d9ef">for</span> nlohmann/json.hpp
+</span></span><span style="display:flex;"><span>-- nlohmann/json.hpp not found. Switching on builtin_nlohmannjson option
+</span></span><span style="display:flex;"><span>-- Looking <span style="color:#66d9ef">for</span> Freetype
+</span></span><span style="display:flex;"><span>-- Found Freetype: /usr/lib/libfreetype.so <span style="color:#f92672">(</span>found version <span style="color:#e6db74">&#34;2.13.3&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>-- Looking <span style="color:#66d9ef">for</span> PCRE
+</span></span><span style="display:flex;"><span>-- Found PCRE2: /usr/include <span style="color:#f92672">(</span>found version <span style="color:#e6db74">&#34;10.45&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>-- Looking <span style="color:#66d9ef">for</span> LZMA
+</span></span><span style="display:flex;"><span>-- Looking <span style="color:#66d9ef">for</span> lzma_auto_decoder in /usr/lib/liblzma.so
+</span></span><span style="display:flex;"><span>-- Looking <span style="color:#66d9ef">for</span> lzma_auto_decoder in /usr/lib/liblzma.so - found
+</span></span><span style="display:flex;"><span>-- Looking <span style="color:#66d9ef">for</span> lzma_easy_encoder in /usr/lib/liblzma.so
+</span></span><span style="display:flex;"><span>-- Looking <span style="color:#66d9ef">for</span> lzma_easy_encoder in /usr/lib/liblzma.so - found
+</span></span><span style="display:flex;"><span>-- Looking <span style="color:#66d9ef">for</span> lzma_lzma_preset in /usr/lib/liblzma.so
+</span></span><span style="display:flex;"><span>-- Looking <span style="color:#66d9ef">for</span> lzma_lzma_preset in /usr/lib/liblzma.so - found
+</span></span><span style="display:flex;"><span>-- Found LibLZMA: /usr/lib/liblzma.so <span style="color:#f92672">(</span>found version <span style="color:#e6db74">&#34;5.8.1&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>-- Looking <span style="color:#66d9ef">for</span> xxHash
+</span></span><span style="display:flex;"><span>-- Found xxHash: /usr/lib/libxxhash.so <span style="color:#f92672">(</span>found suitable version <span style="color:#e6db74">&#34;0.8.3&#34;</span>, minimum required is <span style="color:#e6db74">&#34;0.8&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>-- Looking <span style="color:#66d9ef">for</span> ZSTD
+</span></span><span style="display:flex;"><span>-- Found ZSTD: /usr/lib/libzstd.so
+</span></span><span style="display:flex;"><span>-- Looking <span style="color:#66d9ef">for</span> LZ4
+</span></span><span style="display:flex;"><span>-- Found LZ4: /usr/lib/liblz4.so <span style="color:#f92672">(</span>found version <span style="color:#e6db74">&#34;1.10.0&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>-- Looking <span style="color:#66d9ef">for</span> X11
+</span></span><span style="display:flex;"><span>-- Found X11: /usr/include  found components: Xpm Xft Xext
+</span></span><span style="display:flex;"><span>-- Looking <span style="color:#66d9ef">for</span> XOpenDisplay in /usr/lib/libX11.so;/usr/lib/libXext.so
+</span></span><span style="display:flex;"><span>-- Looking <span style="color:#66d9ef">for</span> XOpenDisplay in /usr/lib/libX11.so;/usr/lib/libXext.so - found
+</span></span><span style="display:flex;"><span>-- Looking <span style="color:#66d9ef">for</span> gethostbyname
+</span></span><span style="display:flex;"><span>-- Looking <span style="color:#66d9ef">for</span> gethostbyname - found
+</span></span><span style="display:flex;"><span>-- Looking <span style="color:#66d9ef">for</span> connect
+</span></span><span style="display:flex;"><span>-- Looking <span style="color:#66d9ef">for</span> connect - found
+</span></span><span style="display:flex;"><span>-- Looking <span style="color:#66d9ef">for</span> remove
+</span></span><span style="display:flex;"><span>-- Looking <span style="color:#66d9ef">for</span> remove - found
+</span></span><span style="display:flex;"><span>-- Looking <span style="color:#66d9ef">for</span> shmat
+</span></span><span style="display:flex;"><span>-- Looking <span style="color:#66d9ef">for</span> shmat - found
+</span></span><span style="display:flex;"><span>-- Looking <span style="color:#66d9ef">for</span> IceConnectionNumber in ICE
+</span></span><span style="display:flex;"><span>-- Looking <span style="color:#66d9ef">for</span> IceConnectionNumber in ICE - found
+</span></span><span style="display:flex;"><span>-- X11_INCLUDE_DIR: /usr/include
+</span></span><span style="display:flex;"><span>-- X11_LIBRARIES: /usr/lib/libSM.so;/usr/lib/libICE.so;/usr/lib/libX11.so;/usr/lib/libXext.so
+</span></span><span style="display:flex;"><span>-- X11_Xpm_INCLUDE_PATH: /usr/include
+</span></span><span style="display:flex;"><span>-- X11_Xpm_LIB: /usr/lib/libXpm.so
+</span></span><span style="display:flex;"><span>-- X11_Xft_INCLUDE_PATH: /usr/include
+</span></span><span style="display:flex;"><span>-- X11_Xft_LIB: /usr/lib/libXft.so
+</span></span><span style="display:flex;"><span>-- X11_Xext_INCLUDE_PATH: /usr/include
+</span></span><span style="display:flex;"><span>-- X11_Xext_LIB: /usr/lib/libXext.so
+</span></span><span style="display:flex;"><span>-- Found GIF: /usr/lib/libgif.so <span style="color:#f92672">(</span>found version <span style="color:#e6db74">&#34;5.2.2&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>-- Found PNG: /usr/lib/libpng.so <span style="color:#f92672">(</span>found version <span style="color:#e6db74">&#34;1.6.50&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>-- Found JPEG: /usr/lib/libjpeg.so <span style="color:#f92672">(</span>found version <span style="color:#e6db74">&#34;80&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>-- Found TIFF: /usr/lib/libtiff.so <span style="color:#f92672">(</span>found version <span style="color:#e6db74">&#34;4.7.0&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>-- Looking <span style="color:#66d9ef">for</span> GSL
+</span></span><span style="display:flex;"><span>-- Found GSL: /usr/include <span style="color:#f92672">(</span>found suitable version <span style="color:#e6db74">&#34;2.8&#34;</span>, minimum required is <span style="color:#e6db74">&#34;1.10&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>-- Looking <span style="color:#66d9ef">for</span> Python
+</span></span><span style="display:flex;"><span>-- Could NOT find Python3 <span style="color:#f92672">(</span>missing: Python3_NumPy_INCLUDE_DIRS NumPy<span style="color:#f92672">)</span> <span style="color:#f92672">(</span>found suitable version <span style="color:#e6db74">&#34;3.13.5&#34;</span>, minimum required is <span style="color:#e6db74">&#34;3.8&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>-- Looking <span style="color:#66d9ef">for</span> OpenGL
+</span></span><span style="display:flex;"><span>-- Could NOT find OpenGL <span style="color:#f92672">(</span>missing: OPENGL_opengl_LIBRARY OPENGL_glx_LIBRARY OPENGL_INCLUDE_DIR<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>-- OpenGL <span style="color:#f92672">(</span>with GLU<span style="color:#f92672">)</span> not found. Switching off opengl option
+</span></span><span style="display:flex;"><span>-- Looking <span style="color:#66d9ef">for</span> LibXml2
+</span></span><span style="display:flex;"><span>-- Found LibXml2: /usr/lib/libxml2.so <span style="color:#f92672">(</span>found version <span style="color:#e6db74">&#34;2.14.4&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>-- Found OpenSSL: /usr/lib/libcrypto.so <span style="color:#f92672">(</span>found version <span style="color:#e6db74">&#34;3.5.1&#34;</span><span style="color:#f92672">)</span> found components: SSL
+</span></span><span style="display:flex;"><span>-- Looking <span style="color:#66d9ef">for</span> SQLite
+</span></span><span style="display:flex;"><span>-- Found PkgConfig: /usr/sbin/pkg-config <span style="color:#f92672">(</span>found version <span style="color:#e6db74">&#34;2.5.1&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>-- Found Sqlite: /usr/include
+</span></span><span style="display:flex;"><span>-- Looking <span style="color:#66d9ef">for</span> CFITSIO
+</span></span><span style="display:flex;"><span>-- Could NOT find CFITSIO <span style="color:#f92672">(</span>missing: CFITSIO_LIBRARY CFITSIO_INCLUDE_DIR<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>-- CFITSIO not found. You can enable the option <span style="color:#e6db74">&#39;builtin_cfitsio&#39;</span> to build the library internally<span style="color:#e6db74">&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">--                    For the time being switching off &#39;</span>fitsio<span style="color:#e6db74">&#39; option
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- Looking for XROOTD
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">CMake Warning at cmake/modules/SearchInstalledSoftware.cmake:80 (_find_package):
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  By not providing &#34;FindXRootD.cmake&#34; in CMAKE_MODULE_PATH this project has
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  asked CMake to find a package configuration file provided by &#34;XRootD&#34;, but
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  CMake did not find one.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  Could not find a package configuration file provided by &#34;XRootD&#34; with any
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  of the following names:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    XRootDConfig.cmake
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    xrootd-config.cmake
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  Add the installation prefix of &#34;XRootD&#34; to CMAKE_PREFIX_PATH or set
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;XRootD_DIR&#34; to a directory containing one of the above files.  If &#34;XRootD&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  provides a separate development package or SDK, be sure it has been
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  installed.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">Call Stack (most recent call first):
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  cmake/modules/SearchInstalledSoftware.cmake:997 (find_package)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  CMakeLists.txt:287 (include)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- XROOTD not found, enabling &#39;</span>builtin_xrootd<span style="color:#e6db74">&#39; option
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- Found OpenSSL: /usr/lib/libcrypto.so (found version &#34;3.5.1&#34;)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- Downloading and building XROOTD version 5.8.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- Checking for module &#39;</span>davix&gt;<span style="color:#f92672">=</span>0.6.4<span style="color:#e6db74">&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">--   Package &#39;</span>davix<span style="color:#e6db74">&#39; not found
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- Looking for uuid_generate_random in uuid
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- Looking for uuid_generate_random in uuid - found
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- Found libuuid: /usr/include
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- Davix not found, switching ON &#39;</span>builtin_davix<span style="color:#e6db74">&#39; option.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- Looking for clock_gettime
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- Looking for clock_gettime - found
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- Looking for TBB
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- Could NOT find TBB (missing: TBB_ROOT_DIR TBB_INCLUDE_DIR TBB_LIBRARY) (Required is at least version &#34;2020&#34;)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- TBB not found, enabling &#39;</span>builtin_tbb<span style="color:#e6db74">&#39; option
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- Looking for VDT
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- Could NOT find Vdt (missing: VDT_INCLUDE_DIR VDT_LIBRARY) (Required is at least version &#34;0.4&#34;)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- VDT not found. Ensure that the installation of VDT is in the CMAKE_PREFIX_PATH
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">--                Switching ON &#39;</span>builtin_vdt<span style="color:#e6db74">&#39; option
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- Looking for BLAS for optional parts of TMVA
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- Using GSL CBLAS for optional parts of TMVA
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- TMVA: Numpy or Python development package not found for python /usr/sbin/python3.13. Switching off tmva-pymva option
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- PyROOT: development package found. Building for version 3.13.5
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- Performing Test ROOT_HAVE_CXX_ATOMICS_WITHOUT_LIB
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- Performing Test ROOT_HAVE_CXX_ATOMICS_WITHOUT_LIB - Success
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">-- Building LLVM in &#39;</span>Release<span style="color:#960050;background-color:#1e0010">&#39;</span> mode.
+</span></span><span style="display:flex;"><span>CMake Deprecation Warning at interpreter/llvm-project/cmake/Modules/CMakePolicy.cmake:6 <span style="color:#f92672">(</span>cmake_policy<span style="color:#f92672">)</span>:
+</span></span><span style="display:flex;"><span>  The OLD behavior <span style="color:#66d9ef">for</span> policy CMP0114 will be removed from a future version
+</span></span><span style="display:flex;"><span>  of CMake.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  The cmake-policies<span style="color:#f92672">(</span>7<span style="color:#f92672">)</span> manual explains that the OLD behaviors of all
+</span></span><span style="display:flex;"><span>  policies are deprecated and that a policy should be set to OLD only under
+</span></span><span style="display:flex;"><span>  specific short-term circumstances.  Projects should be ported to the NEW
+</span></span><span style="display:flex;"><span>  behavior and not rely on setting a policy to OLD.
+</span></span><span style="display:flex;"><span>Call Stack <span style="color:#f92672">(</span>most recent call first<span style="color:#f92672">)</span>:
+</span></span><span style="display:flex;"><span>  interpreter/llvm-project/llvm/CMakeLists.txt:6 <span style="color:#f92672">(</span>include<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>CMake Deprecation Warning at interpreter/llvm-project/cmake/Modules/CMakePolicy.cmake:11 <span style="color:#f92672">(</span>cmake_policy<span style="color:#f92672">)</span>:
+</span></span><span style="display:flex;"><span>  The OLD behavior <span style="color:#66d9ef">for</span> policy CMP0116 will be removed from a future version
+</span></span><span style="display:flex;"><span>  of CMake.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  The cmake-policies<span style="color:#f92672">(</span>7<span style="color:#f92672">)</span> manual explains that the OLD behaviors of all
+</span></span><span style="display:flex;"><span>  policies are deprecated and that a policy should be set to OLD only under
+</span></span><span style="display:flex;"><span>  specific short-term circumstances.  Projects should be ported to the NEW
+</span></span><span style="display:flex;"><span>  behavior and not rely on setting a policy to OLD.
+</span></span><span style="display:flex;"><span>Call Stack <span style="color:#f92672">(</span>most recent call first<span style="color:#f92672">)</span>:
+</span></span><span style="display:flex;"><span>  interpreter/llvm-project/llvm/CMakeLists.txt:6 <span style="color:#f92672">(</span>include<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>CMake Deprecation Warning at interpreter/llvm-project/cmake/Modules/CMakePolicy.cmake:6 <span style="color:#f92672">(</span>cmake_policy<span style="color:#f92672">)</span>:
+</span></span><span style="display:flex;"><span>  The OLD behavior <span style="color:#66d9ef">for</span> policy CMP0114 will be removed from a future version
+</span></span><span style="display:flex;"><span>  of CMake.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  The cmake-policies<span style="color:#f92672">(</span>7<span style="color:#f92672">)</span> manual explains that the OLD behaviors of all
+</span></span><span style="display:flex;"><span>  policies are deprecated and that a policy should be set to OLD only under
+</span></span><span style="display:flex;"><span>  specific short-term circumstances.  Projects should be ported to the NEW
+</span></span><span style="display:flex;"><span>  behavior and not rely on setting a policy to OLD.
+</span></span><span style="display:flex;"><span>Call Stack <span style="color:#f92672">(</span>most recent call first<span style="color:#f92672">)</span>:
+</span></span><span style="display:flex;"><span>  interpreter/llvm-project/clang/CMakeLists.txt:6 <span style="color:#f92672">(</span>include<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>CMake Deprecation Warning at interpreter/llvm-project/cmake/Modules/CMakePolicy.cmake:11 <span style="color:#f92672">(</span>cmake_policy<span style="color:#f92672">)</span>:
+</span></span><span style="display:flex;"><span>  The OLD behavior <span style="color:#66d9ef">for</span> policy CMP0116 will be removed from a future version
+</span></span><span style="display:flex;"><span>  of CMake.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  The cmake-policies<span style="color:#f92672">(</span>7<span style="color:#f92672">)</span> manual explains that the OLD behaviors of all
+</span></span><span style="display:flex;"><span>  policies are deprecated and that a policy should be set to OLD only under
+</span></span><span style="display:flex;"><span>  specific short-term circumstances.  Projects should be ported to the NEW
+</span></span><span style="display:flex;"><span>  behavior and not rely on setting a policy to OLD.
+</span></span><span style="display:flex;"><span>Call Stack <span style="color:#f92672">(</span>most recent call first<span style="color:#f92672">)</span>:
+</span></span><span style="display:flex;"><span>  interpreter/llvm-project/clang/CMakeLists.txt:6 <span style="color:#f92672">(</span>include<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>CMake Warning <span style="color:#f92672">(</span>dev<span style="color:#f92672">)</span> at interpreter/llvm-project/clang/CMakeLists.txt:405 <span style="color:#f92672">(</span>install<span style="color:#f92672">)</span>:
+</span></span><span style="display:flex;"><span>  Policy CMP0177 is not set: install<span style="color:#f92672">()</span> DESTINATION paths are normalized.  Run
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;cmake --help-policy CMP0177&#34;</span> <span style="color:#66d9ef">for</span> policy details.  Use the cmake_policy
+</span></span><span style="display:flex;"><span>  command to set the policy and suppress this warning.
+</span></span><span style="display:flex;"><span>This warning is <span style="color:#66d9ef">for</span> project developers.  Use -Wno-dev to suppress it.
+</span></span></code></pre></div><p>安装 xrootd davix。不折腾这个了，放弃，改用包管理器安装。</p>
+<h2 id="安装geant4">安装Geant4</h2>
+<p>这里也用简单方法了，从源码构建就放在第一篇帖子里面折腾吧。
+<a href="https://geant4-userdoc.web.cern.ch/UsersGuides/InstallationGuide/html/">https://geant4-userdoc.web.cern.ch/UsersGuides/InstallationGuide/html/</a> &ldquo;Arch Users Repository on Arch Linux&quot;处跟着走，
+先安装一下依赖，由于有一些依赖官方仓库里面没有，因此可以使用aur助手yay安装aur的包。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># bash</span>
+</span></span><span style="display:flex;"><span>git clone https://aur.archlinux.org/yay.git
+</span></span><span style="display:flex;"><span>cd yay
+</span></span><span style="display:flex;"><span>makepkg -si
+</span></span></code></pre></div><p>yay安装完之后，使用yay安装clhep</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># bash</span>
+</span></span><span style="display:flex;"><span>yay -S clhep
+</span></span></code></pre></div><p>根据提示按回车即可。
+使用pacman安装其他的依赖（也可以用yay安装）</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># bash</span>
+</span></span><span style="display:flex;"><span>sudo pacman -S xerces-c qt6-base openmotif soqt boost
+</span></span></code></pre></div><p>然后跟着官方教程走。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># bash</span>
+</span></span><span style="display:flex;"><span>git clone https://aur.archlinux.org/geant4.git
+</span></span><span style="display:flex;"><span>cd geant4
+</span></span></code></pre></div><p>如果cmake版本过高，后面可能会报错，先修改一下PKGBUILD里面的cmake设置。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># bash</span>
+</span></span><span style="display:flex;"><span>yay -S coin --editmenu   <span style="color:#75715e">#我也不知道这一步干什么的</span>
+</span></span><span style="display:flex;"><span>nano PKGBUILD
+</span></span></code></pre></div><p>把“-DCMAKE_POLICY_VERSION_MINIMUM=3.5”加载cmake那一堆里。然后继续，</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># bash</span>
+</span></span><span style="display:flex;"><span>makepkg --syncdeps
+</span></span></code></pre></div><h3 id="报错-1">报错</h3>
+<p>makepkg &ndash;syncdeps 一步出现报错：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># bash</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>nine@DESKTOP-VL1ESD8 geant4<span style="color:#f92672">]</span>$ makepkg --syncdeps
+</span></span><span style="display:flex;"><span><span style="color:#f92672">==</span>&gt; Making package: geant4 11.3.1-1 <span style="color:#f92672">(</span>Thu Jul  <span style="color:#ae81ff">3</span> 20:40:04 2025<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">==</span>&gt; Checking runtime dependencies...
+</span></span><span style="display:flex;"><span><span style="color:#f92672">==</span>&gt; Installing missing dependencies...
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>sudo<span style="color:#f92672">]</span> password <span style="color:#66d9ef">for</span> nine:
+</span></span><span style="display:flex;"><span>error: target not found: clhep&gt;<span style="color:#f92672">=</span>2.4.6.0
+</span></span><span style="display:flex;"><span><span style="color:#f92672">==</span>&gt; ERROR: <span style="color:#e6db74">&#39;pacman&#39;</span> failed to install missing dependencies.
+</span></span><span style="display:flex;"><span><span style="color:#f92672">==</span>&gt; Missing dependencies:
+</span></span><span style="display:flex;"><span>  -&gt; clhep&gt;<span style="color:#f92672">=</span>2.4.6.0
+</span></span><span style="display:flex;"><span>  -&gt; xerces-c&gt;<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>  -&gt; qt6-base
+</span></span><span style="display:flex;"><span>  -&gt; openmotif
+</span></span><span style="display:flex;"><span>  -&gt; soqt
+</span></span><span style="display:flex;"><span>  -&gt; boost
+</span></span><span style="display:flex;"><span><span style="color:#f92672">==</span>&gt; Checking buildtime dependencies...
+</span></span><span style="display:flex;"><span><span style="color:#f92672">==</span>&gt; ERROR: Could not resolve all dependencies.
+</span></span></code></pre></div><p>应该是缺少这些依赖。pacman安装找不到clhep，这才发现我忘换镜像源了。把换镜像源放在第一步。
+安装一下yay，再用yay安装这些pacman中没有的依赖。
+依赖安装完之后makepkg &ndash;syncdeps继续报错，</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># bash</span>
+</span></span><span style="display:flex;"><span>CMake Error at /usr/lib/cmake/Coin-4.0.3/coin-config.cmake:1 <span style="color:#f92672">(</span>cmake_minimum_required<span style="color:#f92672">)</span>:
+</span></span><span style="display:flex;"><span>  Compatibility with CMake &lt; 3.5 has been removed from CMake.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  Update the VERSION argument &lt;min&gt; value.  Or, use the &lt;min&gt;...&lt;max&gt; syntax
+</span></span><span style="display:flex;"><span>  to tell CMake that the project requires at least &lt;min&gt; but has been updated
+</span></span><span style="display:flex;"><span>  to work with policies introduced by &lt;max&gt; or earlier.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  Or, add -DCMAKE_POLICY_VERSION_MINIMUM<span style="color:#f92672">=</span>3.5 to try configuring anyway.
+</span></span><span style="display:flex;"><span>Call Stack <span style="color:#f92672">(</span>most recent call first<span style="color:#f92672">)</span>:
+</span></span><span style="display:flex;"><span>  cmake/Modules/G4InterfaceOptions.cmake:127 <span style="color:#f92672">(</span>find_package<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>  cmake/Modules/G4CMakeMain.cmake:64 <span style="color:#f92672">(</span>include<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>  CMakeLists.txt:49 <span style="color:#f92672">(</span>include<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>-- Configuring incomplete, errors occurred!
+</span></span><span style="display:flex;"><span><span style="color:#f92672">==</span>&gt; ERROR: A failure occurred in build<span style="color:#f92672">()</span>.
+</span></span><span style="display:flex;"><span>    Aborting...
+</span></span></code></pre></div><p>ai说是cmake版本太高。用yay安装Geant4可以先执行</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># bash</span>
+</span></span><span style="display:flex;"><span>yay -S coin --editmenu   <span style="color:#75715e">#我也不知道这一步干什么的</span>
+</span></span><span style="display:flex;"><span>nano PKGBUILD
+</span></span></code></pre></div><p>把“-DCMAKE_POLICY_VERSION_MINIMUM=3.5”加载cmake那一堆里。</p>
+
+    </div>
+    
+    <aside class="post-toc">
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#官网">官网：</a></li>
+    <li><a href="#使用wsl安装linux">使用wsl安装linux</a>
+      <ul>
+        <li><a href="#1-安装wsl">1. 安装wsl</a></li>
+        <li><a href="#2-为archlinux创建非root用户">2. 为archlinux创建非root用户</a></li>
+      </ul>
+    </li>
+    <li><a href="#安装root">安装ROOT</a>
+      <ul>
+        <li><a href="#1-包管理器安装推荐">1. 包管理器安装（推荐）</a></li>
+        <li><a href="#2-从源码构建不推荐">2. 从源码构建（不推荐）</a></li>
+      </ul>
+    </li>
+    <li><a href="#安装geant4">安装Geant4</a>
+      <ul>
+        <li><a href="#报错-1">报错</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </aside>
+    
+  </div>
+
+
+  <div id ="comments">
+    
+    <div class="post-footer">
+      <script src="https://giscus.app/client.js"
+              data-repo="NinePendoragon/my-hugo-site-test"
+              data-repo-id="R_kgDOO9SV6g"
+              data-category="General"
+              data-category-id="DIC_kwDOO9SV6s4CsDnd"
+              data-mapping="pathname"
+              data-strict="0"
+              data-reactions-enabled="1"
+              data-emit-metadata="0"
+              data-input-position="top"
+              data-theme="dark_dimmed"
+              data-lang="zh-CN"
+              crossorigin="anonymous"
+              async>
+      </script>
+    </div>
+  </div>
+</article>
+
+    </main>
+    <footer style="text-align: center; padding: 2em 0; font-size: 0.9em; color: #888;">
+      
+        本网站基于m10c主题的修改大部分由ChatGPT完成，NinePendoragon只负责提出问题，copy还有返回报错!
+      
+    </footer>
+      
+    
+      
+        <script src="/js/custom.js"></script>
+      
+    
+  </body>
+</html>
