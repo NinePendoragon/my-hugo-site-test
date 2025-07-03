@@ -91,7 +91,7 @@
       </div>
       <div>
         <svg class="icon icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>clock</title><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-        10 min read
+        11 min read
       </div>
       <div>
         <svg class="icon icon-tag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
@@ -132,13 +132,13 @@
         .post-toc {
           display: none;
         }
-        .post-main {
+        .post- {
           max-width: 100% !important;
         }
       }
     </style>
   <div class="post-wrapper">
-    <div class="post-content" style="flex: 1; max-width: 65rem; width: 100%;">
+    <div class="post-content" style="flex: 1; max-width: 100%;">
       <h2 id="官网">官网：</h2>
 <p><a href="https://learn.microsoft.com/zh-cn/windows/wsl/install">https://learn.microsoft.com/zh-cn/windows/wsl/install</a></p>
 <h2 id="使用wsl安装linux">使用wsl安装linux</h2>
@@ -192,6 +192,18 @@
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-PowerShell" data-lang="PowerShell"><span style="display:flex;"><span><span style="color:#75715e">#PowerShell</span>
 </span></span><span style="display:flex;"><span>wsl --manage archlinux --set-default-user username
 </span></span></code></pre></div><p>&ldquo;wsl &ndash;help&quot;可以查看更多关于wsl的命令选项。</p>
+<h3 id="3-wsl配置文件-参考">3. wsl配置文件 （参考）</h3>
+<pre tabindex="0"><code>    [wsl2]
+    memory=8GB
+    processors=8
+    [experimental]
+    autoMemoryReclaim=gradual
+    networkingMode=mirrored
+    dnsTunneling=true
+    firewall=true
+    autoProxy=true
+    sparseVhd=true
+</code></pre><p>文件存放于c盘/用户/用户名目录下，文件名为&rdquo;.wslconfig&quot;。这个我也是搬的别的大佬的。</p>
 <h2 id="安装root">安装ROOT</h2>
 <h3 id="1-包管理器安装推荐">1. 包管理器安装（推荐）</h3>
 <p>打开终端，输入，</p>
@@ -507,6 +519,7 @@
 使用pacman安装其他的依赖（也可以用yay安装）</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># bash</span>
 </span></span><span style="display:flex;"><span>sudo pacman -S xerces-c qt6-base openmotif soqt boost
+</span></span><span style="display:flex;"><span>sudo pacman -S qt5-base qt5-tools qt5-svg mesa glu
 </span></span></code></pre></div><p>然后跟着官方教程走。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># bash</span>
 </span></span><span style="display:flex;"><span>git clone https://aur.archlinux.org/geant4.git
@@ -515,10 +528,21 @@
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># bash</span>
 </span></span><span style="display:flex;"><span>yay -S coin --editmenu   <span style="color:#75715e">#我也不知道这一步干什么的</span>
 </span></span><span style="display:flex;"><span>nano PKGBUILD
-</span></span></code></pre></div><p>把“-DCMAKE_POLICY_VERSION_MINIMUM=3.5”加载cmake那一堆里。然后继续，</p>
+</span></span></code></pre></div><p>把“-DCMAKE_POLICY_VERSION_MINIMUM=3.5”加载cmake那一堆里。或者</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># bash</span>
+</span></span><span style="display:flex;"><span>sudo nano /usr/lib/cmake/Coin-4.0.3/coin-config.cmake
+</span></span></code></pre></div><p>把“cmake_minimum_required(VERSION 2.8.12)”注释掉，也就是在这一行前面加上#。</p>
+<p>然后继续，</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># bash</span>
 </span></span><span style="display:flex;"><span>makepkg --syncdeps
-</span></span></code></pre></div><h3 id="报错-1">报错</h3>
+</span></span></code></pre></div><p>运行完之后得到一个名为geant4-<!-- raw HTML omitted -->-x86_64.pkg.tar 的文件，例如我的是geant4-11.3.1-1-x86_64.pkg.tar，</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># bash</span>
+</span></span><span style="display:flex;"><span>sudo pacman -U geant4-11.3.1-1-x86_64.pkg.tar
+</span></span></code></pre></div><p>差了一步，还得下载data文件，在官网下载所有data文件。把文件解压到/usr/sbin/../share/Geant4/目录下，然后在终端中配置环境，</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># bash</span>
+</span></span><span style="display:flex;"><span>nano ~/.bashrc 
+</span></span></code></pre></div><p>将“source geant4/pkg/geant4/usr/bin/geant4.sh” 添加到最后。</p>
+<h3 id="报错-1">报错</h3>
 <p>makepkg &ndash;syncdeps 一步出现报错：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># bash</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>nine@DESKTOP-VL1ESD8 geant4<span style="color:#f92672">]</span>$ makepkg --syncdeps
@@ -574,6 +598,7 @@
       <ul>
         <li><a href="#1-安装wsl">1. 安装wsl</a></li>
         <li><a href="#2-为archlinux创建非root用户">2. 为archlinux创建非root用户</a></li>
+        <li><a href="#3-wsl配置文件-参考">3. wsl配置文件 （参考）</a></li>
       </ul>
     </li>
     <li><a href="#安装root">安装ROOT</a>
