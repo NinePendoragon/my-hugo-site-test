@@ -2,76 +2,76 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>localhost/tags/geant4/</loc>
+    <loc>www.ninependoragon.moe/tags/geant4/</loc>
     <lastmod>2025-07-03T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>localhost/</loc>
-    <lastmod>2025-07-03T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="localhost/zh/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="localhost/"
-                />
-  </url><url>
-    <loc>localhost/posts/</loc>
-    <lastmod>2025-07-03T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>localhost/tags/root/</loc>
-    <lastmod>2025-07-03T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>localhost/tags/</loc>
+    <loc>www.ninependoragon.moe/</loc>
     <lastmod>2025-07-03T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="localhost/zh/tags/"
+                href="www.ninependoragon.moe/zh/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="localhost/tags/"
+                href="www.ninependoragon.moe/"
                 />
   </url><url>
-    <loc>localhost/tags/wsl/</loc>
+    <loc>www.ninependoragon.moe/posts/</loc>
     <lastmod>2025-07-03T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>localhost/posts/wsl_archlinux/</loc>
+    <loc>www.ninependoragon.moe/tags/root/</loc>
     <lastmod>2025-07-03T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>localhost/posts/geant4_installation/</loc>
+    <loc>www.ninependoragon.moe/tags/</loc>
+    <lastmod>2025-07-03T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="www.ninependoragon.moe/zh/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="www.ninependoragon.moe/tags/"
+                />
+  </url><url>
+    <loc>www.ninependoragon.moe/tags/wsl/</loc>
+    <lastmod>2025-07-03T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>www.ninependoragon.moe/posts/wsl_archlinux/</loc>
+    <lastmod>2025-07-03T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>www.ninependoragon.moe/posts/geant4_installation/</loc>
     <lastmod>2025-06-21T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>localhost/about/</loc>
+    <loc>www.ninependoragon.moe/about/</loc>
   </url><url>
-    <loc>localhost/blog/</loc>
+    <loc>www.ninependoragon.moe/blog/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="localhost/zh/blog/"
+                href="www.ninependoragon.moe/zh/blog/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="localhost/blog/"
+                href="www.ninependoragon.moe/blog/"
                 />
   </url><url>
-    <loc>localhost/series/</loc>
+    <loc>www.ninependoragon.moe/series/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="localhost/zh/series/"
+                href="www.ninependoragon.moe/zh/series/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="localhost/series/"
+                href="www.ninependoragon.moe/series/"
                 />
   </url><url>
-    <loc>localhost/tools/</loc>
+    <loc>www.ninependoragon.moe/tools/</loc>
   </url>
 </urlset>

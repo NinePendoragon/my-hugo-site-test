@@ -2,52 +2,52 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>localhost/zh/blog/</loc>
+    <loc>www.ninependoragon.moe/zh/blog/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="localhost/blog/"
+                href="www.ninependoragon.moe/blog/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="localhost/zh/blog/"
+                href="www.ninependoragon.moe/zh/blog/"
                 />
   </url><url>
-    <loc>localhost/zh/</loc>
+    <loc>www.ninependoragon.moe/zh/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="localhost/"
+                href="www.ninependoragon.moe/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="localhost/zh/"
+                href="www.ninependoragon.moe/zh/"
                 />
   </url><url>
-    <loc>localhost/zh/series/</loc>
+    <loc>www.ninependoragon.moe/zh/series/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="localhost/series/"
+                href="www.ninependoragon.moe/series/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="localhost/zh/series/"
+                href="www.ninependoragon.moe/zh/series/"
                 />
   </url><url>
-    <loc>localhost/zh/tags/</loc>
+    <loc>www.ninependoragon.moe/zh/tags/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="localhost/tags/"
+                href="www.ninependoragon.moe/tags/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="localhost/zh/tags/"
+                href="www.ninependoragon.moe/zh/tags/"
                 />
   </url>
 </urlset>

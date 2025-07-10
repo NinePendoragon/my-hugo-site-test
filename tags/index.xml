@@ -2,32 +2,32 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on I&#39;m Nine_Pendoragon</title>
-    <link>localhost/tags/</link>
+    <link>www.ninependoragon.moe/tags/</link>
     <description>Recent content in Tags on I&#39;m Nine_Pendoragon</description>
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
     <lastBuildDate>Thu, 03 Jul 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="localhost/tags/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="www.ninependoragon.moe/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Geant4</title>
-      <link>localhost/tags/geant4/</link>
+      <link>www.ninependoragon.moe/tags/geant4/</link>
       <pubDate>Thu, 03 Jul 2025 00:00:00 +0000</pubDate>
-      <guid>localhost/tags/geant4/</guid>
+      <guid>www.ninependoragon.moe/tags/geant4/</guid>
       <description></description>
     </item>
     <item>
       <title>ROOT</title>
-      <link>localhost/tags/root/</link>
+      <link>www.ninependoragon.moe/tags/root/</link>
       <pubDate>Thu, 03 Jul 2025 00:00:00 +0000</pubDate>
-      <guid>localhost/tags/root/</guid>
+      <guid>www.ninependoragon.moe/tags/root/</guid>
       <description></description>
     </item>
     <item>
       <title>Wsl</title>
-      <link>localhost/tags/wsl/</link>
+      <link>www.ninependoragon.moe/tags/wsl/</link>
       <pubDate>Thu, 03 Jul 2025 00:00:00 +0000</pubDate>
-      <guid>localhost/tags/wsl/</guid>
+      <guid>www.ninependoragon.moe/tags/wsl/</guid>
       <description></description>
     </item>
   </channel>
