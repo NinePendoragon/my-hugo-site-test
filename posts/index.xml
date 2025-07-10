@@ -1,20 +1,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Posts on I&#39;m Nine_Pendoragon</title>
-        <link>www.ninependoragon.moe/posts/</link>
+        <link>https://ninependoragon.moe/posts/</link>
         <description>Recent content in Posts on I&#39;m Nine_Pendoragon</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
         <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
         <lastBuildDate>Thu, 03 Jul 2025 00:00:00 +0000</lastBuildDate>
-        <atom:link href="www.ninependoragon.moe/posts/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://ninependoragon.moe/posts/index.xml" rel="self" type="application/rss+xml" />
         
         <item>
             <title>使用wsl安装archlinux，Geant4及ROOT</title>
-            <link>www.ninependoragon.moe/posts/wsl_archlinux/</link>
+            <link>https://ninependoragon.moe/posts/wsl_archlinux/</link>
             <pubDate>Thu, 03 Jul 2025 00:00:00 +0000</pubDate>
             
-            <guid>www.ninependoragon.moe/posts/wsl_archlinux/</guid>
+            <guid>https://ninependoragon.moe/posts/wsl_archlinux/</guid>
             <description>&lt;h2 id=&#34;官网&#34;&gt;官网：&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&#34;https://learn.microsoft.com/zh-cn/windows/wsl/install&#34;&gt;https://learn.microsoft.com/zh-cn/windows/wsl/install&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&#34;使用wsl安装linux&#34;&gt;使用wsl安装linux&lt;/h2&gt;
@@ -505,16 +505,16 @@
         
         <item>
             <title>通过源码安装Geant4</title>
-            <link>www.ninependoragon.moe/posts/geant4_installation/</link>
+            <link>https://ninependoragon.moe/posts/geant4_installation/</link>
             <pubDate>Sat, 21 Jun 2025 00:00:00 +0000</pubDate>
             
-            <guid>www.ninependoragon.moe/posts/geant4_installation/</guid>
+            <guid>https://ninependoragon.moe/posts/geant4_installation/</guid>
             <description>&lt;p&gt;今天拿我师兄的Geant4模拟在mac运行又运行不了了，折腾后发现似乎要重装Geant4。虽然Geant4我不会用，但是安装Geant4我还是蛮有经验的！我在ubuntu、arch、mac上都多次安装过Geant4，所以趁这个机会，就把安装Geant4作为我的第一篇帖子吧。&lt;/p&gt;
 &lt;h2 id=&#34;官方教程&#34;&gt;官方教程&lt;/h2&gt;
 &lt;p&gt;我是计算机小白，如果有想将这篇帖子作为教程来安装Geant4的话还是有很大的风险的，所以还是以官方教程为准，这里说点题外话，我在折腾arch的时候，每次遇到问题去问师兄A，他会让我去查arch的wiki，去问师兄B，他会让我去问ai，我现在每次想问他们问题的时候，都会选择直接去问ai还有查wiki了，所以大家也要养成自己查wiki的好习惯！有很多问题其实仔细查阅wiki都能自己解决的。现在的ai很强大了，就算wiki上查不到，去问ai也是可以解决大部分问题的，当然这些都是我根据个人经验来看是这样的。不过上面提到的两个师兄人其实是非常好的，只能说他们让我体会到什么叫作”授人以鱼不如授人以渔“。&lt;/p&gt;
-&lt;p&gt;打开Geant4官网&lt;a href=&#34;https://geant4.web.cern.ch/&#34;&gt;https://geant4.web.cern.ch/&lt;/a&gt;，选择Docs项，&lt;img src=&#34;www.ninependoragon.moe/geant4/geant4.jpg&#34; alt=&#34;Geant4主页&#34; title=&#34;Geant4主页&#34;&gt;&lt;/p&gt;
-&lt;p&gt;然后选择&lt;a href=&#34;https://geant4-userdoc.web.cern.ch/UsersGuides/InstallationGuide/html/index.html&#34;&gt;Installation Guide&lt;/a&gt;，&lt;img src=&#34;www.ninependoragon.moe/geant4/docs.png&#34; alt=&#34;docs&#34; title=&#34;docs&#34;&gt;&lt;/p&gt;
-&lt;p&gt;这里就是如何安装Geant4的官方教程。&lt;img src=&#34;www.ninependoragon.moe/geant4/installationGuide.png&#34; alt=&#34;installation&#34; title=&#34;installation&#34;&gt;&lt;/p&gt;
+&lt;p&gt;打开Geant4官网&lt;a href=&#34;https://geant4.web.cern.ch/&#34;&gt;https://geant4.web.cern.ch/&lt;/a&gt;，选择Docs项，&lt;img src=&#34;https://ninependoragon.moe/geant4/geant4.jpg&#34; alt=&#34;Geant4主页&#34; title=&#34;Geant4主页&#34;&gt;&lt;/p&gt;
+&lt;p&gt;然后选择&lt;a href=&#34;https://geant4-userdoc.web.cern.ch/UsersGuides/InstallationGuide/html/index.html&#34;&gt;Installation Guide&lt;/a&gt;，&lt;img src=&#34;https://ninependoragon.moe/geant4/docs.png&#34; alt=&#34;docs&#34; title=&#34;docs&#34;&gt;&lt;/p&gt;
+&lt;p&gt;这里就是如何安装Geant4的官方教程。&lt;img src=&#34;https://ninependoragon.moe/geant4/installationGuide.png&#34; alt=&#34;installation&#34; title=&#34;installation&#34;&gt;&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;macos&#34;&gt;MacOS&lt;/h2&gt;
 &lt;p&gt;跟着大佬学着列一下我的设备和环境：&lt;/p&gt;

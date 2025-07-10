@@ -2,52 +2,52 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>www.ninependoragon.moe/zh/blog/</loc>
+    <loc>https://ninependoragon.moe/zh/blog/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="www.ninependoragon.moe/blog/"
+                href="https://ninependoragon.moe/blog/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="www.ninependoragon.moe/zh/blog/"
+                href="https://ninependoragon.moe/zh/blog/"
                 />
   </url><url>
-    <loc>www.ninependoragon.moe/zh/</loc>
+    <loc>https://ninependoragon.moe/zh/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="www.ninependoragon.moe/"
+                href="https://ninependoragon.moe/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="www.ninependoragon.moe/zh/"
+                href="https://ninependoragon.moe/zh/"
                 />
   </url><url>
-    <loc>www.ninependoragon.moe/zh/series/</loc>
+    <loc>https://ninependoragon.moe/zh/series/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="www.ninependoragon.moe/series/"
+                href="https://ninependoragon.moe/series/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="www.ninependoragon.moe/zh/series/"
+                href="https://ninependoragon.moe/zh/series/"
                 />
   </url><url>
-    <loc>www.ninependoragon.moe/zh/tags/</loc>
+    <loc>https://ninependoragon.moe/zh/tags/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="www.ninependoragon.moe/tags/"
+                href="https://ninependoragon.moe/tags/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="www.ninependoragon.moe/zh/tags/"
+                href="https://ninependoragon.moe/zh/tags/"
                 />
   </url>
 </urlset>
