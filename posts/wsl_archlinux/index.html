@@ -1,18 +1,70 @@
-<!doctype html>
-<html lang="zh-cn">
-  <head>
-    <title>使用wsl安装archlinux，Geant4及ROOT // Nine_Pendoragon</title>
-    <link rel="shortcut icon" href="/favicon.jpg" />
-    <meta charset="utf-8" />
-    <meta name="generator" content="Hugo 0.147.8">
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="author" content="Nine_Pendoragon" />
-    <meta name="description" content="" />
-    <link rel="stylesheet" href="/css/main.min.93c02c49e4bbf2f909b7de8482c126e6a280953404a9dea238289ff38844e4e3.css" />
-    
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
 
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="">
+<meta name="description" content="官网： https://learn.microsoft.com/zh-cn/windows/wsl/install
+使用wsl安装linux 1. 安装wsl 打开终端管理员，win11鼠标右键点击win菜单可以找到。
+# PowerShell wsl --install 遇到如下报错：
+# PowerShell PS C:\Users\gouz&gt; wsl --install 正在下载: Ubuntu 正在安装: Ubuntu 由于未安装所需的特性，无法启动操作。 错误代码: Wsl/InstallDistro/Service/RegisterDistro/CreateVm/HCS/HCS_E_SERVICE_NOT_AVAILABLE 按照旧版本的步骤先启用适用于linux的windows子系统，然后启用虚拟机功能，然后关机重启。
+# PowerShell dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart 重启之后再次打开终端管理员，输入：
+# PowerShell wsl --install 默认安装的是Ubuntu，在windows终端内输入
+# PowerShell wsl -l -o 可以查看在线商店可用的linux分发版的列表。 我更换成了archlinux，
+# PowerShell wsl --install -d archlinux 2. 为archlinux创建非root用户 先在windows终端中打开wsl archlinux
+# PowerShell wsl -d archlinux 进入archlinux默认是root用户，先安装sudo软件包
+# bash pacman -Syu pacman -S sudo 然后创建非root用户，注意下面的命令仍然是在archlinux的终端中输入。
+" />
+<meta name="keywords" content="homepage, blog, Geant4, wsl, ROOT" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="localhost/posts/wsl_archlinux/" />
+
+
+    <title>
+        
+            使用wsl安装archlinux，Geant4及ROOT :: I&#39;m Nine_Pendoragon  — Nine_Pendoragon&#39;s blog
+        
+    </title>
+
+
+
+
+
+  <link rel="stylesheet" href="localhost/main.min.07ea7ac7da67e2e153a7dfa2457bc6a19cca824288d175e223fadc579041bc51.css" integrity="sha256-B&#43;p6x9pn4uFTp9&#43;iRXvGoZzKgkKI0XXiI/rcV5BBvFE=" crossorigin="anonymous">
+
+
+
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/localhost/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/localhost/favicon-96x96.png">
     
-    
+    <link rel="manifest" href="/localhost/site.webmanifest">
+    <link rel="mask-icon" href="/localhost/safari-pinned-tab.svg" color="">
+    <link rel="shortcut icon" href="/localhost/favicon.ico">
+    <meta name="msapplication-TileColor" content="">
+
+
+
+  <meta itemprop="name" content="使用wsl安装archlinux，Geant4及ROOT">
+  <meta itemprop="description" content="官网： https://learn.microsoft.com/zh-cn/windows/wsl/install
+使用wsl安装linux 1. 安装wsl 打开终端管理员，win11鼠标右键点击win菜单可以找到。
+# PowerShell wsl --install 遇到如下报错：
+# PowerShell PS C:\Users\gouz&gt; wsl --install 正在下载: Ubuntu 正在安装: Ubuntu 由于未安装所需的特性，无法启动操作。 错误代码: Wsl/InstallDistro/Service/RegisterDistro/CreateVm/HCS/HCS_E_SERVICE_NOT_AVAILABLE 按照旧版本的步骤先启用适用于linux的windows子系统，然后启用虚拟机功能，然后关机重启。
+# PowerShell dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart 重启之后再次打开终端管理员，输入：
+# PowerShell wsl --install 默认安装的是Ubuntu，在windows终端内输入
+# PowerShell wsl -l -o 可以查看在线商店可用的linux分发版的列表。 我更换成了archlinux，
+# PowerShell wsl --install -d archlinux 2. 为archlinux创建非root用户 先在windows终端中打开wsl archlinux
+# PowerShell wsl -d archlinux 进入archlinux默认是root用户，先安装sudo软件包
+# bash pacman -Syu pacman -S sudo 然后创建非root用户，注意下面的命令仍然是在archlinux的终端中输入。">
+  <meta itemprop="datePublished" content="2025-07-03T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2025-07-03T00:00:00+00:00">
+  <meta itemprop="wordCount" content="2154">
+  <meta itemprop="keywords" content="Geant4,Wsl,ROOT">
+
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="使用wsl安装archlinux，Geant4及ROOT">
   <meta name="twitter:description" content="官网： https://learn.microsoft.com/zh-cn/windows/wsl/install
@@ -26,8 +78,10 @@
 # PowerShell wsl -d archlinux 进入archlinux默认是root用户，先安装sudo软件包
 # bash pacman -Syu pacman -S sudo 然后创建非root用户，注意下面的命令仍然是在archlinux的终端中输入。">
 
-    <meta property="og:url" content="https://ninependoragon.moe/posts/wsl_archlinux/">
-  <meta property="og:site_name" content="Nine_Pendoragon">
+
+
+    <meta property="og:url" content="localhost/posts/wsl_archlinux/">
+  <meta property="og:site_name" content="I&#39;m Nine_Pendoragon">
   <meta property="og:title" content="使用wsl安装archlinux，Geant4及ROOT">
   <meta property="og:description" content="官网： https://learn.microsoft.com/zh-cn/windows/wsl/install
 使用wsl安装linux 1. 安装wsl 打开终端管理员，win11鼠标右键点击win菜单可以找到。
@@ -39,7 +93,7 @@
 # PowerShell wsl --install -d archlinux 2. 为archlinux创建非root用户 先在windows终端中打开wsl archlinux
 # PowerShell wsl -d archlinux 进入archlinux默认是root用户，先安装sudo软件包
 # bash pacman -Syu pacman -S sudo 然后创建非root用户，注意下面的命令仍然是在archlinux的终端中输入。">
-  <meta property="og:locale" content="zh_cn">
+  <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2025-07-03T00:00:00+00:00">
@@ -49,94 +103,94 @@
     <meta property="article:tag" content="ROOT">
 
 
-  </head>
-  <body>
-    <header class="app-header">
-      <a href="/"><img class="app-header-avatar" src="/avatar.jpg" alt="Nine_Pendoragon" /></a>
-      <span class="app-header-title">Nine_Pendoragon</span>
-      <nav class="app-header-menu">
-          <a class="app-header-menu-item" href="/">Home</a>
-             - 
-          
-          <a class="app-header-menu-item" href="/tags/">Tags</a>
-             - 
-          
-          <a class="app-header-menu-item" href="/about/">About</a>
-             - 
-          
-          <a class="app-header-menu-item" href="/tools/">Tools</a>
-      </nav>
-      <p>磨刀不误砍柴工</p>
-      <div class="app-header-social">
-        
-          <a href="https://github.com/NinePendoragon" target="_blank" rel="noreferrer noopener me">
-            <svg class="icon icon-brand-github" viewBox="0 0 24 24" fill="currentColor"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
-          </a>
-        
-          <a href="https://b23.tv/5W03nDb" target="_blank" rel="noreferrer noopener me">
-            <svg class="icon icon-brand-bilibili" viewBox="0 0 24 24" fill="currentColor"><title>Bilibili</title><path d="M17.813 4.653h.854c1.51.054 2.769.578 3.773 1.574 1.004.995 1.524 2.249 1.56 3.76v7.36c-.036 1.51-.556 2.769-1.56 3.773s-2.262 1.524-3.773 1.56H5.333c-1.51-.036-2.769-.556-3.773-1.56S.036 18.858 0 17.347v-7.36c.036-1.511.556-2.765 1.56-3.76 1.004-.996 2.262-1.52 3.773-1.574h.774l-1.174-1.12a1.234 1.234 0 0 1-.373-.906c0-.356.124-.658.373-.907l.027-.027c.267-.249.573-.373.92-.373.347 0 .653.124.92.373L9.653 4.44c.071.071.134.142.187.213h4.267a.836.836 0 0 1 .16-.213l2.853-2.747c.267-.249.573-.373.92-.373.347 0 .662.151.929.4.267.249.391.551.391.907 0 .355-.124.657-.373.906zM5.333 7.24c-.746.018-1.373.276-1.88.773-.506.498-.769 1.13-.786 1.894v7.52c.017.764.28 1.395.786 1.893.507.498 1.134.756 1.88.773h13.334c.746-.017 1.373-.275 1.88-.773.506-.498.769-1.129.786-1.893v-7.52c-.017-.765-.28-1.396-.786-1.894-.507-.497-1.134-.755-1.88-.773zM8 11.107c.373 0 .684.124.933.373.25.249.383.569.4.96v1.173c-.017.391-.15.711-.4.96-.249.25-.56.374-.933.374s-.684-.125-.933-.374c-.25-.249-.383-.569-.4-.96V12.44c0-.373.129-.689.386-.947.258-.257.574-.386.947-.386zm8 0c.373 0 .684.124.933.373.25.249.383.569.4.96v1.173c-.017.391-.15.711-.4.96-.249.25-.56.374-.933.374s-.684-.125-.933-.374c-.25-.249-.383-.569-.4-.96V12.44c.017-.391.15-.711.4-.96.249-.249.56-.373.933-.373Z"/></svg>
-          </a>
-        
-      </div>
-    </header>
-    <main class="app-container">
-      
-<article class="post">
-  <header class="post-header">
-    <h1 class="post-title">使用wsl安装archlinux，Geant4及ROOT</h1>
-    <div class="post-meta">
-      <div>
-        <svg class="icon icon-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-        Jul 3, 2025
-      </div>
-      <div>
-        <svg class="icon icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>clock</title><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-        11 min read
-      </div>
-      <div>
-        <svg class="icon icon-tag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
-            <a class="tag" href="/tags/geant4/">Geant4</a>
-            <a class="tag" href="/tags/wsl/">Wsl</a>
-            <a class="tag" href="/tags/root/">ROOT</a>
-      </div>
-    </div>
-  </header>
-    
-    <style>
-      .post-wrapper {
-        display: flex;
-        gap: 2rem;
-      }
 
-      .post-toc {
-        flex: 0 0 300px;
-        font-size: 0.9em;
-        position: sticky;
-        top: 100px;
-        max-height: calc(100vh - 100px);
-        overflow: auto;
-        border-left: 1px solid #ddd;
-        padding-left: 1rem;
-      }
-      .post img {
-        max-width: 100%;
-        height: auto;
-      }
-      @media (max-width: 939px) {
-        .post-wrapper {
-          flex-direction: column;
-        }
-        .post-toc {
-          display: none;
-        }
-        .post- {
-          max-width: 100% !important;
-        }
-      }
-    </style>
-  <div class="post-wrapper">
-    <div class="post-content" style="flex: 1; max-width: 100%;">
-      <h2 id="官网">官网：</h2>
+
+
+
+    <meta property="article:published_time" content="2025-07-03 00:00:00 &#43;0000 UTC" />
+
+
+
+
+
+
+
+
+
+
+
+
+    </head>
+
+    
+        <body>
+    
+    
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">&gt;</span>
+            <span class="logo__text ">
+                @Nine_Pendoragon$</span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="/localhost/about">About</a></li><li><a href="/localhost/posts">Blog</a></li><li><a href="/localhost/tags">Tags</a></li><li><a href="/localhost/tools">Tools</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+  <main class="post">
+
+    <div class="post-info">
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="12 6 12 12 16 14"></polyline>
+        </svg>
+        11 minutes
+
+        
+      </p>
+    </div>
+
+    <article>
+      <h1 class="post-title">
+        <a href="localhost/posts/wsl_archlinux/">使用wsl安装archlinux，Geant4及ROOT</a>
+      </h1>
+
+      
+
+      
+
+      
+
+      <div class="post-content">
+        <h2 id="官网">官网：</h2>
 <p><a href="https://learn.microsoft.com/zh-cn/windows/wsl/install">https://learn.microsoft.com/zh-cn/windows/wsl/install</a></p>
 <h2 id="使用wsl安装linux">使用wsl安装linux</h2>
 <h3 id="1-安装wsl">1. 安装wsl</h3>
@@ -585,70 +639,123 @@
 </span></span><span style="display:flex;"><span>nano PKGBUILD
 </span></span></code></pre></div><p>把“-DCMAKE_POLICY_VERSION_MINIMUM=3.5”加载cmake那一堆里。</p>
 
+      </div>
+    </article>
+
+    <hr />
+
+    <div class="post-info">
+      
+    <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg>
+
+        <span class="tag"><a href="localhost/tags/geant4/">Geant4</a></span>
+        <span class="tag"><a href="localhost/tags/wsl/">wsl</a></span>
+        <span class="tag"><a href="localhost/tags/root/">ROOT</a></span>
+        
+    </p>
+
+      
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+          <polyline points="10 9 9 9 8 9"></polyline>
+        </svg>
+        2154 Words
+      </p>
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+          <line x1="16" y1="2" x2="16" y2="6"></line>
+          <line x1="8" y1="2" x2="8" y2="6"></line>
+          <line x1="3" y1="10" x2="21" y2="10"></line>
+        </svg>
+        
+          2025-07-03 08:00
+        
+
+         
+          
+        
+      </p>
+    </div>
+
+    
+    <div class="pagination">
+        
+
+        <div class="pagination__buttons">
+            
+
+            
+            <span class="button next">
+                <a href="localhost/posts/geant4_installation/">
+                    <span class="button__text">通过源码安装Geant4</span>
+                    <span class="button__icon">→</span>
+                </a>
+            </span>
+            
+        </div>
+    </div>
+
+
+    
+
+    
+
+    
+    <script src="https://utteranc.es/client.js"
+            repo="NinePendoragon/my-hugo-site-test"
+            label="comment"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    
+
+  </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy; 2025</span>
+            <span><a href="localhost/">Nine_Pendoragon</a></span>
+            <span><a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></span>
+            <span><a href="localhost/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
+            
+        </div>
     </div>
     
-    <aside class="post-toc">
-      <nav id="TableOfContents">
-  <ul>
-    <li><a href="#官网">官网：</a></li>
-    <li><a href="#使用wsl安装linux">使用wsl安装linux</a>
-      <ul>
-        <li><a href="#1-安装wsl">1. 安装wsl</a></li>
-        <li><a href="#2-为archlinux创建非root用户">2. 为archlinux创建非root用户</a></li>
-        <li><a href="#3-wsl配置文件-参考">3. wsl配置文件 （参考）</a></li>
-      </ul>
-    </li>
-    <li><a href="#安装root">安装ROOT</a>
-      <ul>
-        <li><a href="#1-包管理器安装推荐">1. 包管理器安装（推荐）</a></li>
-        <li><a href="#2-从源码构建不推荐">2. 从源码构建（不推荐）</a></li>
-      </ul>
-    </li>
-    <li><a href="#安装geant4">安装Geant4</a>
-      <ul>
-        <li><a href="#报错-1">报错</a></li>
-      </ul>
-    </li>
-  </ul>
-</nav>
-    </aside>
     
-  </div>
-
-
-  <div id ="comments">
-    
-    <div class="post-footer">
-      <script src="https://giscus.app/client.js"
-              data-repo="NinePendoragon/my-hugo-site-test"
-              data-repo-id="R_kgDOO9SV6g"
-              data-category="General"
-              data-category-id="DIC_kwDOO9SV6s4CsDnd"
-              data-mapping="pathname"
-              data-strict="0"
-              data-reactions-enabled="1"
-              data-emit-metadata="0"
-              data-input-position="top"
-              data-theme="dark_dimmed"
-              data-lang="zh-CN"
-              crossorigin="anonymous"
-              async>
-      </script>
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>Powered by <a href="http://gohugo.io">Hugo</a></span><span>Made with &#10084; by <a href="https://github.com/rhazdon">Djordje Atlialp</a></span>
+        </div>
     </div>
-  </div>
-</article>
+    
+</footer>
 
-    </main>
-    <footer style="text-align: center; padding: 2em 0; font-size: 0.9em; color: #888;">
-      
-        本网站基于m10c主题的修改大部分由ChatGPT完成，NinePendoragon只负责提出问题，copy还有返回报错!
-      
-    </footer>
-      
-    
-      
-        <script src="/js/custom.js"></script>
-      
-    
-  </body>
+            
+        </div>
+
+        
+
+
+
+<script type="text/javascript" src="localhost/bundle.min.ad54ad97364f77ede35def9096b162bb1f0b3973aa50b080f5e82fa147f6882e2a7200d7535adbf9b51bebf939f1c1ca9bbe6be87530092aca720eac4a226fda.js" integrity="sha512-rVStlzZPd&#43;3jXe&#43;QlrFiux8LOXOqULCA9egvoUf2iC4qcgDXU1rb&#43;bUb6/k58cHKm75r6HUwCSrKcg6sSiJv2g=="></script>
+
+
+
+
+    </body>
 </html>

@@ -2,53 +2,76 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/tags/geant4/</loc>
-    <lastmod>2025-06-21T00:00:00+00:00</lastmod>
+    <loc>localhost/tags/geant4/</loc>
+    <lastmod>2025-07-03T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/</loc>
-    <lastmod>2025-06-21T00:00:00+00:00</lastmod>
+    <loc>localhost/</loc>
+    <lastmod>2025-07-03T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="http://localhost:1313/zh/"
+                href="localhost/zh/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/"
+                href="localhost/"
                 />
   </url><url>
-    <loc>http://localhost:1313/posts/</loc>
-    <lastmod>2025-06-21T00:00:00+00:00</lastmod>
+    <loc>localhost/posts/</loc>
+    <lastmod>2025-07-03T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/</loc>
-    <lastmod>2025-06-21T00:00:00+00:00</lastmod>
+    <loc>localhost/tags/root/</loc>
+    <lastmod>2025-07-03T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>localhost/tags/</loc>
+    <lastmod>2025-07-03T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="http://localhost:1313/zh/tags/"
+                href="localhost/zh/tags/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/tags/"
+                href="localhost/tags/"
                 />
   </url><url>
-    <loc>http://localhost:1313/posts/geant4_installation/</loc>
+    <loc>localhost/tags/wsl/</loc>
+    <lastmod>2025-07-03T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>localhost/posts/wsl_archlinux/</loc>
+    <lastmod>2025-07-03T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>localhost/posts/geant4_installation/</loc>
     <lastmod>2025-06-21T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/about/</loc>
+    <loc>localhost/about/</loc>
   </url><url>
-    <loc>http://localhost:1313/categories/</loc>
+    <loc>localhost/blog/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="http://localhost:1313/zh/categories/"
+                href="localhost/zh/blog/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/categories/"
+                href="localhost/blog/"
                 />
+  </url><url>
+    <loc>localhost/series/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="localhost/zh/series/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="localhost/series/"
+                />
+  </url><url>
+    <loc>localhost/tools/</loc>
   </url>
 </urlset>
