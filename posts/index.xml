@@ -106,17 +106,17 @@
 </span></span><span style="display:flex;"><span>wsl --manage archlinux --set-default-user username
 </span></span></code></pre></div><p>&ldquo;wsl &ndash;help&quot;可以查看更多关于wsl的命令选项。</p>
 <h3 id="3-wsl配置文件-参考">3. wsl配置文件 （参考）</h3>
-<pre tabindex="0"><code>    [wsl2]
-    memory=8GB
-    processors=8
-    [experimental]
-    autoMemoryReclaim=gradual
-    networkingMode=mirrored
-    dnsTunneling=true
-    firewall=true
-    autoProxy=true
-    sparseVhd=true
-</code></pre><p>文件存放于c盘/用户/用户名目录下，文件名为&rdquo;.wslconfig&quot;。这个我也是搬的别的大佬的。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ini" data-lang="ini"><span style="display:flex;"><span>    <span style="color:#66d9ef">[wsl2]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">memory</span><span style="color:#f92672">=</span><span style="color:#e6db74">8GB
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    processors=8
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    [experimental]
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    autoMemoryReclaim=gradual
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    networkingMode=mirrored
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    dnsTunneling=true
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    firewall=true
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    autoProxy=true
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    sparseVhd=true</span>
+</span></span></code></pre></div><p>文件存放于c盘/用户/用户名目录下，文件名为&rdquo;.wslconfig&quot;。这个我也是搬的别的大佬的。</p>
 <h2 id="安装root">安装ROOT</h2>
 <h3 id="1-包管理器安装推荐">1. 包管理器安装（推荐）</h3>
 <p>打开终端，输入，</p>
@@ -418,8 +418,9 @@
 </span></span><span style="display:flex;"><span>This warning is <span style="color:#66d9ef">for</span> project developers.  Use -Wno-dev to suppress it.
 </span></span></code></pre></div><p>安装 xrootd davix。不折腾这个了，放弃，改用包管理器安装。</p>
 <h2 id="安装geant4">安装Geant4</h2>
-<p>这里也用简单方法了，从源码构建就放在第一篇帖子里面折腾吧。
-<a href="https://geant4-userdoc.web.cern.ch/UsersGuides/InstallationGuide/html/">https://geant4-userdoc.web.cern.ch/UsersGuides/InstallationGuide/html/</a> &ldquo;Arch Users Repository on Arch Linux&quot;处跟着走，
+<p>这里也用简单方法了，从源码构建就放在第一篇帖子里面折腾吧。</p>
+<h3 id="总结">总结</h3>
+<p><a href="https://geant4-userdoc.web.cern.ch/UsersGuides/InstallationGuide/html/">https://geant4-userdoc.web.cern.ch/UsersGuides/InstallationGuide/html/</a> &ldquo;Arch Users Repository on Arch Linux&quot;处跟着走，
 先安装一下依赖，由于有一些依赖官方仓库里面没有，因此可以使用aur助手yay安装aur的包。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># bash</span>
 </span></span><span style="display:flex;"><span>git clone https://aur.archlinux.org/yay.git
@@ -439,7 +440,6 @@
 </span></span><span style="display:flex;"><span>cd geant4
 </span></span></code></pre></div><p>如果cmake版本过高，后面可能会报错，先修改一下PKGBUILD里面的cmake设置。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># bash</span>
-</span></span><span style="display:flex;"><span>yay -S coin --editmenu   <span style="color:#75715e">#我也不知道这一步干什么的</span>
 </span></span><span style="display:flex;"><span>nano PKGBUILD
 </span></span></code></pre></div><p>把“-DCMAKE_POLICY_VERSION_MINIMUM=3.5”加载cmake那一堆里。或者</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># bash</span>
