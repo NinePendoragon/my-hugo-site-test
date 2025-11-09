@@ -2,11 +2,8 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://ninependoragon.moe/tags/astrbot/</loc>
-    <lastmod>2025-11-08T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://ninependoragon.moe/</loc>
-    <lastmod>2025-11-08T00:00:00+00:00</lastmod>
+    <lastmod>2025-11-09T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
@@ -18,11 +15,14 @@
                 href="https://ninependoragon.moe/"
                 />
   </url><url>
+    <loc>https://ninependoragon.moe/tags/l4d2/</loc>
+    <lastmod>2025-11-09T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://ninependoragon.moe/posts/</loc>
-    <lastmod>2025-11-08T00:00:00+00:00</lastmod>
+    <lastmod>2025-11-09T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://ninependoragon.moe/tags/</loc>
-    <lastmod>2025-11-08T00:00:00+00:00</lastmod>
+    <lastmod>2025-11-09T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
@@ -34,13 +34,19 @@
                 href="https://ninependoragon.moe/tags/"
                 />
   </url><url>
+    <loc>https://ninependoragon.moe/posts/4_l4d2_server/</loc>
+    <lastmod>2025-11-09T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://ninependoragon.moe/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/</loc>
+    <lastmod>2025-11-09T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://ninependoragon.moe/tags/astrbot/</loc>
+    <lastmod>2025-11-08T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://ninependoragon.moe/tags/vps/</loc>
     <lastmod>2025-11-08T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://ninependoragon.moe/posts/astrbot/</loc>
-    <lastmod>2025-11-08T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://ninependoragon.moe/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/</loc>
+    <loc>https://ninependoragon.moe/posts/3_astrbot/</loc>
     <lastmod>2025-11-08T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://ninependoragon.moe/tags/geant4/</loc>
@@ -52,10 +58,10 @@
     <loc>https://ninependoragon.moe/tags/wsl/</loc>
     <lastmod>2025-07-03T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://ninependoragon.moe/posts/wsl_archlinux/</loc>
+    <loc>https://ninependoragon.moe/posts/2_wsl_archlinux/</loc>
     <lastmod>2025-07-03T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://ninependoragon.moe/posts/geant4_installation/</loc>
+    <loc>https://ninependoragon.moe/posts/1_geant4_installation/</loc>
     <lastmod>2025-06-21T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://ninependoragon.moe/about/</loc>

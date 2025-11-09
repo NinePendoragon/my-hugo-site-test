@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="">
+<meta name="description" content=" l4d2是一款不错的团建游戏，游戏有mod可以解锁房间8人联机，但是超过8人就得部署服务器。当然，可以在自己电脑上部署，然后通过frp内网穿透也是可以玩的，就是比较麻烦，我前几天也试过了在自己电脑上开了个服务器，然后用樱花fpr内网穿透，延迟还可以，就是我得先开游戏，再开服务器。不知道为什么在电脑上开服之后steam就是正在游戏状态。相关教程在樱花frp帮助文档里面也有。因为觉得太麻烦，就想找个云服试试看，上一篇帖子也提到了雨云的免费的游戏云面板服。 配置给l4d2开服应该也是够用了。记得选纯环境。
+这个mcsm面板服感觉像是在一个容器里面操作一样，相较于vps感觉很不方便，也不能ssh访问。不过这免费的还要啥自行车，3000积分无限续费，每天签到还送500积分，相当于可以一直嫖。抱着玩一玩的心态，耗时两个晚上也是搭建成功了。总体上来说和vps开服没什么区别，这里放一个大佬的教程https://www.bilibili.com/opus/736922474423255104，讲的还是蛮详细的。开服用到的是steamCMD这样一个东西，wiki上也有如何安装这个的教程https://developer.valvesoftware.com/wiki/SteamCMD#Debian，部署这个服务器大致分两步，第一步就是下载安装steamCMD和l4d2服务端，第二步就是安装插件平台和各种插件。在去这两个链接之前先把我下面的内容看完，很重要，虽然面板服上搭建服务器和vps没什么大的区别。
+那么在这个面板服上开服有哪些不同。因为这个面板服和docker差不多，只给挂载了根目录下的workspace文件夹，换句话说重启服务器之后只有这个workspace文件夹里面的东西是不会被删除的，我暂时不知道能不能让其他文件夹持久化，所以部署完之后不要重启服务器，而且所有的东西尽量安装在/workspace目录下。那么拿到服务器第一件事情是什么？上一篇帖子也说了，第一步应该是去换镜像源。镜像源目录一般是/etc/opt下名为sources.list的文件，或者sources.list.d的文件夹内的文件，我拿到手的服务器只有sources.list.d这个文件夹，删掉。然后用功能组里面的文件管理写入一个sources.list的文件，这个文件管理打开就是/workspace目录。我目前用的是南京大学的镜像源，速度还可以，sources.list怎么写可以问ai。创建好之后copy这个文件到/etc/opt目录，然后就可以apt update等操作了。还有一点值得注意的是记得安装sudo，因为l4d2不建议在root下开服，在你切换到普通用户时，要用sudo命令，反正我拿到手的服默认是没有sudo的，这个时候安装sudo，就得sudo apt install sudo，显然安装不了，只能切回root用户，但是又不知道密码，我也没试就直接重启了，当然重启意味着之前的工作全白做了。
+这里再补充几点。这个面板服也是可以安装screen的，这样就能在一个终端下面打开多个会话了，非常方便。ctrl A D也是可以用的。给普通用户sudo权限可以用sudo usermod -aG sudo username。开服的端口用服务器给你的端口就行，不一定要用27015。git clone太慢等问题可以直接问ai，各种报错也直接copy给ai让ai帮你分析，大部分情况下都能解决问题。
+服务器是搭好了，但是玩游戏的人呢？（）其实群里有人也拿vps搭了一个服，所以我这个面板服就相当于当玩具自己折腾着玩了玩，也没拿来测试效果怎么样，至少我自己能连上服务器，延迟也还可以。
+" />
+<meta name="keywords" content="homepage, blog, 服务器, l4d2" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="https://ninependoragon.moe/posts/4_l4d2_server/" />
+
+
+    <title>
+        
+            在雨云mcsm面板服部署l4d2服务器 :: I&#39;m Nine_Pendoragon  — Nine_Pendoragon&#39;s blog
+        
+    </title>
+
+
+
+
+
+  <link rel="stylesheet" href="/main.min.07ea7ac7da67e2e153a7dfa2457bc6a19cca824288d175e223fadc579041bc51.css" integrity="sha256-B&#43;p6x9pn4uFTp9&#43;iRXvGoZzKgkKI0XXiI/rcV5BBvFE=" crossorigin="anonymous">
+
+
+
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-96x96.png">
+    
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="msapplication-TileColor" content="">
+
+
+
+  <meta itemprop="name" content="在雨云mcsm面板服部署l4d2服务器">
+  <meta itemprop="description" content=" l4d2是一款不错的团建游戏，游戏有mod可以解锁房间8人联机，但是超过8人就得部署服务器。当然，可以在自己电脑上部署，然后通过frp内网穿透也是可以玩的，就是比较麻烦，我前几天也试过了在自己电脑上开了个服务器，然后用樱花fpr内网穿透，延迟还可以，就是我得先开游戏，再开服务器。不知道为什么在电脑上开服之后steam就是正在游戏状态。相关教程在樱花frp帮助文档里面也有。因为觉得太麻烦，就想找个云服试试看，上一篇帖子也提到了雨云的免费的游戏云面板服。 配置给l4d2开服应该也是够用了。记得选纯环境。
+这个mcsm面板服感觉像是在一个容器里面操作一样，相较于vps感觉很不方便，也不能ssh访问。不过这免费的还要啥自行车，3000积分无限续费，每天签到还送500积分，相当于可以一直嫖。抱着玩一玩的心态，耗时两个晚上也是搭建成功了。总体上来说和vps开服没什么区别，这里放一个大佬的教程https://www.bilibili.com/opus/736922474423255104，讲的还是蛮详细的。开服用到的是steamCMD这样一个东西，wiki上也有如何安装这个的教程https://developer.valvesoftware.com/wiki/SteamCMD#Debian，部署这个服务器大致分两步，第一步就是下载安装steamCMD和l4d2服务端，第二步就是安装插件平台和各种插件。在去这两个链接之前先把我下面的内容看完，很重要，虽然面板服上搭建服务器和vps没什么大的区别。
+那么在这个面板服上开服有哪些不同。因为这个面板服和docker差不多，只给挂载了根目录下的workspace文件夹，换句话说重启服务器之后只有这个workspace文件夹里面的东西是不会被删除的，我暂时不知道能不能让其他文件夹持久化，所以部署完之后不要重启服务器，而且所有的东西尽量安装在/workspace目录下。那么拿到服务器第一件事情是什么？上一篇帖子也说了，第一步应该是去换镜像源。镜像源目录一般是/etc/opt下名为sources.list的文件，或者sources.list.d的文件夹内的文件，我拿到手的服务器只有sources.list.d这个文件夹，删掉。然后用功能组里面的文件管理写入一个sources.list的文件，这个文件管理打开就是/workspace目录。我目前用的是南京大学的镜像源，速度还可以，sources.list怎么写可以问ai。创建好之后copy这个文件到/etc/opt目录，然后就可以apt update等操作了。还有一点值得注意的是记得安装sudo，因为l4d2不建议在root下开服，在你切换到普通用户时，要用sudo命令，反正我拿到手的服默认是没有sudo的，这个时候安装sudo，就得sudo apt install sudo，显然安装不了，只能切回root用户，但是又不知道密码，我也没试就直接重启了，当然重启意味着之前的工作全白做了。
+这里再补充几点。这个面板服也是可以安装screen的，这样就能在一个终端下面打开多个会话了，非常方便。ctrl A D也是可以用的。给普通用户sudo权限可以用sudo usermod -aG sudo username。开服的端口用服务器给你的端口就行，不一定要用27015。git clone太慢等问题可以直接问ai，各种报错也直接copy给ai让ai帮你分析，大部分情况下都能解决问题。
+服务器是搭好了，但是玩游戏的人呢？（）其实群里有人也拿vps搭了一个服，所以我这个面板服就相当于当玩具自己折腾着玩了玩，也没拿来测试效果怎么样，至少我自己能连上服务器，延迟也还可以。">
+  <meta itemprop="datePublished" content="2025-11-09T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2025-11-09T00:00:00+00:00">
+  <meta itemprop="wordCount" content="17">
+  <meta itemprop="keywords" content="服务器,L4d2">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="在雨云mcsm面板服部署l4d2服务器">
+  <meta name="twitter:description" content=" l4d2是一款不错的团建游戏，游戏有mod可以解锁房间8人联机，但是超过8人就得部署服务器。当然，可以在自己电脑上部署，然后通过frp内网穿透也是可以玩的，就是比较麻烦，我前几天也试过了在自己电脑上开了个服务器，然后用樱花fpr内网穿透，延迟还可以，就是我得先开游戏，再开服务器。不知道为什么在电脑上开服之后steam就是正在游戏状态。相关教程在樱花frp帮助文档里面也有。因为觉得太麻烦，就想找个云服试试看，上一篇帖子也提到了雨云的免费的游戏云面板服。 配置给l4d2开服应该也是够用了。记得选纯环境。
+这个mcsm面板服感觉像是在一个容器里面操作一样，相较于vps感觉很不方便，也不能ssh访问。不过这免费的还要啥自行车，3000积分无限续费，每天签到还送500积分，相当于可以一直嫖。抱着玩一玩的心态，耗时两个晚上也是搭建成功了。总体上来说和vps开服没什么区别，这里放一个大佬的教程https://www.bilibili.com/opus/736922474423255104，讲的还是蛮详细的。开服用到的是steamCMD这样一个东西，wiki上也有如何安装这个的教程https://developer.valvesoftware.com/wiki/SteamCMD#Debian，部署这个服务器大致分两步，第一步就是下载安装steamCMD和l4d2服务端，第二步就是安装插件平台和各种插件。在去这两个链接之前先把我下面的内容看完，很重要，虽然面板服上搭建服务器和vps没什么大的区别。
+那么在这个面板服上开服有哪些不同。因为这个面板服和docker差不多，只给挂载了根目录下的workspace文件夹，换句话说重启服务器之后只有这个workspace文件夹里面的东西是不会被删除的，我暂时不知道能不能让其他文件夹持久化，所以部署完之后不要重启服务器，而且所有的东西尽量安装在/workspace目录下。那么拿到服务器第一件事情是什么？上一篇帖子也说了，第一步应该是去换镜像源。镜像源目录一般是/etc/opt下名为sources.list的文件，或者sources.list.d的文件夹内的文件，我拿到手的服务器只有sources.list.d这个文件夹，删掉。然后用功能组里面的文件管理写入一个sources.list的文件，这个文件管理打开就是/workspace目录。我目前用的是南京大学的镜像源，速度还可以，sources.list怎么写可以问ai。创建好之后copy这个文件到/etc/opt目录，然后就可以apt update等操作了。还有一点值得注意的是记得安装sudo，因为l4d2不建议在root下开服，在你切换到普通用户时，要用sudo命令，反正我拿到手的服默认是没有sudo的，这个时候安装sudo，就得sudo apt install sudo，显然安装不了，只能切回root用户，但是又不知道密码，我也没试就直接重启了，当然重启意味着之前的工作全白做了。
+这里再补充几点。这个面板服也是可以安装screen的，这样就能在一个终端下面打开多个会话了，非常方便。ctrl A D也是可以用的。给普通用户sudo权限可以用sudo usermod -aG sudo username。开服的端口用服务器给你的端口就行，不一定要用27015。git clone太慢等问题可以直接问ai，各种报错也直接copy给ai让ai帮你分析，大部分情况下都能解决问题。
+服务器是搭好了，但是玩游戏的人呢？（）其实群里有人也拿vps搭了一个服，所以我这个面板服就相当于当玩具自己折腾着玩了玩，也没拿来测试效果怎么样，至少我自己能连上服务器，延迟也还可以。">
+
+
+
+    <meta property="og:url" content="https://ninependoragon.moe/posts/4_l4d2_server/">
+  <meta property="og:site_name" content="I&#39;m Nine_Pendoragon">
+  <meta property="og:title" content="在雨云mcsm面板服部署l4d2服务器">
+  <meta property="og:description" content=" l4d2是一款不错的团建游戏，游戏有mod可以解锁房间8人联机，但是超过8人就得部署服务器。当然，可以在自己电脑上部署，然后通过frp内网穿透也是可以玩的，就是比较麻烦，我前几天也试过了在自己电脑上开了个服务器，然后用樱花fpr内网穿透，延迟还可以，就是我得先开游戏，再开服务器。不知道为什么在电脑上开服之后steam就是正在游戏状态。相关教程在樱花frp帮助文档里面也有。因为觉得太麻烦，就想找个云服试试看，上一篇帖子也提到了雨云的免费的游戏云面板服。 配置给l4d2开服应该也是够用了。记得选纯环境。
+这个mcsm面板服感觉像是在一个容器里面操作一样，相较于vps感觉很不方便，也不能ssh访问。不过这免费的还要啥自行车，3000积分无限续费，每天签到还送500积分，相当于可以一直嫖。抱着玩一玩的心态，耗时两个晚上也是搭建成功了。总体上来说和vps开服没什么区别，这里放一个大佬的教程https://www.bilibili.com/opus/736922474423255104，讲的还是蛮详细的。开服用到的是steamCMD这样一个东西，wiki上也有如何安装这个的教程https://developer.valvesoftware.com/wiki/SteamCMD#Debian，部署这个服务器大致分两步，第一步就是下载安装steamCMD和l4d2服务端，第二步就是安装插件平台和各种插件。在去这两个链接之前先把我下面的内容看完，很重要，虽然面板服上搭建服务器和vps没什么大的区别。
+那么在这个面板服上开服有哪些不同。因为这个面板服和docker差不多，只给挂载了根目录下的workspace文件夹，换句话说重启服务器之后只有这个workspace文件夹里面的东西是不会被删除的，我暂时不知道能不能让其他文件夹持久化，所以部署完之后不要重启服务器，而且所有的东西尽量安装在/workspace目录下。那么拿到服务器第一件事情是什么？上一篇帖子也说了，第一步应该是去换镜像源。镜像源目录一般是/etc/opt下名为sources.list的文件，或者sources.list.d的文件夹内的文件，我拿到手的服务器只有sources.list.d这个文件夹，删掉。然后用功能组里面的文件管理写入一个sources.list的文件，这个文件管理打开就是/workspace目录。我目前用的是南京大学的镜像源，速度还可以，sources.list怎么写可以问ai。创建好之后copy这个文件到/etc/opt目录，然后就可以apt update等操作了。还有一点值得注意的是记得安装sudo，因为l4d2不建议在root下开服，在你切换到普通用户时，要用sudo命令，反正我拿到手的服默认是没有sudo的，这个时候安装sudo，就得sudo apt install sudo，显然安装不了，只能切回root用户，但是又不知道密码，我也没试就直接重启了，当然重启意味着之前的工作全白做了。
+这里再补充几点。这个面板服也是可以安装screen的，这样就能在一个终端下面打开多个会话了，非常方便。ctrl A D也是可以用的。给普通用户sudo权限可以用sudo usermod -aG sudo username。开服的端口用服务器给你的端口就行，不一定要用27015。git clone太慢等问题可以直接问ai，各种报错也直接copy给ai让ai帮你分析，大部分情况下都能解决问题。
+服务器是搭好了，但是玩游戏的人呢？（）其实群里有人也拿vps搭了一个服，所以我这个面板服就相当于当玩具自己折腾着玩了玩，也没拿来测试效果怎么样，至少我自己能连上服务器，延迟也还可以。">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-11-09T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-11-09T00:00:00+00:00">
+    <meta property="article:tag" content="服务器">
+    <meta property="article:tag" content="L4d2">
+
+
+
+
+
+
+    <meta property="article:published_time" content="2025-11-09 00:00:00 &#43;0000 UTC" />
+
+
+
+
+
+
+
+
+
+
+
+
+    </head>
+
+    
+        <body>
+    
+    
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">&gt;</span>
+            <span class="logo__text ">
+                @Nine_Pendoragon$</span>
+            <span class="logo__cursor" style=
+                  "
+                   background-color:#ff8b53;
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="/about">About</a></li><li><a href="/posts">Blog</a></li><li><a href="/tags">Tags</a></li><li><a href="/tools">Tools</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+  <main class="post">
+
+    <div class="post-info">
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="12 6 12 12 16 14"></polyline>
+        </svg>
+        One minute
+
+        
+      </p>
+    </div>
+
+    <article>
+      <h1 class="post-title">
+        <a href="https://ninependoragon.moe/posts/4_l4d2_server/">在雨云mcsm面板服部署l4d2服务器</a>
+      </h1>
+
+      
+
+      
+        <hr />
+        <aside id="toc">
+          <div class="toc-title">Table of Contents</div>
+          <nav id="TableOfContents"></nav>
+        </aside>
+        <hr />
+
+      
+
+      <div class="post-content">
+        <p>  l4d2是一款不错的团建游戏，游戏有mod可以解锁房间8人联机，但是超过8人就得部署服务器。当然，可以在自己电脑上部署，然后通过frp内网穿透也是可以玩的，就是比较麻烦，我前几天也试过了在自己电脑上开了个服务器，然后用樱花fpr内网穿透，延迟还可以，就是我得先开游戏，再开服务器。不知道为什么在电脑上开服之后steam就是正在游戏状态。相关教程在樱花frp<a href="https://doc.natfrp.com/offtopic/source.html">帮助文档</a>里面也有。因为觉得太麻烦，就想找个云服试试看，上一篇帖子也提到了雨云的免费的游戏云面板服。<img src="/yuyun/mcsm.png" alt="mcsm" title="mcsm">
+<img src="/yuyun/mcsm_game.png" alt="mcsm_game" title="mcsm_game">
+配置给l4d2开服应该也是够用了。记得选纯环境。</p>
+<p>  这个mcsm面板服感觉像是在一个容器里面操作一样，相较于vps感觉很不方便，也不能ssh访问。不过这免费的还要啥自行车，3000积分无限续费，每天签到还送500积分，相当于可以一直嫖。抱着玩一玩的心态，耗时两个晚上也是搭建成功了。总体上来说和vps开服没什么区别，这里放一个大佬的教程<a href="https://www.bilibili.com/opus/736922474423255104">https://www.bilibili.com/opus/736922474423255104</a>，讲的还是蛮详细的。开服用到的是steamCMD这样一个东西，wiki上也有如何安装这个的教程<a href="https://developer.valvesoftware.com/wiki/SteamCMD#Debian">https://developer.valvesoftware.com/wiki/SteamCMD#Debian</a>，部署这个服务器大致分两步，第一步就是下载安装steamCMD和l4d2服务端，第二步就是安装插件平台和各种插件。在去这两个链接之前先把我下面的内容看完，很重要，虽然面板服上搭建服务器和vps没什么大的区别。</p>
+<p>  那么在这个面板服上开服有哪些不同。因为这个面板服和docker差不多，只给挂载了根目录下的workspace文件夹，换句话说重启服务器之后只有这个workspace文件夹里面的东西是不会被删除的，我暂时不知道能不能让其他文件夹持久化，所以部署完之后不要重启服务器，而且所有的东西尽量安装在/workspace目录下。那么拿到服务器第一件事情是什么？上一篇帖子也说了，第一步应该是去换镜像源。镜像源目录一般是/etc/opt下名为sources.list的文件，或者sources.list.d的文件夹内的文件，我拿到手的服务器只有sources.list.d这个文件夹，删掉。然后用功能组里面的文件管理写入一个sources.list的文件，这个文件管理打开就是/workspace目录。我目前用的是南京大学的镜像源，速度还可以，sources.list怎么写可以问ai。创建好之后copy这个文件到/etc/opt目录，然后就可以apt update等操作了。还有一点值得注意的是记得安装sudo，因为l4d2不建议在root下开服，在你切换到普通用户时，要用sudo命令，反正我拿到手的服默认是没有sudo的，这个时候安装sudo，就得sudo apt install sudo，显然安装不了，只能切回root用户，但是又不知道密码，我也没试就直接重启了，当然重启意味着之前的工作全白做了。</p>
+<p>  这里再补充几点。这个面板服也是可以安装screen的，这样就能在一个终端下面打开多个会话了，非常方便。ctrl A D也是可以用的。给普通用户sudo权限可以用sudo usermod -aG sudo username。开服的端口用服务器给你的端口就行，不一定要用27015。git clone太慢等问题可以直接问ai，各种报错也直接copy给ai让ai帮你分析，大部分情况下都能解决问题。</p>
+<p>  服务器是搭好了，但是玩游戏的人呢？（）其实群里有人也拿vps搭了一个服，所以我这个面板服就相当于当玩具自己折腾着玩了玩，也没拿来测试效果怎么样，至少我自己能连上服务器，延迟也还可以。</p>
+
+      </div>
+    </article>
+
+    <hr />
+
+    <div class="post-info">
+      
+    <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg>
+
+        <span class="tag"><a href="https://ninependoragon.moe/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a></span>
+        <span class="tag"><a href="https://ninependoragon.moe/tags/l4d2/">l4d2</a></span>
+        
+    </p>
+
+      
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+          <polyline points="10 9 9 9 8 9"></polyline>
+        </svg>
+        17 Words
+      </p>
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+          <line x1="16" y1="2" x2="16" y2="6"></line>
+          <line x1="8" y1="2" x2="8" y2="6"></line>
+          <line x1="3" y1="10" x2="21" y2="10"></line>
+        </svg>
+        
+          2025-11-09 08:00
+        
+
+         
+          
+        
+      </p>
+    </div>
+
+    
+    <div class="pagination">
+        
+
+        <div class="pagination__buttons">
+            
+
+            
+            <span class="button next">
+                <a href="https://ninependoragon.moe/posts/3_astrbot/">
+                    <span class="button__text">云服务器与聊天机器人</span>
+                    <span class="button__icon">→</span>
+                </a>
+            </span>
+            
+        </div>
+    </div>
+
+
+    
+
+    
+
+    
+    <script src="https://utteranc.es/client.js"
+            repo="NinePendoragon/my-hugo-site-test"
+            label="comment"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+    </script>
+    
+
+  </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy; 2025</span>
+            <span><a href="https://ninependoragon.moe/">Nine_Pendoragon</a></span>
+            <span><a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></span>
+            <span><a href="https://ninependoragon.moe/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
+            
+        </div>
+    </div>
+    
+    
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>Powered by <a href="http://gohugo.io">Hugo</a></span><span>Made with &#10084; by <a href="https://github.com/rhazdon">Djordje Atlialp</a></span>
+        </div>
+    </div>
+    
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+<script type="text/javascript" src="/bundle.min.ad54ad97364f77ede35def9096b162bb1f0b3973aa50b080f5e82fa147f6882e2a7200d7535adbf9b51bebf939f1c1ca9bbe6be87530092aca720eac4a226fda.js" integrity="sha512-rVStlzZPd&#43;3jXe&#43;QlrFiux8LOXOqULCA9egvoUf2iC4qcgDXU1rb&#43;bUb6/k58cHKm75r6HUwCSrKcg6sSiJv2g=="></script>
+
+
+
+
+    </body>
+</html>
