@@ -43,9 +43,6 @@
     <loc>https://ninependoragon.moe/tags/astrbot/</loc>
     <lastmod>2025-11-08T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://ninependoragon.moe/tags/vps/</loc>
-    <lastmod>2025-11-08T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://ninependoragon.moe/posts/3_astrbot/</loc>
     <lastmod>2025-11-08T00:00:00+00:00</lastmod>
   </url><url>
@@ -91,5 +88,7 @@
                 />
   </url><url>
     <loc>https://ninependoragon.moe/tools/</loc>
+  </url><url>
+    <loc>https://ninependoragon.moe/flink/</loc>
   </url>
 </urlset>
