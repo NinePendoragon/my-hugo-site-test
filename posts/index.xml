@@ -73,7 +73,9 @@
             <pubDate>Thu, 03 Jul 2025 00:00:00 +0000</pubDate>
             
             <guid>https://ninependoragon.moe/posts/2_wsl_archlinux/</guid>
-            <description>&lt;h2 id=&#34;官网&#34;&gt;官网：&lt;/h2&gt;
+            <description>&lt;h2 id=&#34;2025年11月14日更新&#34;&gt;2025年11月14日更新&lt;/h2&gt;
+&lt;p&gt;建议在linux的文件系统下安装，之前忘记提了。见文档&lt;a href=&#34;https://learn.microsoft.com/zh-cn/windows/wsl/filesystems&#34;&gt;”跨 Windows 和 Linux 文件系统工作“&lt;/a&gt;。&lt;/p&gt;
+&lt;h2 id=&#34;官网&#34;&gt;官网：&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&#34;https://learn.microsoft.com/zh-cn/windows/wsl/install&#34;&gt;https://learn.microsoft.com/zh-cn/windows/wsl/install&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&#34;使用wsl安装linux&#34;&gt;使用wsl安装linux&lt;/h2&gt;
 &lt;h3 id=&#34;1-安装wsl&#34;&gt;1. 安装wsl&lt;/h3&gt;
@@ -105,12 +107,10 @@
 &lt;p&gt;先在windows终端中打开wsl archlinux&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-PowerShell&#34; data-lang=&#34;PowerShell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# PowerShell&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;wsl -d archlinux
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;进入archlinux默认是root用户，先安装sudo软件包&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# bash&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;pacman -Syu
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;pacman -S sudo
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;然后创建非root用户，注意下面的命令仍然是在archlinux的终端中输入。&lt;/p&gt;</description>
-            <content type="html"><![CDATA[<h2 id="官网">官网：</h2>
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;进入archlinux默认是root用户，先安装sudo软件包&lt;/p&gt;</description>
+            <content type="html"><![CDATA[<h2 id="2025年11月14日更新">2025年11月14日更新</h2>
+<p>建议在linux的文件系统下安装，之前忘记提了。见文档<a href="https://learn.microsoft.com/zh-cn/windows/wsl/filesystems">”跨 Windows 和 Linux 文件系统工作“</a>。</p>
+<h2 id="官网">官网：</h2>
 <p><a href="https://learn.microsoft.com/zh-cn/windows/wsl/install">https://learn.microsoft.com/zh-cn/windows/wsl/install</a></p>
 <h2 id="使用wsl安装linux">使用wsl安装linux</h2>
 <h3 id="1-安装wsl">1. 安装wsl</h3>

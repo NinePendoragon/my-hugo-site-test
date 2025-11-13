@@ -6,8 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="author" content="">
-<meta name="description" content="(暂时不懂html所以就先不修改模版只放链接了，后面再折腾)
-apricot1024 Foolish Fox " />
+<meta name="description" content=" apricot1024 是魔怔人不是乐子人 Foolish_Fox " />
 <meta name="keywords" content="homepage, blog" />
 <meta name="robots" content="noodp" />
 <meta name="theme-color" content="" />
@@ -41,22 +40,19 @@ apricot1024 Foolish Fox " />
 
 
   <meta itemprop="name" content="友链">
-  <meta itemprop="description" content="(暂时不懂html所以就先不修改模版只放链接了，后面再折腾)
-apricot1024 Foolish Fox">
-  <meta itemprop="wordCount" content="4">
+  <meta itemprop="description" content="apricot1024 是魔怔人不是乐子人 Foolish_Fox">
+  <meta itemprop="wordCount" content="3">
 
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="友链">
-  <meta name="twitter:description" content="(暂时不懂html所以就先不修改模版只放链接了，后面再折腾)
-apricot1024 Foolish Fox">
+  <meta name="twitter:description" content="apricot1024 是魔怔人不是乐子人 Foolish_Fox">
 
 
 
     <meta property="og:url" content="https://ninependoragon.moe/flink/">
   <meta property="og:site_name" content="I&#39;m Nine_Pendoragon">
   <meta property="og:title" content="友链">
-  <meta property="og:description" content="(暂时不懂html所以就先不修改模版只放链接了，后面再折腾)
-apricot1024 Foolish Fox">
+  <meta property="og:description" content="apricot1024 是魔怔人不是乐子人 Foolish_Fox">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
 
@@ -135,11 +131,116 @@ apricot1024 Foolish Fox">
             
 
             <div class="post-content">
-                <p>(暂时不懂html所以就先不修改模版只放链接了，后面再折腾)</p>
-<ul>
-<li><a href="https://apricot1024.github.io/ApricotsZone/">apricot1024</a></li>
-<li><a href="https://foolishfox.cn/">Foolish Fox</a></li>
-</ul>
+                <style type="text/css">
+    .friends {
+        --link-count-per-row: 1;
+    }
+
+    @media screen and (min-width: 576px) {
+        .friends {
+            --link-count-per-row: 2;
+        }
+    }
+
+    @media screen and (min-width: 768px) {
+        .friends {
+            --link-count-per-row: 3;
+        }
+    }
+
+    .friends {
+        display: grid;
+        grid-template-columns: repeat(var(--link-count-per-row), 1fr);
+        grid-gap: 16px;
+    }
+
+     
+    .friend-skeleton {
+        height: 280px;
+        display: inline-block;
+        position: relative;
+    }
+
+    .friend {
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transition: 0.67s cubic-bezier(0.19, 1, 0.22, 1);
+        border-radius: var(--radius);
+        box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2),
+            0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12) !important;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    .friend:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2),
+            0 5px 8px 0 rgba(0, 0, 0, 0.14), 0 1px 14px 0 rgba(0, 0, 0, 0.12) !important;
+    }
+
+    .friend-avatar {
+        object-fit: cover;
+        width: 100%;
+        height: 180px;
+        margin: 0 !important;
+        border-radius: 0 !important;
+    }
+    .friend-content {
+        text-align: center;
+        flex: 1;
+        width: 100%;
+        padding: 16px;
+        background: var(--entry);
+        transform: translate3d(0, 0, 0);
+    }
+
+    .friend-name {
+        font-size: 1.2rem;
+        font-weight: bold;
+        transform: inherit;
+    }
+
+    .friend-description {
+        font-size: 0.8rem;
+        color: var(--secondary);
+        transform: translate3d(0, 0, 0);
+    }
+</style>
+<div class="friends">
+    
+    <div class="friend-skeleton">
+        <a href="https://apricot1024.github.io/ApricotsZone/" target="_blank">
+            <div class="friend">
+                <img class="friend-avatar" src="https://avatars.githubusercontent.com/u/68466174?v=4" />
+                <div class="friend-content">
+                    <div class="friend-name">apricot1024</div>
+                    <div class="friend-description">是魔怔人不是乐子人</div>
+                </div>
+            </div>
+        </a>
+    </div>
+    
+    <div class="friend-skeleton">
+        <a href="https://foolishfox.cn/" target="_blank">
+            <div class="friend">
+                <img class="friend-avatar" src="https://asset.foolishfox.cn/static/avatar.jpg" />
+                <div class="friend-content">
+                    <div class="friend-name">Foolish_Fox</div>
+                    <div class="friend-description"></div>
+                </div>
+            </div>
+        </a>
+    </div>
+    
+</div>
+
+
 
             </div>
         </article>

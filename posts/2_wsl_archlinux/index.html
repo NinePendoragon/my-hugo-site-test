@@ -6,7 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="author" content="">
-<meta name="description" content="官网： https://learn.microsoft.com/zh-cn/windows/wsl/install
+<meta name="description" content="2025年11月14日更新 建议在linux的文件系统下安装，之前忘记提了。见文档”跨 Windows 和 Linux 文件系统工作“。
+官网： https://learn.microsoft.com/zh-cn/windows/wsl/install
 使用wsl安装linux 1. 安装wsl 打开终端管理员，win11鼠标右键点击win菜单可以找到。
 # PowerShell wsl --install 遇到如下报错：
 # PowerShell PS C:\Users\gouz&gt; wsl --install 正在下载: Ubuntu 正在安装: Ubuntu 由于未安装所需的特性，无法启动操作。 错误代码: Wsl/InstallDistro/Service/RegisterDistro/CreateVm/HCS/HCS_E_SERVICE_NOT_AVAILABLE 按照旧版本的步骤先启用适用于linux的windows子系统，然后启用虚拟机功能，然后关机重启。
@@ -15,7 +16,6 @@
 # PowerShell wsl -l -o 可以查看在线商店可用的linux分发版的列表。 我更换成了archlinux，
 # PowerShell wsl --install -d archlinux 2. 为archlinux创建非root用户 先在windows终端中打开wsl archlinux
 # PowerShell wsl -d archlinux 进入archlinux默认是root用户，先安装sudo软件包
-# bash pacman -Syu pacman -S sudo 然后创建非root用户，注意下面的命令仍然是在archlinux的终端中输入。
 " />
 <meta name="keywords" content="homepage, blog, Geant4, wsl, ROOT" />
 <meta name="robots" content="noodp" />
@@ -50,7 +50,8 @@
 
 
   <meta itemprop="name" content="使用wsl安装archlinux，Geant4及ROOT">
-  <meta itemprop="description" content="官网： https://learn.microsoft.com/zh-cn/windows/wsl/install
+  <meta itemprop="description" content="2025年11月14日更新 建议在linux的文件系统下安装，之前忘记提了。见文档”跨 Windows 和 Linux 文件系统工作“。
+官网： https://learn.microsoft.com/zh-cn/windows/wsl/install
 使用wsl安装linux 1. 安装wsl 打开终端管理员，win11鼠标右键点击win菜单可以找到。
 # PowerShell wsl --install 遇到如下报错：
 # PowerShell PS C:\Users\gouz&gt; wsl --install 正在下载: Ubuntu 正在安装: Ubuntu 由于未安装所需的特性，无法启动操作。 错误代码: Wsl/InstallDistro/Service/RegisterDistro/CreateVm/HCS/HCS_E_SERVICE_NOT_AVAILABLE 按照旧版本的步骤先启用适用于linux的windows子系统，然后启用虚拟机功能，然后关机重启。
@@ -58,16 +59,16 @@
 # PowerShell wsl --install 默认安装的是Ubuntu，在windows终端内输入
 # PowerShell wsl -l -o 可以查看在线商店可用的linux分发版的列表。 我更换成了archlinux，
 # PowerShell wsl --install -d archlinux 2. 为archlinux创建非root用户 先在windows终端中打开wsl archlinux
-# PowerShell wsl -d archlinux 进入archlinux默认是root用户，先安装sudo软件包
-# bash pacman -Syu pacman -S sudo 然后创建非root用户，注意下面的命令仍然是在archlinux的终端中输入。">
+# PowerShell wsl -d archlinux 进入archlinux默认是root用户，先安装sudo软件包">
   <meta itemprop="datePublished" content="2025-07-03T00:00:00+00:00">
   <meta itemprop="dateModified" content="2025-07-03T00:00:00+00:00">
-  <meta itemprop="wordCount" content="2150">
+  <meta itemprop="wordCount" content="2156">
   <meta itemprop="keywords" content="Geant4,Wsl,ROOT">
 
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="使用wsl安装archlinux，Geant4及ROOT">
-  <meta name="twitter:description" content="官网： https://learn.microsoft.com/zh-cn/windows/wsl/install
+  <meta name="twitter:description" content="2025年11月14日更新 建议在linux的文件系统下安装，之前忘记提了。见文档”跨 Windows 和 Linux 文件系统工作“。
+官网： https://learn.microsoft.com/zh-cn/windows/wsl/install
 使用wsl安装linux 1. 安装wsl 打开终端管理员，win11鼠标右键点击win菜单可以找到。
 # PowerShell wsl --install 遇到如下报错：
 # PowerShell PS C:\Users\gouz&gt; wsl --install 正在下载: Ubuntu 正在安装: Ubuntu 由于未安装所需的特性，无法启动操作。 错误代码: Wsl/InstallDistro/Service/RegisterDistro/CreateVm/HCS/HCS_E_SERVICE_NOT_AVAILABLE 按照旧版本的步骤先启用适用于linux的windows子系统，然后启用虚拟机功能，然后关机重启。
@@ -75,15 +76,15 @@
 # PowerShell wsl --install 默认安装的是Ubuntu，在windows终端内输入
 # PowerShell wsl -l -o 可以查看在线商店可用的linux分发版的列表。 我更换成了archlinux，
 # PowerShell wsl --install -d archlinux 2. 为archlinux创建非root用户 先在windows终端中打开wsl archlinux
-# PowerShell wsl -d archlinux 进入archlinux默认是root用户，先安装sudo软件包
-# bash pacman -Syu pacman -S sudo 然后创建非root用户，注意下面的命令仍然是在archlinux的终端中输入。">
+# PowerShell wsl -d archlinux 进入archlinux默认是root用户，先安装sudo软件包">
 
 
 
     <meta property="og:url" content="https://ninependoragon.moe/posts/2_wsl_archlinux/">
   <meta property="og:site_name" content="I&#39;m Nine_Pendoragon">
   <meta property="og:title" content="使用wsl安装archlinux，Geant4及ROOT">
-  <meta property="og:description" content="官网： https://learn.microsoft.com/zh-cn/windows/wsl/install
+  <meta property="og:description" content="2025年11月14日更新 建议在linux的文件系统下安装，之前忘记提了。见文档”跨 Windows 和 Linux 文件系统工作“。
+官网： https://learn.microsoft.com/zh-cn/windows/wsl/install
 使用wsl安装linux 1. 安装wsl 打开终端管理员，win11鼠标右键点击win菜单可以找到。
 # PowerShell wsl --install 遇到如下报错：
 # PowerShell PS C:\Users\gouz&gt; wsl --install 正在下载: Ubuntu 正在安装: Ubuntu 由于未安装所需的特性，无法启动操作。 错误代码: Wsl/InstallDistro/Service/RegisterDistro/CreateVm/HCS/HCS_E_SERVICE_NOT_AVAILABLE 按照旧版本的步骤先启用适用于linux的windows子系统，然后启用虚拟机功能，然后关机重启。
@@ -91,8 +92,7 @@
 # PowerShell wsl --install 默认安装的是Ubuntu，在windows终端内输入
 # PowerShell wsl -l -o 可以查看在线商店可用的linux分发版的列表。 我更换成了archlinux，
 # PowerShell wsl --install -d archlinux 2. 为archlinux创建非root用户 先在windows终端中打开wsl archlinux
-# PowerShell wsl -d archlinux 进入archlinux默认是root用户，先安装sudo软件包
-# bash pacman -Syu pacman -S sudo 然后创建非root用户，注意下面的命令仍然是在archlinux的终端中输入。">
+# PowerShell wsl -d archlinux 进入archlinux默认是root用户，先安装sudo软件包">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
@@ -191,6 +191,7 @@
           <div class="toc-title">Table of Contents</div>
           <nav id="TableOfContents">
   <ul>
+    <li><a href="#2025年11月14日更新">2025年11月14日更新</a></li>
     <li><a href="#官网">官网：</a></li>
     <li><a href="#使用wsl安装linux">使用wsl安装linux</a>
       <ul>
@@ -219,7 +220,9 @@
       
 
       <div class="post-content">
-        <h2 id="官网">官网：</h2>
+        <h2 id="2025年11月14日更新">2025年11月14日更新</h2>
+<p>建议在linux的文件系统下安装，之前忘记提了。见文档<a href="https://learn.microsoft.com/zh-cn/windows/wsl/filesystems">”跨 Windows 和 Linux 文件系统工作“</a>。</p>
+<h2 id="官网">官网：</h2>
 <p><a href="https://learn.microsoft.com/zh-cn/windows/wsl/install">https://learn.microsoft.com/zh-cn/windows/wsl/install</a></p>
 <h2 id="使用wsl安装linux">使用wsl安装linux</h2>
 <h3 id="1-安装wsl">1. 安装wsl</h3>
@@ -694,7 +697,7 @@
           <line x1="16" y1="17" x2="8" y2="17"></line>
           <polyline points="10 9 9 9 8 9"></polyline>
         </svg>
-        2150 Words
+        2156 Words
       </p>
 
       <p>
