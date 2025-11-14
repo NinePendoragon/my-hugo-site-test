@@ -157,7 +157,7 @@
 </span></span></code></pre></div><p>打开文件后ctrl+F搜索wheel，然后将%wheel ALL=(ALL:ALL) ALL 这一行的注释删掉，也就是删掉“# %wheel ALL=(ALL:ALL) ALL”前面的“#”，随后ctrl+X退出，输入Y按下回车保存。
 然后切换成新建的用户测试一下sudo是否能够使用。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># bash</span>
-</span></span><span style="display:flex;"><span>su username
+</span></span><span style="display:flex;"><span>su - username
 </span></span><span style="display:flex;"><span>sudo pacman -Syu
 </span></span></code></pre></div><p>如果需要，可以将wsl的archlinux默认启动用户改成刚刚新建的用户。打开windows终端</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-PowerShell" data-lang="PowerShell"><span style="display:flex;"><span><span style="color:#75715e">#PowerShell</span>
@@ -479,8 +479,9 @@
 <p>这里也用简单方法了，从源码构建就放在第一篇帖子里面折腾吧。</p>
 <h3 id="总结">总结</h3>
 <p><a href="https://geant4-userdoc.web.cern.ch/UsersGuides/InstallationGuide/html/">https://geant4-userdoc.web.cern.ch/UsersGuides/InstallationGuide/html/</a> &ldquo;Arch Users Repository on Arch Linux&quot;处跟着走，
-先安装一下依赖，由于有一些依赖官方仓库里面没有，因此可以使用aur助手yay安装aur的包。</p>
+先安装一下依赖，由于有一些依赖官方仓库里面没有，因此可以使用aur助手<a href="https://github.com/Jguer/yay">yay</a>安装aur的包。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># bash</span>
+</span></span><span style="display:flex;"><span>sudo pacman -S --needed git base-devel
 </span></span><span style="display:flex;"><span>git clone https://aur.archlinux.org/yay.git
 </span></span><span style="display:flex;"><span>cd yay
 </span></span><span style="display:flex;"><span>makepkg -si
