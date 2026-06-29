@@ -2,52 +2,52 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://ninependoragon.moe/zh/blog/</loc>
+    <loc>https://asagi.moe/zh/blog/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://ninependoragon.moe/blog/"
+                href="https://asagi.moe/blog/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="https://ninependoragon.moe/zh/blog/"
+                href="https://asagi.moe/zh/blog/"
                 />
   </url><url>
-    <loc>https://ninependoragon.moe/zh/</loc>
+    <loc>https://asagi.moe/zh/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://ninependoragon.moe/"
+                href="https://asagi.moe/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="https://ninependoragon.moe/zh/"
+                href="https://asagi.moe/zh/"
                 />
   </url><url>
-    <loc>https://ninependoragon.moe/zh/series/</loc>
+    <loc>https://asagi.moe/zh/series/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://ninependoragon.moe/series/"
+                href="https://asagi.moe/series/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="https://ninependoragon.moe/zh/series/"
+                href="https://asagi.moe/zh/series/"
                 />
   </url><url>
-    <loc>https://ninependoragon.moe/zh/tags/</loc>
+    <loc>https://asagi.moe/zh/tags/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://ninependoragon.moe/tags/"
+                href="https://asagi.moe/tags/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh"
-                href="https://ninependoragon.moe/zh/tags/"
+                href="https://asagi.moe/zh/tags/"
                 />
   </url>
 </urlset>
